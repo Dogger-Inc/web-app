@@ -6,7 +6,7 @@ import { resolve } from 'path';
 export default defineConfig({
 	resolve: {
 		alias: {
-            '@images': resolve('resources/assets'),
+            '@assets': resolve('resources/assets'),
         },
 	},
     plugins: [
