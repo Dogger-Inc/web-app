@@ -1,0 +1,21 @@
+.btn {
+    @apply rounded-full text-base md:text-lg font-bold px-8 md:px-12 py-4 h-fit w-fit flex items-center justify-center gap-2 lg:gap-4;
+
+    &.primary {
+        @apply border text-white border-dogger-orange-500 bg-dogger-orange-500 hover:bg-dogger-orange-400;
+    }
+    &.generic {
+        @apply border text-black border-dogger-orange-500 hover:bg-dogger-orange-500;
+    }
+    &.warning {
+        @apply border text-red-500 border-red-500 hover:bg-red-500 hover:text-white;
+    }
+
+    &:disabled {
+        @apply cursor-not-allowed bg-gray-300 text-gray-700;
+    }
+    &.sm {
+        @apply text-sm rounded-lg;
+        padding: 13px 24px;
+    }
+}
