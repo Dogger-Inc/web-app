@@ -22,13 +22,22 @@ Next you need to generate the routing file.
 
 Finally build the app.
 
-### `npm run build`
+### `npm run dev`
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+or build the app for production.
+
 ### `npm run build`
+
+Run the server (if you don't have Valet or Herd)
+
 ### `php artisan serve`
 
 Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 If you're on macOS you can use Laravel Valet (or Herd) to serve your app locally with a pretty domain name (like http://dogger.test).
+
+If you wan't to run the project with SSR (Server Side Rendering) you need to run the following command (available only after a build).
+
+### `php artisan inertia:start-ssr`
