@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, Link } from '@inertiajs/vue3';
+import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import AuthLayout from '@/Layouts/Auth.vue';
 import Logo from '@assets/images/logo.png';
 
@@ -35,43 +36,30 @@ const submitForm = () => {
                 </p>
             </div>
 
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitForm" class="flex flex-col gap-5 lg:gap-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
-                    <div :class="{ 'form-error-div': form.errors.firstname }">
-                        <label for="first_name">First Name</label>
-                        <input v-model="form.firstname" id="first_name" />
-                        <div v-if="form.errors.firstname" class="form-error-field">{{ form.errors.firstname }}</div>
-                    </div>
-                    <div :class="{ 'form-error-div': form.errors.lastname }">
-                        <label for="last_name">Last Name</label>
-                        <input v-model="form.lastname" id="last_name" />
-                        <div v-if="form.errors.lastname" class="form-error-field">{{ form.errors.lastname }}</div>
-                    </div>
+                    <InputWrapper v-model="form.firstname" :error="form.errors.firstname" title="First Name" />
+                    <InputWrapper v-model="form.lastname" :error="form.errors.lastname" title="Last Name" />
                 </div>
-                <div :class="['md:pt-2', { 'form-error-div': form.errors.email }]">
-                    <label for="email">Email</label>
-                    <input v-model="form.email" id="email" type="email" />
-                    <div v-if="form.errors.email" class="form-error-field">{{ form.errors.email }}</div>
-                </div>
+                <InputWrapper v-model="form.email" :error="form.errors.email" title="Email" type="email" />
                 <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
-                    <div :class="['md:pt-2', { 'form-error-div': form.errors.password }]">
-                        <label for="password">Password</label>
-                        <input v-model="form.password" id="password" type="password" />
-                        <div v-if="form.errors.password" class="form-error-field">{{ form.errors.password }}</div>
-                    </div>
-                    <div :class="['md:pt-2', { 'form-error-div': form.errors.password_confirmation }]">
-                        <label for="password_confirmation">Confirm Password</label>
-                        <input v-model="form.password_confirmation" id="password_confirmation" type="password" />
-                        <div v-if="form.errors.password_confirmation" class="form-error-field">{{
-                            form.errors.password_confirmation }}</div>
-                    </div>
+                    <InputWrapper
+                        v-model="form.password"
+                        :error="form.errors.password"
+                        title="Password" type="password"
+                    />
+                    <InputWrapper
+                        v-model="form.password_confirmation"
+                        :error="form.errors.password_confirmation"
+                        title="Confirm Password" type="password"
+                    />
                 </div>
-                <div :class="['md:pt-2', { 'form-error-div': form.errors.organization_name }]">
-                    <label for="organization_name">Organization name</label>
-                    <input v-model="form.organization_name" id="organization_name" type="organization_name" />
-                    <div v-if="form.errors.organization_name" class="form-error-field">{{ form.errors.organization_name }}</div>
-                </div>
-                <button class="btn primary mt-6 w-full" type="submit">Register</button>
+                <InputWrapper
+                    v-model="form.organization_name"
+                    :error="form.errors.organization_name"
+                    title="Organization name"
+                />
+                <button class="btn primary mt-6 !w-full" type="submit">Register</button>
             </form>
         </div>
     </AuthLayout>

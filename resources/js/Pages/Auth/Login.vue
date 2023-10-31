@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, Link } from '@inertiajs/vue3';
+import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import AuthLayout from '@/Layouts/Auth.vue';
 import Logo from '@assets/images/logo.png';
 
@@ -15,7 +16,7 @@ const submitForm = () => {
 
 <template>
     <AuthLayout>
-        <div class="max-w-md w-full mb-24 flex flex-col gap-10 md:gap-14">
+        <div class="max-w-md w-full mb-24 flex flex-col gap-10 md:gap-12">
             <div>
                 <Link :href="route('homepage')">
                     <img :src="Logo" alt="Logo Dogger" class="mx-auto w-24" />
@@ -31,18 +32,10 @@ const submitForm = () => {
                 </p>
             </div>
 
-            <form @submit.prevent="submitForm">
-                <div :class="{ 'form-error-div': form.errors.email }">
-                    <label for="email">Email</label>
-                    <input v-model="form.email" id="email" type="email" />
-                    <div v-if="form.errors.email" class="form-error-field">{{ form.errors.email }}</div>
-                </div>
-                <div :class="{ 'form-error-div': form.errors.password }">
-                    <label for="password">Password</label>
-                    <input v-model="form.password" id="password" type="password" />
-                    <div v-if="form.errors.password" class="form-error-field">{{ form.errors.password }}</div>
-                </div>
-                <button class="btn primary mt-6 w-full" type="submit">Login</button>
+            <form @submit.prevent="submitForm" class="flex flex-col gap-5 lg:gap-6">
+                <InputWrapper v-model="form.email" :error="form.errors.email" title="Email" type="email" />
+                <InputWrapper v-model="form.password" :error="form.errors.password" title="Password" type="password" />
+                <button class="btn primary mt-6 !w-full" type="submit">Login</button>
             </form>
         </div>
     </AuthLayout>
