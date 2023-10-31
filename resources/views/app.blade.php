@@ -36,6 +36,7 @@
         <!-- Other meta tag is available in Layouts for dymanic purpose -->
 
         <!-- Scripts -->
+        @routes
         @vite(['resources/js/app.js'])
         @inertiaHead
 

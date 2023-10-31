@@ -7,6 +7,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
             '@assets': resolve('resources/assets'),
+            'ziggy-js': resolve('vendor/tightenco/ziggy/dist/vue.es'),
         },
 	},
     plugins: [

@@ -3,7 +3,7 @@ import '../scss/app.scss';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.es';
+import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './ziggy';
 
 // Cookie consent
