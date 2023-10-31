@@ -71,16 +71,7 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('issue_id')
-                ->nullable()
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreignId('performance_id')
-                ->nullable()
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->morphs('commentable');
             $table->foreignId('reply_to')
                 ->nullable()
                 ->constrained('comments')

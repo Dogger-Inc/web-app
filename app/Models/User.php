@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,9 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -39,7 +40,50 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'fullname'
+    ];
+
+
+    // One to Many
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // Many to Many
+    public function companies():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, 'company_user')
+            ->withPivot('role', 'is_active')->withTimestamps();
+    }
+
+    public function projects():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+
+    public function assignedIssues():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Issue::class, 'issue_user');
+    }
+
+    // Attributes
+    public function getFullNameAttribute(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
+    // }
 }
