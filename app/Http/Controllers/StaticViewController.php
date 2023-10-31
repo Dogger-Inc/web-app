@@ -9,6 +9,6 @@ class StaticViewController extends Controller
 {
     public function homepage(): Response
     {
-        return Inertia::render('Homepage');
+        return Inertia::render('Public/Index');
     }
 }

@@ -17,3 +17,12 @@ use App\Http\Controllers\StaticViewController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', [StaticViewController::class, 'homepage'])->name('homepage');
+
+Route::group([
+    'as' => 'dashboard.',
+    'middleware' => ['auth'],
+], function () {
+    Route::get('/dashboard', function () {
+        return Inertia\Inertia::render('Dashboard/Index');
+    })->name('index');
+});
