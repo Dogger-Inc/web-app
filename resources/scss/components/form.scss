@@ -1,0 +1,18 @@
+form {
+    input[type='checkbox'] {
+        @apply rounded-3xl w-4 h-4 accent-dogger-orange-500;
+    }
+
+    .form-error-div {
+        label {
+            @apply text-red-500;
+        }
+
+        input, textarea, select {
+            @apply border-red-500;
+        }
+    }
+    .form-error-field {
+        @apply text-red-500 text-sm font-normal mt-1;
+    }
+}
