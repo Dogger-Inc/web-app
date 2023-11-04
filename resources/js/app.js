@@ -4,7 +4,6 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 
 import { ZiggyVue } from 'ziggy-js';
-import { Ziggy } from './ziggy';
 
 // Cookie consent
 import { cc } from './cc';
@@ -17,7 +16,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(ZiggyVue, Ziggy);
+            .use(ZiggyVue);
 
         app.config.globalProperties.cc = cc;
         app.mount(el);
