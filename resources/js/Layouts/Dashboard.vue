@@ -1,11 +1,31 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { computed, onMounted, watch } from 'vue';
+import { Head, usePage } from '@inertiajs/vue3';
+import { useToast } from 'vue-toastification';
 // import NavBar from '@/Components/Navbar.vue';
-// import Footer from '@/Components/Footer.vue';
+import Footer from '@/Components/Footer.vue';
 
 const meta = {
     title: 'Dogger',
     description: ''
+}
+
+const toast = useToast();
+const toastProps = computed(() => usePage().props.toast);
+
+watch(toastProps, () => {
+    setToast();
+});
+
+onMounted(() => {
+    setToast();
+});
+
+const setToast = () => {
+    if (toastProps.value) {
+        // Available types: "success", "error", "default", "info" and "warning"
+        toast[toastProps.value.type](toastProps.value.message);
+    }
 }
 </script>
 
@@ -28,5 +48,5 @@ const meta = {
             <slot />
         </main>
     </div>
-    <!-- <Footer /> -->
+    <Footer />
 </template>
