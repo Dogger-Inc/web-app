@@ -20,7 +20,8 @@ class Issue extends Model
         'message',
         'stacktrace',
         'type',
-        'status'
+        'status',
+        'env',
     ];
 
     // One to Many

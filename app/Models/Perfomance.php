@@ -17,7 +17,8 @@ class Perfomance extends Model
     protected $fillable = [
         'project_id',
         'duration',
-        'comment'
+        'comment',
+        'env',
     ];
 
     // One to Many
