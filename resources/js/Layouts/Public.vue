@@ -1,7 +1,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 // import NavBar from '@/Components/Navbar.vue';
-// import Footer from '@/Components/Footer.vue';
+import Footer from '@/Components/Footer.vue';
 
 const meta = {
     title: 'Dogger',
@@ -28,5 +28,5 @@ const meta = {
             <slot />
         </main>
     </div>
-    <!-- <Footer /> -->
+    <Footer />
 </template>
