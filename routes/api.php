@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IssuesController;
+use App\Http\Controllers\PerformancesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Project Keys routes
+Route::group([
+    'middleware' => ['project_key'],   
+], function () {
+    Route::post('/errors/new', [IssuesController::class, 'create']);
+    Route::post('/performances/new', [PerformancesController::class, 'create']);
 });
