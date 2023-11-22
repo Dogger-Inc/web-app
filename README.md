@@ -16,10 +16,6 @@ After setup the database (you need to create an empty database before run this c
 
 ### `php artisan migrate:fresh --seed`
 
-Next you need to generate the routing file.
-
-### `php artisan ziggy:generate`
-
 Finally build the app.
 
 ### `npm run dev`
