@@ -22,6 +22,7 @@ class Issue extends Model
         'type',
         'status',
         'env',
+        'triggered_at'
     ];
 
     // One to Many
