@@ -34,7 +34,7 @@ const submitForm = () => {
 
             <form @submit.prevent="submitForm" class="flex flex-col gap-5 lg:gap-6">
                 <InputWrapper v-model="form.email" :error="form.errors.email" title="Email" type="email" />
-                <InputWrapper v-model="form.password" :error="form.errors.password" title="Password" type="password" />
+                <InputWrapper v-model="form.password" :error="form.errors.email" title="Password" type="password" />
                 <button class="btn primary mt-6 !w-full" type="submit">Login</button>
             </form>
         </div>
