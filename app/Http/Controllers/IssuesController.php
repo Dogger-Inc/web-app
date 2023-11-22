@@ -10,7 +10,7 @@ class IssuesController extends Controller
     public function create() {
         $data = request()->validate([
             'project_id' => ['required', 'integer'],
-            'http_code' => ['nullable', 'string', 'max:255'],
+            'http_code' => ['nullable', 'numeric', 'max:999'],
             'message' => ['nullable', 'string', 'max:255'],
             'stacktrace' => ['nullable', 'string'],
             'type' => ['required', 'string', Rule::in(['warning', 'error'])],
