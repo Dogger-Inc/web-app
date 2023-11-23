@@ -5,7 +5,7 @@ import {
     MagnifyingGlassIcon,
     ArrowSmallDownIcon,
     ArrowSmallUpIcon
-} from '@heroicons/react/24/outline';
+} from '@heroicons/vue/24/outline';
 
 const props = defineProps({
     searchByOpts: {
@@ -22,7 +22,7 @@ const currentRouteName = usePage().props.route.name;
 
 const form = useForm({
     search: urlSearch || '',
-    searchBy: usePage().props.route.query.searchBy ?? searchByOpts[0]?.key,
+    searchBy: usePage().props.route.query.searchBy ?? props.searchByOpts[0]?.key,
     orderBy: urlOrderBy
 });
 

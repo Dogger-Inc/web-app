@@ -13,7 +13,7 @@ const props = defineProps({
 
 const urlParams = ref({});
 
-watch(() => usePage().props.ziggy.query, (params) => {
+watch(() => usePage().props.route.query, (params) => {
     delete params.page;
     urlParams.value = params;
 }, { deep: true, immediate: true });
@@ -42,21 +42,21 @@ const control = (url) => {
             <template v-for="(link, key) in paginator.links" :key="`link-${key}`">
                 <button
                     v-if="isPreviousButton(key)" @click.prevent="control(link.url)"
-                    class="hover:text-lockanda-green"
+                    class="hover:text-dogger-orange-400"
                     :class="{'disabled': isDisabled(key)}"
                 >
                     <ChevronLeftIcon class="w-8 h-8 px-1" />
                 </button>
                 <button
                     v-else-if="isNextButton(key)" @click.prevent="control(link.url)"
-                    class="hover:text-lockanda-green"
+                    class="hover:text-dogger-orange-400"
                     :class="{'disabled': isDisabled(key)}"
                 >
                     <ChevronRightIcon class="w-8 h-8 px-1" />
                 </button>
                 <button
                     v-else-if="link.active" @click.prevent="control(link.url)"
-                    v-html="link.label" class="text-lockanda-green text-lg"
+                    v-html="link.label" class="text-dogger-orange-400 text-lg"
                     :class="{'disabled': isDisabled(key)}"
                 />
             </template>
@@ -66,6 +66,6 @@ const control = (url) => {
 
 <style lang="scss" scoped>
     .disabled {
-        @apply cursor-not-allowed pointer-events-none text-lockanda-light-gray;
+        @apply cursor-not-allowed pointer-events-none text-dogger-gray-light;
     }
 </style>

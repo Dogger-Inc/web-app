@@ -3,8 +3,8 @@ import { useSlots } from 'vue';
 import { ref, computed, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { ChevronRightIcon } from '@heroicons/vue/24/outline';
-import Pagination from '@/Components/Items/Pagination';
-import SearchBar from '@/Components/Items/SearchBar';
+import Pagination from '@/Components/Items/Pagination.vue';
+import SearchBar from '@/Components/Items/SearchBar.vue';
 
 const slots = useSlots();
 const emits = defineEmits(['selectedItem']);
@@ -51,11 +51,8 @@ const select = (item) => {
                 v-for="item in newData"
                 :key="item.id"
                 @click="select(item)"
-                :class="{
-                    'bg-dogger-gray': selectedItem === item,
-                    'hover:cursor-pointer': selectedCallback
-                }"
-                class="hover:bg-dogger-gray"
+                :class="{'bg-dogger-gray-light': selectedItem === item}"
+                class="hover:bg-dogger-gray-light cursor-pointer"
             >
                 <div v-if="slots.default" class="inline-flex gap-4 items-center truncate">
                     <slot :item="item" />

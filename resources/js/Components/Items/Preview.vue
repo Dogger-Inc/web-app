@@ -59,7 +59,7 @@ const close = () => {
 </script>
 
 <template>
-    <div class="card modal col-span-3">
+    <div class="card modal">
         <XMarkIcon @click.prevent="close" class="absolute top-4 right-4 h-5 w-5 cursor-pointer" />
         <!-- Title section -->
         <Link
@@ -97,7 +97,7 @@ const close = () => {
             </dl>
             <!-- Data manual render from "slot" -->
             <div v-if="slots.default" class="border-t border-gray-200 w-full">
-                <slot />
+                <slot :item="selectedItem" />
             </div>
         </div>
     </div>
@@ -111,7 +111,7 @@ const close = () => {
     width: 90%;
 
     @screen lg {
-        @apply relative top-0 left-0 translate-x-0 w-auto z-[1];
+        @apply relative top-0 left-0 translate-x-0 z-[1] w-2/3;
         max-height: none;
     }
 
