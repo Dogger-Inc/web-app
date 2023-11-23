@@ -10,7 +10,6 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    organization_name: '',
 });
 
 const submitForm = () => {
@@ -54,11 +53,6 @@ const submitForm = () => {
                         title="Confirm Password" type="password"
                     />
                 </div>
-                <InputWrapper
-                    v-model="form.organization_name"
-                    :error="form.errors.organization_name"
-                    title="Organization name"
-                />
                 <button class="btn primary mt-6 !w-full" type="submit">Register</button>
             </form>
         </div>
