@@ -6,6 +6,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { renderToString } from '@vue/server-renderer';
 
 import { ZiggyVue } from 'ziggy-js';
+import { Ziggy } from './ziggy';
 
 createServer(page =>
     createInertiaApp({
@@ -20,7 +21,7 @@ createServer(page =>
                 render: () => h(App, props),
             })
                 .use(plugin)
-                .use(ZiggyVue)
+                .use(ZiggyVue, Ziggy)
         },
     }),
 )
