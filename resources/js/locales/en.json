@@ -13,15 +13,16 @@
         "need_dogger":"The error logger you need for your app",
         "utility_dogger":"You'll not anymore log your errors by yourself, Dogger will make it for you",
         "missions":"Our missions",
-        "quote":"&ldquo;At Dogger, we believe that error logging should be simple and seamless for every developer. Our platform empowers developers to focus on what they do best - building amazing software - while we take care of the tedious task of tracking and fixing errors. With Dogger, you can easily identify and resolve issues before they impact your customers, allowing you to deliver reliable and high-quality software every time.&rdquo;",
+        "quote":"At Dogger, we believe that error logging should be simple and seamless for every developer. Our platform empowers developers to focus on what they do best - building amazing software - while we take care of the tedious task of tracking and fixing errors. With Dogger, you can easily identify and resolve issues before they impact your customers, allowing you to deliver reliable and high-quality software every time.",
         "ceo":"CEO of Dogger",
         "pricing":"Pricing",
-        "pricing_plan":"Pricing plans for teams of&nbsp;all&nbsp;sizes",
+        "pricing_plan":"Pricing plans for teams of all sizes",
         "pricing_plan_fit":"Dogger is a one-stop shop for all your error logging needs. No matter how large or small your team, we have a plan that will fit your needs.",
         "pricing_popular":"Most popular",
         "pricing_per_month":"/month",
         "pricing_tier_free":"Get started for free",
         "pricing_buy_plan":"Buy plan",
+        "frequently_question": "Frequently asked questions",
         "features":{
             "easy_to_implement":{
                 "title":"Easy to implement",
