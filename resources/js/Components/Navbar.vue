@@ -15,7 +15,7 @@ import Logo from '@assets/images/logo.png';
 
 const navigation = [
     { name: 'Dashboard', href: 'dashboard.index' },
-    // { name: 'Companies', href: '#' },
+    { name: 'Companies', href: 'dashboard.companies.list' },
     // { name: 'Projects', href: '#' },
     // { name: 'Issues', href: '#' },
     // { name: 'Performances', href: '#' },
