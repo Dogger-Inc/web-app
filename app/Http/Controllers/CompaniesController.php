@@ -25,7 +25,8 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function store() {
+    public function store(): \Illuminate\Http\RedirectResponse
+    {
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100', Rule::unique('companies')],
         ]);

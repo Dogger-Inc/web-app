@@ -42,42 +42,41 @@ const submit = () => {
 
 <template>
     <DashboardLayout>
+        <LinedTitle title="Companies">
+            <button @click.prevent="modalState = true" class="btn primary sm">Add a new company</button>
+        </LinedTitle>
 
-            <LinedTitle title="Companies">
-                <button @click.prevent="modalState = true" class="btn primary sm">Add a new company</button>
-            </LinedTitle>
-
-            <ItemsDisplay
-                :data="companies"
-                :dataRender="[{ name: 'Name', key: 'name', searchable: true }]"
-                class="mt-5"
-            >
-                <template #listItem="{ item }">
-                    <div class="flex flex-col">
-                        <span class="font-bold">{{ item.name }}</span>
-                        <span class="text-sm text-gray-500">{{ item.key }}</span>
-                    </div>
-                </template>
-                <template #preview="{ item }">
-                    <dt>Invitation Code</dt>
-                    <dd @click.prevent="copyToClipboard(item.key)" class="cursor-pointer hover:!text-dogger-orange-400">
-                        {{ item.key }}
-                    </dd>
-                </template>
-            </ItemsDisplay>
-        
-            <ModalLayout :state="modalState" @close="modalState = false" additionalClasses="card max-w-3xl w-full">
-                <LinedTitle title="Add a new company" />
-                <form @submit.prevent="submit" class="flex flex-col gap-5 lg:gap-6 mt-12">
-                    <InputWapper
-                        v-model="form.name"
-                        :error="form.errors.name"
-                        :required="true"
-                        title="Name"
-                    />
-                    <button class="btn primary sm float-right" type="submit">Submit</button>
-                </form>
-            </ModalLayout>
+        <ItemsDisplay
+            :data="companies"
+            :dataRender="[{ name: 'Name', key: 'name', searchable: true }]"
+            class="mt-5"
+        >
+            <template #listItem="{ item }">
+                <div class="flex flex-col">
+                    <span class="font-bold">{{ item.name }}</span>
+                    <span class="text-sm text-gray-500">{{ item.key }}</span>
+                </div>
+            </template>
+            <template #preview="{ item }">
+                <dt>Invitation Code</dt>
+                <dd @click.prevent="copyToClipboard(item.key)" class="cursor-pointer hover:!text-dogger-orange-400">
+                    {{ item.key }}
+                </dd>
+            </template>
+        </ItemsDisplay>
+    
+        <ModalLayout :state="modalState" @close="modalState = false" additionalClasses="card max-w-3xl w-full">
+            <LinedTitle title="Add a new company" />
+            <form @submit.prevent="submit" class="flex flex-col gap-5 lg:gap-6 mt-12">
+                <InputWapper
+                    v-model="form.name"
+                    :error="form.errors.name"
+                    :required="true"
+                    title="Name"
+                />
+                <button class="btn primary sm float-right" type="submit">Submit</button>
+            </form>
+        </ModalLayout>
     </DashboardLayout>
 </template>
 
