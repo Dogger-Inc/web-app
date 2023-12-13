@@ -53,7 +53,7 @@ class CompaniesController extends Controller
             'name' => $data['name'],
             'key' => strtoupper(Str::random(8)),
         ]);
-        
+
         $company->users()->attach(auth()->user()->id, ['role' => 'owner', 'is_active' => true]);
 
         return redirect()->back()->with('toast', [

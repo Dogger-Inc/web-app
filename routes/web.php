@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::group([
         return Inertia\Inertia::render('Dashboard/Index');
     })->name('index');
 
-    
+
     //Companies
     Route::group([
         'prefix' => 'companies',
@@ -50,6 +51,15 @@ Route::group([
         Route::get('/', 'show')->name('show');
         Route::post('/edit', 'editProfile')->name('edit.post');
         Route::post('/reset-password', 'resetPassword')->name('resetpassword.post');
+    });
+
+    //Projects
+    Route::group([
+        'prefix' => 'projects',
+        'as' => 'projects.',
+        'controller' => ProjectsController::class
+    ], function () {
+        Route::get('/', 'list')->name('list');
     });
 });
 
