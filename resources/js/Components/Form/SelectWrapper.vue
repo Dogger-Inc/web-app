@@ -54,7 +54,7 @@ const id = computed(() => {
     <div :class="['pt-3 relative', {'form-error-div': error}]">
         <label :for="id">
             {{ title }}
-            <span v-if="required" className="text-red-500 ml-0.5">*</span>
+            <span v-if="required" class="text-red-500 ml-0.5">*</span>
         </label>
         <VueSelect
             :id="id"
