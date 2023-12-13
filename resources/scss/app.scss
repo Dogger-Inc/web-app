@@ -31,3 +31,7 @@ body {
     scroll-behavior: smooth;
     scroll-padding-top: 68px;
 }
+
+.card {
+    @apply bg-white border border-dogger-gray p-5 rounded-lg;
+}

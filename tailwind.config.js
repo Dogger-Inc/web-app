@@ -21,8 +21,10 @@ export default {
                     '800': '#9e290e',
                     '900': '#7f250f',
                 },
-                'dogger-gray': '#666666',
-                'dogger-light-gray': '#F5F5F5',
+                'dogger-gray' : {
+                    DEFAULT: '#666666',
+                    'light': '#F5F5F5',
+                }
             }
         },
     },
