@@ -2,27 +2,27 @@
     "hello": "Bonjour",
     "signin": "Se connecter",
     "signup": "S'inscrire",
-    "learnmore": "Apprendre encore plus",
+    "learnmore": "Apprendre d'avantage",
     "lang":{
         "select":"Sélection de la langue",
         "option":"Sélectionner une option"
     },
     "homepage": {
       "catchline": "L'outil puissant qui ramène vos erreurs.",
-      "use_dogger": "Utilisez Dogger, connectez-vous mieux",
-      "need_dogger": "L'enregistreur d'erreurs dont vous avez besoin pour votre application",
-      "utility_dogger": "Vous n'enregistrerez plus vos erreurs vous-même, Dogger le fera pour vous",
+      "use_dogger": "Utilisez Dogger, retracez mieux",
+      "need_dogger": "Le retraceur d'erreurs dont vous avez besoin pour votre application",
+      "utility_dogger": "Vous ne tracerez plus vos erreurs vous-même, Dogger le fera pour vous",
       "missions": "Nos missions",
-      "quote": "Chez Dogger, nous pensons que l'enregistrement des erreurs doit être simple et transparent pour tous les développeurs. Notre plateforme permet aux développeurs de se concentrer sur ce qu'ils font de mieux - créer des logiciels extraordinaires - tandis que nous nous chargeons de la tâche fastidieuse du suivi et de la correction des erreurs. Avec Dogger, vous pouvez facilement identifier et résoudre les problèmes avant qu'ils n'affectent vos clients, ce qui vous permet de fournir des logiciels fiables et de haute qualité à chaque fois.",
-      "ceo": "PDG de Dogger",
+      "quote": "Chez Dogger, nous pensons que le traçage des erreurs doit être simple et transparent pour tous les développeurs. Notre plateforme permet aux développeurs de se concentrer sur ce qu'ils font de mieux - créer des applications extraordinaires - tandis que nous nous occuperons de la tâche fastidieuse du suivi et de la correction des erreurs. Avec Dogger, vous pouvez facilement identifier et résoudre les problèmes avant qu'ils n'affectent vos clients, ce qui vous permet de fournir des logiciels fiables et de haute qualité à chaque fois.",
+      "ceo": "CEO de Dogger",
       "pricing": "Tarifs",
       "pricing_plan": "Plans tarifaires",
-      "pricing_plan_fit": "Dogger est un guichet unique pour tous vos besoins en matière de journalisation des erreurs. ",
+      "pricing_plan_fit": "Dogger est un système unique pour tous vos besoins en matière de journalisation des erreurs. ",
       "pricing_popular": "Le plus populaire",
       "pricing_per_month": "/mois",
       "pricing_tier_free": "Commencez gratuitement",
       "pricing_buy_plan": "Acheter un forfait",
-      "frequently_question":"Questions fréquentes",
+      "frequently_question": "Questions fréquentes",
       "features": {
         "easy_to_implement": {
           "title": "Facile à mettre en œuvre",
@@ -44,7 +44,7 @@
       "tiers": {
         "free": {
           "name": "Gratuit",
-          "description": "Auto-hébergé, open source et gratuit pour toujours.",
+          "description": "Auto-hébergé, open source et gratuit à vie.",
           "features": {
             "self_host": "Auto-hébergé",
             "projects": "Projets illimités",
@@ -53,7 +53,7 @@
           }
         },
         "startup": {
-          "name": "Démarrer",
+          "name": "Startup",
           "description": "Pour les petites équipes et les startups.",
           "features": {
             "projects": "Projets illimités",
@@ -70,14 +70,14 @@
             "errors": "Erreurs illimitées",
             "users": "Utilisateurs illimités",
             "email": "Notifications par email",
-            "support": "Assistance prioritaire"
+            "support": "Support prioritaire"
           }
         }
       },
       "faqs": {
         "implementation": {
-          "question": "Comment implémentons-nous Dogger dans notre code ?",
-          "answer": "Vous pouvez consulter notre documentation pour savoir comment implémenter Dogger dans votre code."
+          "question": "Comment implémenter Dogger dans notre code ?",
+          "answer": "Vous pouvez consulter notre documentation pour savoir comment implémenter Dogger dans votre projet."
         },
         "open_source": {
           "question": "Dogger est-il open source ?",
