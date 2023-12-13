@@ -9,70 +9,73 @@ import {
 import { CheckIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid';
 import PublicLayout from '@/Layouts/Public.vue';
 import MainIllustration from '@assets/images/main_illustration.png';
+import { useI18n } from "vue-i18n"; 
+import LangageSelector from '../../Components/Items/LangageSelector.vue';
 
+const { t } = useI18n({});
 const features = [
     {
-        name: 'Easy to implement',
-        description: 'Dogger is easy to implement in your code, no boring configuration needed.',
+        name: t("homepage.features.easy_to_implement.title"),
+        description: t("homepage.features.easy_to_implement.description"),
         icon: CloudArrowUpIcon,
     },
     {
-        name: 'Immediate',
-        description: 'All your errors are reported and viewable in real time in your Dogger dashboard.',
+        name: t("homepage.features.immediate.title"),
+        description: t("homepage.features.immediate.description"),
         icon: BoltIcon,
     },
     {
-        name: 'Stats friendly',
-        description: 'Dogger grant you an acces to all your errors with advanced statistics.',
+        name: t("homepage.features.stats_friendly.title"),
+        description: t("homepage.features.stats_friendly.description"),
         icon: ChartBarIcon,
     },
     {
-        name: 'Scallable',
-        description: 'Dogger is scallable, you can use it for several projects with no team limit.',
+        name: t("homepage.features.scallable.title"),
+        description: t("homepage.features.scallable.description"),
         icon: ArrowTrendingUpIcon,
     },
 ]
 const tiers = [
     {
-        name: 'Free',
+        name: t("homepage.tiers.free.name"),
         id: 'tier-free',
         href: 'https://github.com/Dogger-Inc',
         priceMonthly: '$0',
-        description: 'Self-hosted, open-source, and free forever.',
+        description: t("homepage.tiers.free.description"),
         features: [
-            'Self-hosted',
-            'Unlimited projects',
-            'Unlimited errors',
-            'Unlimited users'
+            t("homepage.tiers.free.features.self_host"),
+            t("homepage.tiers.free.features.projects"),
+            t("homepage.tiers.free.features.errors"),
+            t("homepage.tiers.free.features.users")
         ],
         mostPopular: false,
     },
     {
-        name: 'Startup',
+        name: t("homepage.tiers.startup.name"),
         id: 'tier-startup',
         href: '#',
         priceMonthly: '$19',
-        description: 'For small teams and startups.',
+        description: t("homepage.tiers.startup.description"),
         features: [
-            'Unlimited projects',
-            'Unlimited errors',
-            '10 users',
-            'Email notifications',
+            t("homepage.tiers.startup.features.projects"),
+            t("homepage.tiers.startup.features.errors"),
+            t("homepage.tiers.startup.features.users"),
+            t("homepage.tiers.startup.features.email")
         ],
         mostPopular: true,
     },
     {
-        name: 'Enterprise',
+        name: t("homepage.tiers.entreprise.name"),
         id: 'tier-enterprise',
         href: '#',
         priceMonthly: '$49',
-        description: 'For large teams and enterprises.',
+        description: t("homepage.tiers.entreprise.description"),
         features: [
-            'Unlimited projects',
-            'Unlimited errors',
-            'Unlimited users',
-            'Email notifications',
-            'Priority support'
+            t("homepage.tiers.entreprise.features.projects"),
+            t("homepage.tiers.entreprise.features.errors"),
+            t("homepage.tiers.entreprise.features.users"),
+            t("homepage.tiers.entreprise.features.email"),
+            t("homepage.tiers.entreprise.features.support")
         ],
         mostPopular: false,
     },
@@ -80,14 +83,14 @@ const tiers = [
 const faqs = [
     {
         id: 1,
-        question: "How do we implement Dogger in our code ?",
-        answer: "You can check our documentation to learn how to implement Dogger in your code.",
+        question: t("homepage.faqs.implementation.question"),
+        answer: t("homepage.faqs.implementation.answer"),
         link: "https://github.com/Dogger-Inc"
     },
     {
         id: 2,
-        question: "Is Dogger open source ?",
-        answer: "Yes, Dogger is open source and you can check our GitHub repository to learn more.",
+        question: t("homepage.faqs.open_source.question"),
+        answer: t("homepage.faqs.open_source.question"),
         link: "https://github.com/Dogger-Inc"
     }
 ]
@@ -95,6 +98,7 @@ const faqs = [
 
 <template>
     <PublicLayout>
+        <LangageSelector />
         <!-- Hero section -->
         <div class="relative pt-4 md:pt-8">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -115,14 +119,13 @@ const faqs = [
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-2xl text-center">
                         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Dogger</h1>
-                        <p class="mt-6 text-lg leading-8 text-gray-600">The powerful tool that bring back your errors.
-                        </p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">{{ $t('homepage.catchline') }}</p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <Link :href="route('login')"
                                 class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                Sign in
+                                {{ $t('signin') }}
                             </Link>
-                            <a href="#feature" class="text-sm font-semibold leading-6 text-gray-900">Learn more
+                            <a href="#feature" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
                                 <span aria-hidden="true">→</span>
                             </a>
                         </div>
@@ -157,12 +160,12 @@ const faqs = [
         <!-- Feature section -->
         <div id="feature" class="mx-auto mt-6 max-w-7xl px-6 sm:mt-32 lg:px-8">
             <div class="mx-auto max-w-2xl py-12 lg:text-center">
-                <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">Use Dogger, log better</h2>
+                <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.use_dogger') }}</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    The error logger you need for your app
+                    {{ $t('homepage.need_dogger') }}
                 </p>
                 <p class="mt-6 text-lg leading-8 text-gray-600">
-                    You'll not anymore log your errors by yourself, Dogger will make it for you
+                    {{ $t('homepage.utility_dogger') }}
                 </p>
             </div>
             <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -206,21 +209,17 @@ const faqs = [
                     <div class="flex items-center gap-3 text-white">
                         <CheckBadgeIcon class="h-10 w-10" />
                         <h3 class="text-2xl font-extrabold">
-                            Our missions
+                            {{ $t('homepage.missions') }}
                         </h3>
                     </div>
                     <figure>
                         <blockquote class="mt-6 text-lg font-semibold text-white sm:text-xl sm:leading-8">
                             <p>
-                                “At Dogger, we believe that error logging should be simple and seamless for every
-                                developer. Our platform empowers developers to focus on what they do best - building
-                                amazing software - while we take care of the tedious task of tracking and fixing errors.
-                                With Dogger, you can easily identify and resolve issues before they impact your
-                                customers, allowing you to deliver reliable and high-quality software every time.”
+                                {{ $t('homepage.quote') }}
                             </p>
                         </blockquote>
                         <figcaption class="mt-6 text-base text-white">
-                            <div class="mt-1">CEO of Dogger</div>
+                            <div class="mt-1">{{ $t('homepage.ceo') }}</div>
                         </figcaption>
                     </figure>
                 </div>
@@ -231,14 +230,13 @@ const faqs = [
         <div class="py-24 sm:pt-48">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">Pricing</h2>
+                    <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.pricing') }}</h2>
                     <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                        Pricing plans for teams of&nbsp;all&nbsp;sizes
+                        {{ $t('homepage.pricing_plan') }}
                     </p>
                 </div>
                 <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-                    Dogger is a one-stop shop for all your error logging needs. No matter how large or small your
-                    team, we have a plan that will fit your needs.
+                    {{ $t('homepage.pricing_plan_fit') }}
                 </p>
                 <div
                     class="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -250,7 +248,7 @@ const faqs = [
                                     {{ tier.name }}
                                 </h3>
                                 <p v-if="tier.mostPopular" class="rounded-full bg-dogger-orange-400/10 py-1 px-2.5 text-xs font-semibold leading-5 text-dogger-orange-400">
-                                    Most popular
+                                    {{ $t('homepage.pricing_popular') }}
                                 </p>
                             </div>
                             <p class="mt-4 text-sm leading-6 text-gray-600">{{ tier.description }}</p>
@@ -258,7 +256,7 @@ const faqs = [
                                 <span class="text-4xl font-bold tracking-tight text-gray-900">
                                     {{ tier.priceMonthly }}
                                 </span>
-                                <span class="text-sm font-semibold leading-6 text-gray-600">/month</span>
+                                <span class="text-sm font-semibold leading-6 text-gray-600">{{ $t('homepage.pricing_per_month') }}</span>
                             </p>
                             <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
                                 <li v-for="feature in tier.features" :key="feature" class="flex gap-x-3">
@@ -268,7 +266,7 @@ const faqs = [
                             </ul>
                         </div>
                         <a :href="tier.href" :aria-describedby="tier.id" :class="[tier.mostPopular ? 'bg-dogger-orange-400 text-white shadow-sm hover:bg-dogger-orange-500' : 'text-dogger-orange-400 ring-1 ring-inset ring-orange-400 hover:ring-orange-500', 'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600']">
-                            {{ tier.id === 'tier-free' ? 'Get started for free' : 'Buy plan' }}
+                            {{ tier.id === 'tier-free' ? $t('homepage.pricing_tier_free') : $t('homepage.pricing_buy_plan') }}
                         </a>
                     </div>
                 </div>
@@ -278,7 +276,7 @@ const faqs = [
         <!-- FAQs -->
         <div
             class="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pt-12 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pb-32">
-            <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+            <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">{{ $t('homepage.frequently_question') }}</h2>
             <dl class="mt-10 space-y-8 divide-y divide-gray-900/10">
                 <div v-for="faq in faqs" :key="faq.id" class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
                     <dt class="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">{{ faq.question }}</dt>
