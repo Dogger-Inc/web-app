@@ -89,7 +89,7 @@ const searchByOpts = computed(() => {
             @close="selectedItem = null"
             v-slot="item"
         >
-            <slot name="preview" :item="item" />
+            <slot name="preview" :item="item.item" />
         </ItemPreview>
     </div>
 </template>

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Session;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -45,7 +46,10 @@ class HandleInertiaRequests extends Middleware
                 'path' => $request->getPathInfo(),
                 'query' => $request->query(),
                 'name' => $request->route()->getName(),
-            ]
+            ],
+            'toast' => function () {
+                return Session::get('toast');
+            },
         ]);
     }
 }
