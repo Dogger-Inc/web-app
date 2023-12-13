@@ -6,6 +6,7 @@ import { resolve } from 'path';
 export default defineConfig({
 	resolve: {
 		alias: {
+            $fonts: resolve('public/fonts'),
             '@assets': resolve('resources/assets'),
             'ziggy-js': resolve('vendor/tightenco/ziggy/dist/vue.es'),
         },
