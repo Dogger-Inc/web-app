@@ -40,7 +40,7 @@ const displayCondition = (item) => {
     return userHasAccess(item.roles) && (!item.condition || item.condition());
 }
 
-const getValue = (key, isLinkKey = false) => {
+const getValue = (key, isLinkKey = false, format) => {
     const keys = key.split('.');
     let value = props.selectedItem;
 
@@ -50,6 +50,7 @@ const getValue = (key, isLinkKey = false) => {
     });
 
     if(isLinkKey) return value;
+    if(format && (value !== undefined && value !== null)) return format(value);
     return value || 'Non renseigné';
 }
 
@@ -67,7 +68,9 @@ const close = () => {
             :href="route(editPath, getValue(editKey, true))"
             class="inline-flex gap-3 items-center"
         >
-            <h3 class="capitalize hover:text-dogger-orange-400">{{ getValue(titleKey) }}</h3>
+            <h3 class="capitalize hover:text-dogger-orange-400 truncate">
+                {{ getValue(titleKey) }}
+            </h3>
             <PencilSquareIcon class="h-5 w-5 text-dogger-orange-400" />
         </Link>
         <h3 v-else class="capitalize text-dogger-orange-400">{{ getValue(titleKey) }}</h3>
@@ -86,17 +89,17 @@ const close = () => {
                                 :href="route(displayed.link.path, getValue(displayed.link.pathKey, true))"
                                 class="hover:text-dogger-orange-400 underline"
                             >
-                                {{ getValue(displayed.key) }}
+                                {{ getValue(displayed.key, false, displayed.format) }}
                             </Link>
                             <template v-else>
-                                {{ getValue(displayed.key) }}
+                                {{ getValue(displayed.key, false, displayed.format) }}
                             </template>
                         </dd>
                     </div>
                 </template>
             </dl>
             <!-- Data manual render from "slot" -->
-            <div v-if="slots.default" class="border-t border-gray-200 w-full">
+            <div v-if="slots.default" class="border-t border-gray-200 w-full p-4 sm:px-0">
                 <slot :item="selectedItem" />
             </div>
         </div>
@@ -120,7 +123,7 @@ const close = () => {
     }
 
     dd, :slotted(dd) {
-        @apply sm:mt-1 text-sm text-gray-700;
+        @apply sm:mt-1 text-sm text-gray-700 truncate;
     }
 }
 
