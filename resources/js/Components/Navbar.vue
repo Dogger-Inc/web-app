@@ -51,7 +51,7 @@ const isCurrentRoute = (path) => {
                         <div class="flex space-x-4">
                             <Link
                                 v-for="item in navigation" :key="item.name" :href="route(item.href)"
-                                :class="[isCurrentRoute(item.href) ? 'bg-gray-100' : 'hover:bg-gray-50', 'rounded-md px-3 py-2 text-sm font-medium']"
+                                :class="[isCurrentRoute(item.href) ? 'bg-gray-100' : 'hover:bg-gray-50', 'rounded-md px-3 py-2 font-medium']"
                                 :aria-current="isCurrentRoute(item.href) ? 'page' : undefined"
                             >
                                 {{ item.name }}

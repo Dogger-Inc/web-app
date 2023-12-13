@@ -68,7 +68,7 @@ class QueryService
      * @param  int  $itemPerPage (optional)
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginate(Builder $q, int $itemPerPage = 10) : \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function paginate(Builder $q, int $itemPerPage = 9) : \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         $data = request()->validate([
             'search' => ['nullable', 'string', 'max:255'],

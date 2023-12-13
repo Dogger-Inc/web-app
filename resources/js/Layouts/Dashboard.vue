@@ -44,7 +44,7 @@ const setToast = () => {
         <NavBar />
 
         <!-- Page Content -->
-        <main class="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto">
+        <main class="px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 max-w-6xl mx-auto">
             <slot />
         </main>
     </div>
