@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::group([
         return Inertia\Inertia::render('Dashboard/Index');
     })->name('index');
 
-    
+
     //Companies
     Route::group([
         'prefix' => 'companies',
@@ -36,6 +37,15 @@ Route::group([
     ], function () {
         Route::get('/', 'list')->name('list');
         Route::post('/create', 'store')->name('create.post');
+    });
+
+    //Projects
+    Route::group([
+        'prefix' => 'projects',
+        'as' => 'projects.',
+        'controller' => ProjectsController::class
+    ], function () {
+        Route::get('/', 'list')->name('list');
     });
 });
 
