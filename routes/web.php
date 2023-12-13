@@ -36,6 +36,7 @@ Route::group([
     ], function () {
         Route::get('/', 'list')->name('list');
         Route::post('/create', 'store')->name('create.post');
+        Route::get('/join/{company:key}', 'join')->name('join');
     });
 });
 
