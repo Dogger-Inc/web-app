@@ -15,7 +15,11 @@
         @apply cursor-not-allowed bg-gray-300 text-gray-700;
     }
     &.sm {
-        @apply text-sm rounded-lg;
-        padding: 13px 24px;
+        @apply text-sm rounded-2xl;
+        padding: 10px 24px;
+    }
+    &.xs {
+        @apply text-xs rounded-2xl;
+        padding: 5px 14px;
     }
 }
