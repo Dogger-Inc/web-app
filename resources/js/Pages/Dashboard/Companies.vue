@@ -49,7 +49,7 @@ const submit = () => {
         <ItemsDisplay
             :data="companies"
             :dataRender="[{ name: 'Name', key: 'name', searchable: true }]"
-            class="mt-5"
+            class="mt-8"
         >
             <template #listItem="{ item }">
                 <div class="flex flex-col">

@@ -68,7 +68,7 @@ const close = () => {
             :href="route(editPath, getValue(editKey, true))"
             class="inline-flex gap-3 items-center"
         >
-            <h3 class="capitalize hover:text-dogger-orange-400 truncate">
+            <h3 class="capitalize hover:text-dogger-orange-400 font-bold truncate">
                 {{ getValue(titleKey) }}
             </h3>
             <PencilSquareIcon class="h-5 w-5 text-dogger-orange-400" />
@@ -119,7 +119,7 @@ const close = () => {
     }
 
     dt, :slotted(dt) {
-        @apply text-sm font-medium text-gray-900;
+        @apply text-sm font-semibold text-gray-900;
     }
 
     dd, :slotted(dd) {

@@ -33,7 +33,7 @@ class Project extends Model
 
     public function performances(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Perfomance::class);
+        return $this->hasMany(Performance::class);
     }
 
     // Many to Many
