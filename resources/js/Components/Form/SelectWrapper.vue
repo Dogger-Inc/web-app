@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from 'vue';
-import VueSelect from "vue-select";
 
 const emits = defineEmits(['update:modelValue']);
 const props = defineProps({
@@ -8,7 +7,6 @@ const props = defineProps({
         type: String,
         required: true
     },
-    modelValue: [Object, String, Number],
     options: {
         type: Array,
         required: true
@@ -17,29 +15,30 @@ const props = defineProps({
         type: String,
         default: 'name'
     },
-    reduce: String,
     noOptText: {
         type: String,
         default: 'Aucune option'
     },
-    error: String,
-    disabled : Boolean,
-    required: {
-        type: Boolean,
-        default: true
+    placeholder: {
+        type: String,
+        default: 'Sélectionner une option'
     },
+    modelValue: [Object, String, Number],
+    reduce: String,
+    error: String,
+    required : {
+        type: Boolean,
+        default: false
+    },
+    disabled : {
+        type: Boolean,
+        default: false
+    }
 });
 
 const value = computed({
     get: () => props.modelValue,
     set: (val) => emits('update:modelValue', val)
-});
-
-const reduce = computed(() => {
-    if (props.reduce) {
-        return option => option[props.reduce];
-    }
-    return option => option;
 });
 
 const id = computed(() => {
@@ -48,25 +47,33 @@ const id = computed(() => {
     const randomizer = Math.random().toString(36).substring(2, 9);
     return `${randomizer}-${slug}`;
 });
+
+const getOptValue = (opt) => {
+    if (props.reduce) {
+        return opt[props.reduce];
+    }
+    return opt;
+};
 </script>
 
 <template>
     <div :class="['pt-3 relative', {'form-error-div': error}]">
         <label :for="id">
             {{ title }}
-            <span v-if="required" className="text-red-500 ml-0.5">*</span>
+            <span v-if="required" class="text-red-500 ml-0.5">*</span>
         </label>
-        <VueSelect
-            :id="id"
-            :options="options"
-            :label="label"
-            :reduce="reduce"
-            :disabled="disabled"
-            :required="required"
+        <select
             v-model="value"
+            :id="id"
+            :required="required"
+            :disabled="disabled"
         >
-            <template #no-options>{{ noOptText }}</template>
-        </VueSelect>
+            <option v-if="options.length === 0" disabled value="">{{ noOptText }}</option>
+            <option v-else disabled value="">{{ placeholder }}</option>
+            <option v-for="(opt, index) in options" :key="index" :value="getOptValue(opt)">
+                {{ opt[label] }}
+            </option>
+        </select>
         <div v-if="error" class="form-error-field">{{ error }}</div>
     </div>
 </template>
@@ -78,35 +85,25 @@ label {
     z-index: 2;
 }
 
-.v-select {
-    @apply block w-full sm:text-sm font-semibold rounded-xl border-gray-400 border-2 shadow-sm -mt-8;
+select {
+    @apply w-full bg-transparent rounded-xl border-2 border-gray-400 shadow-sm sm:text-sm font-medium pt-8 pb-2 px-2 -mt-8 indent-0.5;
+
+    // Use the following code to replace the default arrow
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position:
+        calc(100% - 30px) calc(1.5rem + 4px),
+        calc(100% - 24px) calc(1.5rem + 4px);
+    background-size:
+        6px 6px,
+        6px 6px;
+    background-repeat: no-repeat;
 
     &:disabled {
-        @apply bg-gray-200 cursor-not-allowed;
-    }
-}
-</style>
-
-<style lang="scss">
-// we need to override some of the vue-select styles but we can't use scoped styles
-.v-select {
-    .vs__dropdown-toggle {
-        @apply border-none rounded-xl pt-[30px] pb-1.5 px-[10px] m-0;
-
-        .vs__search, .vs__selected-options {
-            padding: 0;
-            margin: 0;
-        }
-        .vs__selected {
-            @apply pl-0 pr-2 m-0;
-        }
-        .vs__actions {
-            @apply p-0 -mt-5 mr-1.5;
-        }
-    }
-
-    &.vs--open {
-        @apply border-dogger-orange-500;
+        @apply bg-gray-200 cursor-not-allowed opacity-100;
     }
 }
 </style>
