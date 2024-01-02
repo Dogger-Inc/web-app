@@ -3,6 +3,9 @@ import 'vue-toastification/dist/index.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
+import { createI18n } from 'vue-i18n'
+import { loadLocaleMessages, dateTimeFormats } from './i18n';
+
 import Toast from 'vue-toastification';
 
 import { ZiggyVue } from 'ziggy-js';
@@ -16,8 +19,16 @@ createInertiaApp({
         return pages[`./Pages/${name}.vue`]
     },
     setup({ el, App, props, plugin }) {
+   	 	const i18n = createI18n({
+            legacy: false,
+            locale: localStorage.getItem('dogger_locale') || props.initialPage.props.locale,
+            fallbackLocale: import.meta.env.VITE_APP_I18N_FALLBACK_LOCALE,
+            messages: loadLocaleMessages(),
+            dateTimeFormats
+        })
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)
+        	.use(i18n)
             .use(ZiggyVue)
             .use(Toast, {
                 position: "top-right",
