@@ -4,10 +4,17 @@ import { watch, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({});
-const lang = [{name: 'Français', value: 'fr'},{name: 'English', value: 'en'},{name: 'Deutsch', value: 'de'},{name: '中文', value: 'zh'},{name: 'Русский', value: 'ru'}]
+const langs = [
+    {name: 'Français', value: 'fr'},
+    {name: 'English', value: 'en'},
+    {name: 'Deutsch', value: 'de'},
+    {name: '中文', value: 'zh'},
+    {name: '日本語', value: 'ja'},
+    {name: 'Русский', value: 'ru'}
+]
 const locale = ref('locale')
 watch(locale, (newLocale, oldLocale) => {
-    localStorage.setItem("dogger_locale",newLocale)
+    localStorage.setItem("dogger_locale", newLocale)
     window.location.reload()
 })
 </script>
@@ -17,7 +24,7 @@ watch(locale, (newLocale, oldLocale) => {
         class="w-fit lang" 
         v-model="locale"
         :title="t('lang.select')" 
-        :options="lang" reduce="value" 
+        :options="langs" reduce="value" 
         :placeholder="t('lang.option')"
     />
 </template>
