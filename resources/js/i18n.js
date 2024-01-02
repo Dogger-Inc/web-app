@@ -3,6 +3,7 @@ import frLocales from '@/locales/fr.json'
 import deLocales from '@/locales/de.json'
 import ruLocales from '@/locales/ru.json'
 import zhLocales from '@/locales/zh.json'
+import jaLocales from '@/locales/ja.json'
 
 const dateTimeFormats = {
     'en-US': {
@@ -43,7 +44,8 @@ const dateTimeFormats = {
       fr: frLocales,
       de: deLocales,
       ru: ruLocales,
-      zh: zhLocales
+      zh: zhLocales,
+      ja: jaLocales,
     }
     return messages
   }

@@ -6,7 +6,7 @@
     "lang":{
       "select":"Sprache auswählen",
       "option":"Option auswählen"
-  },
+    },
     "homepage": {
       "catchline": "Das leistungsstarke Tool, das Ihre Fehler zurückbringt.",
       "use_dogger": "Benutze Dogger, protokolliere besser",
