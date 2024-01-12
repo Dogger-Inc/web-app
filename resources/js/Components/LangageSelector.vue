@@ -21,7 +21,7 @@ watch(locale, (newLocale, oldLocale) => {
 
 <template>
     <SelectWrapper 
-        class="w-fit lang" 
+        class="w-48 lang" 
         v-model="locale"
         :title="t('lang.select')" 
         :options="langs" reduce="value" 
