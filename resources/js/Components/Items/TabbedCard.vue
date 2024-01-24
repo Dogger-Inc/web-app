@@ -1,38 +1,40 @@
 <script setup>
-import { ref, useSlots, onMounted, watch } from 'vue';
+import { ref, useSlots, onMounted, watch, computed } from 'vue';
 import { usePage, router } from '@inertiajs/vue3';
 
 const slots = useSlots();
 const tabs = ref([]);
 const currentRoutePath = usePage().props.route.path;
-const tabParam = usePage().props.route.query?.tab;
+const tabParam = computed(() => {
+    const params = usePage().props.route.query;
+    if(!params.tab) return null;
+    return parseInt(params.tab);
+});
 
 onMounted(() => {
     const tmp = [];
 
     slots.default().forEach((tab, index) => {
-        console.log(tab);
+        const id = index + 1;
 
         tmp.push({
-            id: index,
+            id: id,
             title: tab.props.title,
-            content: tab.children,
-            current: tabParam ? index === tabParam : index === 0,
+            content: tab.children[0],
+            current: tabParam.value ? id === tabParam.value : id === 1,
         });
     });
 
     tabs.value = tmp;
 });
 
-watch(() => tabParam, (val) => {
+watch(() => tabParam.value, (val) => {
     if(!val || tabs.length === 0) return;
 
-    const tabId = parseInt(val);
     // if current tab id is the same as the one in the url, we don't need to do anything
-    if(tabs.find((tab) => tab.current).id === tabId) return;
-
+    if(tabs.value.find((tab) => tab.current).id === val) return;
     tabs.value.forEach((tab) => {
-        tab.current = tab.id === tabId;
+        tab.current = tab.id === val;
     });
 });
 
@@ -91,7 +93,7 @@ const setActiveTab = (id) => {
 
         <!-- Display tab content -->
         <div class="p-4">
-            {{ tabs.find((tab) => tab.current).content }}
+            <component :is="tabs.find((tab) => tab.current).content" />
         </div>
     </div>
 </template>

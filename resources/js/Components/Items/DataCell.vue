@@ -1,7 +1,9 @@
 <script setup>
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({});
 const props = defineProps({
     title: {
         type: String,
@@ -10,6 +12,10 @@ const props = defineProps({
     value: {
         type: [String, Number, Boolean],
         default: null
+    },
+    spacer: {
+        type: Boolean,
+        default: true
     },
     format: Function,
     // { path: 'path', param: 1, <optional>type: 'internal'|'external' }
@@ -24,7 +30,7 @@ const formatedValue = computed(() => {
     if(props.format && (props.value !== undefined && props.value !== null)) {
         return props.format(props.value);
     }
-    return props.value ?? 'Non renseigné';
+    return props.value ?? t("no_value");
 });
 
 const getLinkHref = () => {
@@ -35,7 +41,7 @@ const getLinkHref = () => {
 </script>
 
 <template>
-    <div class="p-4 sm:px-0">
+    <div class="p-4 sm:px-0" :class="{'border-t border-gray-200': spacer}">
         <dt class="text-sm font-medium text-gray-900">
             {{ title }}
         </dt>
@@ -46,15 +52,10 @@ const getLinkHref = () => {
                     :href="getLinkHref()"
                     target="_blank"
                     rel="noopener"
-                    class="hover:text-dogger-orange-500 underline"
                 >
                     {{ formatedValue }}
                 </a>
-                <Link
-                    v-else
-                    :href="getLinkHref()"
-                    class="hover:text-dogger-orange-500 underline"
-                >
+                <Link v-else :href="getLinkHref()">
                     {{ formatedValue }}
                 </Link>
             </template>
@@ -64,3 +65,9 @@ const getLinkHref = () => {
         </dd>
     </div>
 </template>
+
+<style lang="scss" scoped>
+a {
+    @apply underline hover:text-dogger-orange-500;
+}
+</style>
