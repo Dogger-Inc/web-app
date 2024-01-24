@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { usePage, router, useForm } from "@inertiajs/vue3";
 import {
     MagnifyingGlassIcon,
@@ -16,14 +16,14 @@ const props = defineProps({
 });
 
 const searchBar = ref(null);
-const urlSearch = usePage().props.route.query.search;
-const urlOrderBy = usePage().props.route.query.orderBy;
+const urlSearch = computed(() => usePage().props.route.query.search);
+const urlOrderBy = computed(() => usePage().props.route.query.orderBy);
 const currentRouteName = usePage().props.route.name;
 
 const form = useForm({
-    search: urlSearch || '',
+    search: urlSearch.value || '',
     searchBy: usePage().props.route.query.searchBy ?? props.searchByOpts[0]?.key,
-    orderBy: urlOrderBy
+    orderBy: urlOrderBy.value
 });
 
 const debounce = (fct, delay) => {
@@ -41,12 +41,12 @@ onMounted(() => {
 });
 
 watch(form, (val) => {
-    if(val.orderBy === urlOrderBy) {
-        if(!urlSearch && !val.search) return;
-        if(val.search === urlSearch) return;
+    if(val.orderBy === urlOrderBy.value) {
+        if(!urlSearch.value && !val.search) return;
+        if(val.search === urlSearch.value) return;
     }
 
-    debounce(() => {
+    const debouncedFunction = debounce(() => {
         if (val.search.length > 0) {
             if (!val.orderBy) val.orderBy = 'ASC';
             form.get(route(currentRouteName), { preserveScroll: true, preserveState: true });
@@ -54,6 +54,7 @@ watch(form, (val) => {
             router.get(route(currentRouteName), { orderBy: val.orderBy }, { preserveScroll: true, preserveState: true });
         }
     }, 200);
+    debouncedFunction();
 });
 </script>
 

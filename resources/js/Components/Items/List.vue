@@ -4,7 +4,7 @@ import { ref, computed, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { ChevronRightIcon } from '@heroicons/vue/24/outline';
 import Pagination from '@/Components/Items/Pagination.vue';
-import SearchBar from '@/Components/Items/SearchBar.vue';
+import SearchBar from '@/Components/Items/Searchbar.vue';
 
 const slots = useSlots();
 const emits = defineEmits(['selectedItem']);
