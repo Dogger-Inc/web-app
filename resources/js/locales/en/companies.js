@@ -1,7 +1,6 @@
 export default {
     "companies": {
         "companies": "Companies",
-        "copied": "Copied to clipboard",
         "add": "Add a new company",
         "join_existing": "Join an existing company",
         "join": "Join a company",
@@ -9,6 +8,5 @@ export default {
         "invitation_code": "Invitation code",
         "not_registred_to_company": "You are not register to any company",
         "name": "Name",
-        "submit": "Submit",
     }
 }
