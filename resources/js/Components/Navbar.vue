@@ -2,7 +2,7 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { UserIcon } from '@heroicons/vue/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
-import { 
+import {
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
@@ -16,8 +16,8 @@ import Logo from '@assets/images/logo.png';
 const navigation = [
     { name: 'Dashboard', href: 'dashboard.index' },
     { name: 'Companies', href: 'dashboard.companies.list' },
-    // { name: 'Projects', href: '#' },
-    // { name: 'Issues', href: '#' },
+    { name: 'Projects', href: 'dashboard.projects.list' },
+    { name: 'Issues', href: 'dashboard.issues.list' },
     // { name: 'Performances', href: '#' },
 ];
 
@@ -90,7 +90,7 @@ const isCurrentRoute = (path) => {
 
         <DisclosurePanel class="sm:hidden">
             <div class="space-y-1 px-2 pb-3 pt-2">
-                <DisclosureButton 
+                <DisclosureButton
                     v-for="item in navigation" :key="item.name"
                     :class="[isCurrentRoute(item.href) ? 'bg-gray-100' : 'hover:bg-gray-50', 'block rounded-md px-3 py-2 text-base font-medium']"
                     :aria-current="isCurrentRoute(item.href) ? 'page' : undefined"
@@ -103,4 +103,3 @@ const isCurrentRoute = (path) => {
         </DisclosurePanel>
     </Disclosure>
 </template>
-  

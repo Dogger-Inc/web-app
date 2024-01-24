@@ -14,6 +14,10 @@ class ProjectsController extends Controller
             $query->where('user_id', $currentUserId);
         });
 
+        $projects = $query->search($projects, 'name');
+        $projects = $query->order($projects);
+        $projects = $query->paginate($projects);
+
         return inertia('Dashboard/Projects', [
             'projects' => $projects,
         ]);

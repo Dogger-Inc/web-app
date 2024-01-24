@@ -5,6 +5,7 @@ use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\IssuesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,15 @@ Route::group([
         'prefix' => 'projects',
         'as' => 'projects.',
         'controller' => ProjectsController::class
+    ], function () {
+        Route::get('/', 'list')->name('list');
+    });
+
+    //Issues
+    Route::group([
+        'prefix' => 'issues',
+        'as' => 'issues.',
+        'controller' => IssuesController::class
     ], function () {
         Route::get('/', 'list')->name('list');
     });

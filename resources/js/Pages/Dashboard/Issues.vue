@@ -5,26 +5,23 @@ import List from '@/Components/Items/List.vue';
 import { ref } from 'vue';
 
 const props = defineProps({
-    projects: {
+    issues: {
         type: Object,
         required: true,
     },
 });
 
-const modalState = ref(false);
 const selectedItem = ref(null);
-const searchByOpts = [{ name: 'Name', key: 'name' }];
+const searchByOpts = [{ name: 'Message', key: 'message' }];
 
 </script>
 
 <template>
     <DashboardLayout>
-        <LinedTitle title="Projects">
-            <button @click.prevent="modalState = true" class="btn primary sm">Create project</button>
-        </LinedTitle>
+        <LinedTitle title="Issues"></LinedTitle>
 
         <List
-            :data="projects"
+            :data="issues"
             :selectedItem="selectedItem"
             :searchByOpts="searchByOpts"
             class="w-full mt-8"
