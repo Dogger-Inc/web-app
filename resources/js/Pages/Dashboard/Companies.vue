@@ -38,7 +38,7 @@ const copyToClipboard = (text) => {
 
 const submit = (addOrJoin) => {
     if(addOrJoin === "add") {
-            formAdd.post(route('dashboard.companies.create.post'), {
+        formAdd.post(route('dashboard.companies.create.post'), {
             onStart: () => formAdd.clearErrors(),
             onSuccess() {
                 modalStateAdd.value = false;
@@ -71,8 +71,12 @@ const submit = (addOrJoin) => {
             </div>
         </LinedTitle>
 
-        <ItemsDisplay v-if="hasCompanies" :data="companies" :dataRender="[{ name: t('companies.name'), key: 'name', searchable: true }]"
-            class="mt-8">
+        <ItemsDisplay
+            v-if="hasCompanies"
+            :data="companies"
+            :dataRender="[{ name: t('companies.name'), key: 'name', searchable: true }]"
+            class="mt-8"
+        >
             <template #listItem="{ item }">
                 <div class="flex flex-col">
                     <span class="font-bold">{{ item.name }}</span>
