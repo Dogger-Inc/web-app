@@ -1,11 +1,9 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
+import { useForm, usePage } from '@inertiajs/vue3';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import InputWapper from '@/Components/Form/InputWrapper.vue';
-import { useForm } from '@inertiajs/vue3';
-import { usePage } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
-import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({});
 const user = usePage().props?.auth?.user;

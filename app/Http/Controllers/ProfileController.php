@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rules\Password;
-use App\Services\QueryService;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    function show(QueryService $query)
+    function show()
     {
-        $currentUserId = auth()->user();
-
-        return inertia('Dashboard/Profile', [
-            'userInfo' => $currentUserId,
-        ]);
+        return inertia('Dashboard/Profile');
     }
 
     function editProfile() {
