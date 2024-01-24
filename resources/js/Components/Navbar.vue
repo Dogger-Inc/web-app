@@ -22,7 +22,7 @@ const navigation = [
 ];
 
 const profileNavigation = [
-    // { name: 'Your Profile', href: '#' },
+    { name: 'Your Profile', href: 'dashboard.profile.show' },
     { name: 'Sign out', href: 'logout' },
 ];
 
