@@ -61,14 +61,14 @@ const submit = (addOrJoin) => {
 <template>
     <DashboardLayout>
         <LinedTitle title="Companies">
-            <div class="flex flex-row gap-4">
-            <button v-if="hasCompanies" @click.prevent="modalStateAdd = true" class="btn primary sm">
-                {{t("companies.add")}}
-            </button>
-            <button v-if="hasCompanies" @click.prevent="modalStateJoin = true" class="btn primary sm">
-                {{t("companies.join_existing")}}
-            </button>
-        </div>
+            <div v-if="hasCompanies" class="flex flex-row gap-4">
+                <button @click.prevent="modalStateAdd = true" class="btn primary sm">
+                    {{t("companies.add")}}
+                </button>
+                <button @click.prevent="modalStateJoin = true" class="btn primary sm">
+                    {{t("companies.join_existing")}}
+                </button>
+            </div>
         </LinedTitle>
 
         <ItemsDisplay v-if="hasCompanies" :data="companies" :dataRender="[{ name: t('companies.name'), key: 'name', searchable: true }]"
