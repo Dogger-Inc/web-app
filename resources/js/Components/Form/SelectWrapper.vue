@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 
-const emits = defineEmits(['update:modelValue']);
+const modelValue = defineModel();
 const props = defineProps({
     title: {
         type: String,
@@ -23,7 +23,6 @@ const props = defineProps({
         type: String,
         default: 'Sélectionner une option'
     },
-    modelValue: [Object, String, Number],
     reduce: String,
     error: String,
     required : {
@@ -34,11 +33,6 @@ const props = defineProps({
         type: Boolean,
         default: false
     }
-});
-
-const value = computed({
-    get: () => props.modelValue,
-    set: (val) => emits('update:modelValue', val)
 });
 
 const id = computed(() => {
@@ -63,10 +57,10 @@ const getOptValue = (opt) => {
             <span v-if="required" class="text-red-500 ml-0.5">*</span>
         </label>
         <select
-            v-model="value"
             :id="id"
             :required="required"
             :disabled="disabled"
+            v-model="modelValue"
         >
             <option v-if="options.length === 0" disabled value="">{{ noOptText }}</option>
             <option v-else disabled value="">{{ placeholder }}</option>
