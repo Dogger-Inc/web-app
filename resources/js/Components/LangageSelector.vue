@@ -1,9 +1,10 @@
 <script setup>
-import SelectWrapper from "@/Components/Form/SelectWrapper.vue"
-import { watch, ref } from "vue";
-import { useI18n } from "vue-i18n";
+import { watch, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import SelectWrapper from '@/Components/Form/SelectWrapper.vue'
 
 const { t } = useI18n({});
+
 const langs = [
     {name: 'Français', value: 'fr'},
     {name: 'English', value: 'en'},

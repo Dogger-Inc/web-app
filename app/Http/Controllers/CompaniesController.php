@@ -20,8 +20,26 @@ class CompaniesController extends Controller
         $companies = $query->order($companies);
         $companies = $query->paginate($companies);
 
-        return inertia('Dashboard/Companies', [
+        return inertia('Dashboard/Companies/List', [
             'companies' => $companies,
+        ]);
+    }
+
+    public function details(Company $company): \Inertia\Response
+    {
+        // for advanced query purpose we need to load users and projects separately
+        $users = $company->users()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'users_page');
+        $projects = $company->projects()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'projects_page');
+
+        $company->users = $users;
+        $company->projects = $projects;
+
+        return inertia('Dashboard/Companies/Details', [
+            'company' => $company,
         ]);
     }
 

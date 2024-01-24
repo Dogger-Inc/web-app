@@ -35,6 +35,7 @@ Route::group([
         'controller' => CompaniesController::class
     ], function () {
         Route::get('/', 'list')->name('list');
+        Route::get('/{company}/show', 'details')->name('details');
         Route::post('/create', 'store')->name('create.post');
         Route::get('/join/{company:key}', 'join')->name('join');
     });

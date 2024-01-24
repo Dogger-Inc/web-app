@@ -1,13 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 
-const emits = defineEmits(['update:modelValue']);
+const modelValue = defineModel();
 const props = defineProps({
     title: {
         type: String,
         required: true
     },
-    modelValue: [String, Number],
     placeholder: String,
     cols: {
         type: [String, Number],
@@ -31,8 +30,6 @@ const id = computed(() => {
     const randomizer = Math.random().toString(36).substring(2, 9);
     return `${randomizer}-${slug}`;
 });
-
-const updateValue = (event) => emits('update:modelValue', event.target.value);
 </script>
 
 <template>
@@ -43,13 +40,12 @@ const updateValue = (event) => emits('update:modelValue', event.target.value);
         </label>
         <textarea
             :id="id"
-            :value="modelValue"
             :disabled="disabled"
             :required="required"
             :placeholder="placeholder"
             :cols="cols"
             :rows="rows"
-            @input="updateValue">
+            v-model="modelValue">
         </textarea>
         <div v-if="error" class="form-error-field">{{ error }}</div>
     </div>

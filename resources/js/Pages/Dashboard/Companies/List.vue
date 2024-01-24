@@ -1,17 +1,15 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
-import { useToast } from 'vue-toastification';
+import { useI18n } from 'vue-i18n';
 import ModalLayout from '@/Layouts/Modal.vue';
-import ItemsDisplay from '@/Components/Items/Display.vue';
+import ItemsList from '@/Components/Items/List.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import InputWapper from '@/Components/Form/InputWrapper.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
-import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({});
 
-const toast = useToast();
 const props = defineProps({
     companies: {
         type: Object,
@@ -30,11 +28,6 @@ const formAdd = useForm({
 const formJoin = useForm({
     key: '',
 });
-
-const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success(t("companies.copied"));
-};
 
 const submit = (addOrJoin) => {
     if(addOrJoin === "add") {
@@ -71,50 +64,71 @@ const submit = (addOrJoin) => {
             </div>
         </LinedTitle>
 
-        <ItemsDisplay
+        <ItemsList
             v-if="hasCompanies"
             :data="companies"
-            :dataRender="[{ name: t('companies.name'), key: 'name', searchable: true }]"
+            :searchByOpts="[{ name: t('companies.name'), key: 'name' }]"
+            detailsPath="dashboard.companies.details"
             class="mt-8"
+            v-slot="item"
         >
-            <template #listItem="{ item }">
-                <div class="flex flex-col">
-                    <span class="font-bold">{{ item.name }}</span>
-                    <span class="text-sm text-gray-500">{{ item.key }}</span>
-                </div>
-            </template>
-            <template #preview="{ item }">
-                <dt>{{t("companies.invitation_code")}}</dt>
-                <dd @click.prevent="copyToClipboard(item.key)" class="cursor-pointer hover:!text-dogger-orange-400">
-                    {{ item.key }}
-                </dd>
-            </template>
-        </ItemsDisplay>
+            <div class="flex flex-col">
+                <span class="font-bold">{{ item.name }}</span>
+                <span class="text-sm text-gray-500">{{ item.key }}</span>
+            </div>
+        </ItemsList>
 
         <div v-else class="mt-14 w-full gap-28 text-center">
             <h3 class="text-2xl">{{ t("companies.not_registred_to_company") }}</h3>
+
             <div class="flex justify-center gap-28 mt-8">
-                <button @click="modalStateJoin = true" class="btn primary sm">{{t("companies.join")}}</button>
-                <button @click="modalStateAdd = true" class="btn primary sm">{{t("companies.create")}}y</button>
+                <button @click="modalStateJoin = true" class="btn primary sm">
+                    {{t("companies.join")}}
+                </button>
+                <button @click="modalStateAdd = true" class="btn primary sm">
+                    {{t("companies.create")}}
+                </button>
             </div>
         </div>
 
+
+        <!-- Forms section below -->
         <ModalLayout :state="modalStateAdd" @close="modalStateAdd = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle :title="t('companies.add')" />
-            <form @submit.prevent="submit('add')" class="flex flex-col gap-5 lg:gap-6 mt-12">
-                <InputWapper v-model="formAdd.name" :error="formAdd.errors.name" :required="true" :title="t('companies.name')"/>
-                <button class="btn primary sm float-right" type="submit">Submit</button>
+
+            <form @submit.prevent="submit('add')">
+                <InputWapper
+                    v-model="formAdd.name"
+                    :title="t('companies.name')"
+                    :error="formAdd.errors.name"
+                    :required="true"
+                />
+                <button class="btn primary sm" type="submit">
+                    {{ t("submit") }}
+                </button>
             </form>
         </ModalLayout>
 
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Join a company" />
-            <form @submit.prevent="submit('join')" class="flex flex-col gap-5 lg:gap-6 mt-12">
-                <InputWapper v-model="formJoin.key" :error="formJoin.errors.key" :required="true" :title="t('companies.invitation_code')" />
-                <button class="btn primary sm float-right" type="submit">{{ t("companies.submit") }}</button>
+
+            <form @submit.prevent="submit('join')">
+                <InputWapper
+                    v-model="formJoin.key"
+                    :title="t('companies.invitation_code')"
+                    :error="formJoin.errors.key"
+                    :required="true"
+                />
+                <button class="btn primary sm" type="submit">
+                    {{ t("submit") }}
+                </button>
             </form>
         </ModalLayout>
     </DashboardLayout>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+form {
+    @apply flex flex-col gap-5 lg:gap-6 mt-12;
+}
+</style>
