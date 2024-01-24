@@ -43,4 +43,23 @@ class CompaniesController extends Controller
             'message' => 'Company created !',
         ]);
     }
+
+    public function join(Company $company) {
+
+        $user = auth()->user();
+
+        if($user && $company->users()->where('user_id', $user->id)->exists()) {
+            return redirect()->back()->with('toast', [
+                'type' => 'error',
+                'message' => 'You are already in this company !',
+            ]);
+        }
+
+        $company->users()->attach($user->id, ['role' => 'user']);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'Company joined !',
+        ]); 
+    }
 }
