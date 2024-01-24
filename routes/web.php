@@ -61,6 +61,7 @@ Route::group([
         'controller' => ProjectsController::class
     ], function () {
         Route::get('/', 'list')->name('list');
+        Route::post('/create', 'store')->name('create.post');
     });
 
     //Issues
