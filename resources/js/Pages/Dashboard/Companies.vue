@@ -7,6 +7,9 @@ import ItemsDisplay from '@/Components/Items/Display.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import InputWapper from '@/Components/Form/InputWrapper.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({});
 
 const toast = useToast();
 const props = defineProps({
@@ -30,7 +33,7 @@ const formJoin = useForm({
 
 const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    toast.success('Copied to clipboard');
+    toast.success(t("companies.copied"));
 };
 
 const submit = (addOrJoin) => {
@@ -60,15 +63,15 @@ const submit = (addOrJoin) => {
         <LinedTitle title="Companies">
             <div class="flex flex-row gap-4">
             <button v-if="hasCompanies" @click.prevent="modalStateAdd = true" class="btn primary sm">
-                Add a new company
+                {{t("companies.add")}}
             </button>
             <button v-if="hasCompanies" @click.prevent="modalStateJoin = true" class="btn primary sm">
-                Join an existing company
+                {{t("companies.join_existing")}}
             </button>
         </div>
         </LinedTitle>
 
-        <ItemsDisplay v-if="hasCompanies" :data="companies" :dataRender="[{ name: 'Name', key: 'name', searchable: true }]"
+        <ItemsDisplay v-if="hasCompanies" :data="companies" :dataRender="[{ name: t('companies.name'), key: 'name', searchable: true }]"
             class="mt-8">
             <template #listItem="{ item }">
                 <div class="flex flex-col">
@@ -77,7 +80,7 @@ const submit = (addOrJoin) => {
                 </div>
             </template>
             <template #preview="{ item }">
-                <dt>Invitation Code</dt>
+                <dt>{{t("companies.invitation_code")}}</dt>
                 <dd @click.prevent="copyToClipboard(item.key)" class="cursor-pointer hover:!text-dogger-orange-400">
                     {{ item.key }}
                 </dd>
@@ -85,17 +88,17 @@ const submit = (addOrJoin) => {
         </ItemsDisplay>
 
         <div v-else class="mt-14 w-full gap-28 text-center">
-            <h3 class="text-2xl">You are not register to any company</h3>
+            <h3 class="text-2xl">{{ t("companies.not_registred_to_company") }}</h3>
             <div class="flex justify-center gap-28 mt-8">
-                <button @click="modalStateJoin = true" class="btn primary sm">Join a company</button>
-                <button @click="modalStateAdd = true" class="btn primary sm">Create a company</button>
+                <button @click="modalStateJoin = true" class="btn primary sm">{{t("companies.join")}}</button>
+                <button @click="modalStateAdd = true" class="btn primary sm">{{t("companies.create")}}y</button>
             </div>
         </div>
 
         <ModalLayout :state="modalStateAdd" @close="modalStateAdd = false" additionalClasses="card max-w-3xl w-full">
-            <LinedTitle title="Add a new company" />
+            <LinedTitle :title="t('companies.add')" />
             <form @submit.prevent="submit('add')" class="flex flex-col gap-5 lg:gap-6 mt-12">
-                <InputWapper v-model="formAdd.name" :error="formAdd.errors.name" :required="true" title="Name" />
+                <InputWapper v-model="formAdd.name" :error="formAdd.errors.name" :required="true" :title="t('companies.name')"/>
                 <button class="btn primary sm float-right" type="submit">Submit</button>
             </form>
         </ModalLayout>
@@ -103,8 +106,8 @@ const submit = (addOrJoin) => {
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Join a company" />
             <form @submit.prevent="submit('join')" class="flex flex-col gap-5 lg:gap-6 mt-12">
-                <InputWapper v-model="formJoin.key" :error="formJoin.errors.key" :required="true" title="Invitation code" />
-                <button class="btn primary sm float-right" type="submit">Submit</button>
+                <InputWapper v-model="formJoin.key" :error="formJoin.errors.key" :required="true" :title="t('companies.invitation_code')" />
+                <button class="btn primary sm float-right" type="submit">{{ t("companies.submit") }}</button>
             </form>
         </ModalLayout>
     </DashboardLayout>
