@@ -59,7 +59,7 @@ watch(form, (val) => {
 </script>
 
 <template>
-    <div class="flex border-b border-dogger-gray divide-x divide-dogger-gray">
+    <div class="flex border-b border-dogger-gray divide-x divide-dogger-gray mb-3">
         <div class="relative w-full">
             <input
                 v-model="form.search"
