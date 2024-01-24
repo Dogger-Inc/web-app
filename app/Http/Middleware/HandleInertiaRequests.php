@@ -50,6 +50,7 @@ class HandleInertiaRequests extends Middleware
             'toast' => function () {
                 return Session::get('toast');
             },
+            'locale' => app()->getLocale()
         ]);
     }
 }
