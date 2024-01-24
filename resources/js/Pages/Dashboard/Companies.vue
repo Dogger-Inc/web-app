@@ -60,7 +60,7 @@ const submit = (addOrJoin) => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle title="Companies">
+        <LinedTitle :title="t('companies.companies')">
             <div v-if="hasCompanies" class="flex flex-row gap-4">
                 <button @click.prevent="modalStateAdd = true" class="btn primary sm">
                     {{t("companies.add")}}

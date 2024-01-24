@@ -1,5 +1,6 @@
 export default {
     "companies": {
+        "companies": "Companies",
         "copied": "Copied to clipboard",
         "add": "Add a new company",
         "join_existing": "Join an existing company",
