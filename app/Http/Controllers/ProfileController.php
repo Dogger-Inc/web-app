@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,17 +14,19 @@ class ProfileController extends Controller
     }
 
     function editProfile() {
+        $user = auth()->user();
+
         $data = request()->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email:rfc,dns,spoof', 'max:255', Rule::unique('users')->ignore($user->id)],
         ]);
 
-        $user = auth()->user();
-        $user->firstname = $data['firstname'];
-        $user->lastname = $data['lastname'];
-        $user->email = $data['email'];
-        $user->save();
+        $user->update([
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'email' => $data['email'],
+        ]);
 
         return redirect()->back()->with('toast', [
             'type' => 'success',

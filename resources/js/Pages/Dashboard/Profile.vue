@@ -28,10 +28,8 @@ const editProfile = () => {
 
 const editPassword = () => {
     formEditPassword.post(route('dashboard.profile.resetpassword.post'), {
-        onStart: () => {
-            formEditPassword.clearErrors();
-            formEditPassword.newPasswordConfirmation = '';
-        },
+        onStart: () => formEditProfile.clearErrors(),
+        onSuccess: () => formEditPassword.reset(),
     });
 };
 </script>
@@ -55,17 +53,16 @@ const editPassword = () => {
                 />
             </div>
             <InputWapper
-                    v-model="formEditProfile.email" 
-                    :title="t('profile.email')" 
-                    :error="formEditProfile.errors.email"
-                    :required="true"
-                    class="mt-4"
+                v-model="formEditProfile.email" 
+                :title="t('profile.email')" 
+                :error="formEditProfile.errors.email"
+                :required="true"
+                class="mt-4"
             />
-            <div class="flex">
-                <button @click="editProfile()" class="btn primary mt-4 sm">
-                    {{t("profile.edit_profile")}}
-                </button>
-            </div>
+
+            <button @click="editProfile()" class="btn primary mt-4 sm">
+                {{t("profile.edit_profile")}}
+            </button>
         </div>
 
         <LinedTitle :title="t('profile.reset_password')" class="mt-12" />
@@ -93,12 +90,10 @@ const editPassword = () => {
                     :type="'password'"
                 />
             </div>
-            <div class="flex">
-                <button @click="editPassword()" class="btn primary mt-4 sm">
-                    {{t("profile.edit_password")}}
-                </button>
-            </div>
 
+            <button @click="editPassword()" class="btn primary mt-4 sm">
+                {{t("profile.edit_password")}}
+            </button>
         </div>
     </DashboardLayout>
 </template>
