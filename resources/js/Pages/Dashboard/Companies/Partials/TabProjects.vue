@@ -1,8 +1,11 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toastification';
 import ItemsList from '@/Components/Items/List.vue';
 
+const { t } = useI18n({});
 const toast = useToast();
+
 defineProps({
     projects: {
         type: Object,

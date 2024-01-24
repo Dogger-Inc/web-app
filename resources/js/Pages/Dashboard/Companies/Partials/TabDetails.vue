@@ -1,8 +1,11 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toastification';
 import DataCell from '@/Components/Items/DataCell.vue';
 
+const { t } = useI18n({});
 const toast = useToast();
+
 defineProps({
     company: {
         type: Object,

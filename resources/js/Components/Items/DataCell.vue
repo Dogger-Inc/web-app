@@ -1,9 +1,10 @@
 <script setup>
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
-import { useI18n } from "vue-i18n";
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n({});
+
 const props = defineProps({
     title: {
         type: String,
