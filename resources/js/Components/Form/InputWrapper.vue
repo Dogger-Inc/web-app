@@ -2,13 +2,12 @@
 import { computed, ref } from 'vue';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline';
 
-const emits = defineEmits(['update:modelValue']);
+const modelValue = defineModel();
 const props = defineProps({
     title: {
         type: String,
         required: true
     },
-    modelValue: [String, Number],
     type: {
         type: String,
         default: 'text',
@@ -35,8 +34,6 @@ const id = computed(() => {
     return `${randomizer}-${slug}`;
 });
 
-const updateValue = (event) => emits('update:modelValue', event.target.value);
-
 const updatePasswordState = () => {
     inputType.value = inputType.value === 'password' ? 'text' : 'password';
 };
@@ -53,10 +50,9 @@ const updatePasswordState = () => {
                 :id="id"
                 :type="inputType"
                 :placeholder="placeholder"
-                :value="modelValue"
                 :disabled="disabled"
                 :required="required"
-                @input="updateValue"
+                v-model="modelValue"
             >
             <input v-else
                 :id="id"
@@ -64,10 +60,9 @@ const updatePasswordState = () => {
                 :placeholder="placeholder"
                 :min="min"
                 :max="max"
-                :value="modelValue"
                 :disabled="disabled"
                 :required="required"
-                @input="updateValue"
+                v-model="modelValue"
             >
             <span class="absolute top-1/2 right-5 -translate-y-1/2" @click.prevent="updatePasswordState">
                 <EyeIcon v-if="type === 'password' && inputType === 'password'"/>

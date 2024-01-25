@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import {
     ChartBarIcon,
     CloudArrowUpIcon,
@@ -8,9 +9,8 @@ import {
 } from '@heroicons/vue/24/outline';
 import { CheckIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid';
 import PublicLayout from '@/Layouts/Public.vue';
-import MainIllustration from '@assets/images/main_illustration.png';
-import { useI18n } from "vue-i18n"; 
 import LangageSelector from '@/Components/LangageSelector.vue';
+import MainIllustration from '@assets/images/main_illustration.png';
 
 const { t } = useI18n({});
 const features = [

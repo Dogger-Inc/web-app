@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import Multiselect from '@vueform/multiselect';
 
-const emits = defineEmits(['update:modelValue']);
+const modelValue = defineModel();
 const props = defineProps({
     title: {
         type: String,
@@ -24,7 +24,6 @@ const props = defineProps({
         type: String,
         default: 'Sélectionner une (ou plusieurs) option(s)'
     },
-    modelValue: [Object, String, Number],
     reduce: String,
     error: String,
     required : {
@@ -34,14 +33,6 @@ const props = defineProps({
     disabled : {
         type: Boolean,
         default: false
-    }
-});
-
-const value = computed({
-    get: () => props.modelValue,
-    set: (val) => {
-        console.log(val);
-        emits('update:modelValue', val);
     }
 });
 
@@ -69,7 +60,6 @@ const id = computed(() => {
             <span v-if="required" class="text-red-500 ml-0.5">*</span>
         </label>
         <Multiselect
-            v-model="value"
             :id="id"
             :options="formatedOptions"
             :placeholder="placeholder"
@@ -80,6 +70,7 @@ const id = computed(() => {
             :searchable="true"
             :caret="false"
             :no-options-text="noOptText"
+            v-model="modelValue"
             no-results-text="Aucun résultat"
             mode="tags"
         />
