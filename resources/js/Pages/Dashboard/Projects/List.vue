@@ -8,7 +8,6 @@ import SelectWrapper from '@/Components/Form/SelectWrapper.vue';
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
 
 const props = defineProps({
     projects: {
@@ -29,7 +28,6 @@ const { t } = useI18n();
 
 const modalState = ref(false);
 const searchByOpts = [{ name: t('projects.name'), key: 'name' }];
-const hasProjects = computed(() => props.projects.data.length > 0);
 
 const submit = () => {
     console.log(form)
@@ -49,7 +47,7 @@ const submit = () => {
 <template>
     <DashboardLayout>
         <LinedTitle title="Projects">
-            <button @click.prevent="modalState = true" class="btn primary sm">Create project</button>
+            <button @click.prevent="modalState = true" class="btn primary sm">{{ t('projects.add') }}</button>
         </LinedTitle>
 
         <ItemsList
@@ -66,7 +64,7 @@ const submit = () => {
         </ItemsList>
 
         <ModalLayout :state="modalState" @close="modalState = false" additionalClasses="card max-w-3xl w-full">
-            <LinedTitle title="Create project" />
+            <LinedTitle :title="t('projects.add')" />
             <form @submit.prevent="submit" class="flex flex-col gap-5 lg:gap-6 mt-12">
                 <InputWrapper
                     v-model="form.name"
@@ -82,7 +80,7 @@ const submit = () => {
                     reduce="id"
                     title="Company"
                 />
-                <button class="btn primary sm float-right" type="submit">Submit</button>
+                <button class="btn primary sm float-right" type="submit">{{t('projects.submit')}}</button>
             </form>
         </ModalLayout>
     </DashboardLayout>

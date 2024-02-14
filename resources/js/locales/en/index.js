@@ -1,4 +1,5 @@
 import dashboard from './dashboard'
+import projects from './projects'
 import general from './general'
 import homepage from './homepage'
 import companies from './companies'
@@ -12,4 +13,5 @@ export default {
     ...companies,
     ...profile,
     ...lang,
+    ...projects,
 }
