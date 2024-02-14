@@ -78,6 +78,6 @@ class CompaniesController extends Controller
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'Company joined !',
-        ]); 
+        ]);
     }
 }

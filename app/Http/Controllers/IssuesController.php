@@ -25,7 +25,7 @@ class IssuesController extends Controller
             'message' => $data['message'],
             'stacktrace' => $data['stacktrace'],
             'type' => $data['type'],
-            'env' => $data['env'],
+            'env' => $data['env'] ?? null,
             'triggered_at' => $data['triggered_at'] ?? now(),
             'status' => 'new',
         ]);

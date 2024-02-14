@@ -1,12 +1,14 @@
 <script setup>
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
-import List from '@/Components/Items/List.vue';
+import ItemsList from '@/Components/Items/List.vue';
 import ModalLayout from '@/Layouts/Modal.vue';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import SelectWrapper from '@/Components/Form/SelectWrapper.vue';
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 
 const props = defineProps({
     projects: {
@@ -23,10 +25,11 @@ const form = useForm({
     name: '',
     company_id: undefined,
 });
+const { t } = useI18n();
 
 const modalState = ref(false);
-const selectedItem = ref(null);
-const searchByOpts = [{ name: 'Name', key: 'name' }];
+const searchByOpts = [{ name: t('projects.name'), key: 'name' }];
+const hasProjects = computed(() => props.projects.data.length > 0);
 
 const submit = () => {
     console.log(form)
@@ -49,19 +52,18 @@ const submit = () => {
             <button @click.prevent="modalState = true" class="btn primary sm">Create project</button>
         </LinedTitle>
 
-        <List
+        <ItemsList
             :data="projects"
-            :selectedItem="selectedItem"
             :searchByOpts="searchByOpts"
-            class="w-full mt-8"
-            @selected-item="(value) => console.log(value)"
-            v-slot="{ item }"
+            detailsPath="dashboard.projects.details"
+            class="mt-8"
+            v-slot="item"
         >
             <div class="flex flex-col">
                 <span class="font-bold">{{ item.name }}</span>
                 <span class="text-sm text-gray-500">{{ item.key }}</span>
             </div>
-        </List>
+        </ItemsList>
 
         <ModalLayout :state="modalState" @close="modalState = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Create project" />

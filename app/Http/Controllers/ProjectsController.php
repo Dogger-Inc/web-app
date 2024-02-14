@@ -10,6 +10,25 @@ use App\Services\QueryService;
 
 class ProjectsController extends Controller
 {
+    public function details(Project $project): \Inertia\Response
+    {
+        // for advanced query purpose we need to load users and projects separately
+        $users = $project->users()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'users_page');
+        $issues = $project->issues()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'issues_page');
+
+        $project->users = $users;
+        $project->issues = $issues;
+
+        return inertia('Dashboard/Projects/Details', [
+            'project' => $project,
+        ]);
+    }
+
+
     public function list (QueryService $query): \Inertia\Response
     {
         $currentUserId = auth()->user()->id;
@@ -26,7 +45,7 @@ class ProjectsController extends Controller
         });
         $companies = $query->order($companies)->get();
 
-        return inertia('Dashboard/Projects', [
+        return inertia('Dashboard/Projects/List', [
             'projects' => $projects,
             'companies' => $companies,
         ]);

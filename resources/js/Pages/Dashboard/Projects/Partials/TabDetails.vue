@@ -7,7 +7,7 @@ const { t } = useI18n({});
 const toast = useToast();
 
 defineProps({
-    company: {
+    project: {
         type: Object,
         required: true,
     },
@@ -21,11 +21,11 @@ const copyToClipboard = (text) => {
 
 <template>
     <dl class="grid grid-cols-1 sm:grid-cols-2">
-        <DataCell title="Nom" :value="company.name" :spacer="false" />
+        <DataCell title="Nom" :value="project.name" :spacer="false" />
         <DataCell
             title="Code d'invitation"
-            :value="company.key"
-            @click.prevent="copyToClipboard(company.key)"
+            :value="project.key"
+            @click.prevent="copyToClipboard(project.key)"
             class="sm:border-t-0"
         />
     </dl>
