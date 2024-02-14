@@ -1,10 +1,9 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { useToast } from 'vue-toastification';
 import ItemsList from '@/Components/Items/List.vue';
+import { computed } from 'vue';
 
 const { t } = useI18n({});
-const toast = useToast();
 
 defineProps({
     issues: {
@@ -13,21 +12,20 @@ defineProps({
     },
 });
 
-const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success(t("copied"));
-};
+const searchByOpts = computed(() => [{ name: t('issues.message'), key: 'message' }, { name: t('issues.env'), key: 'env' }, { name: t('issues.http'), key: 'http_code' }]);
 </script>
 
 <template>
     <ItemsList
         :data="issues"
-        :searchbar="false"
         v-slot="item"
+        :searchByOpts="searchByOpts"
+        detailsPath="dashboard.issues.details"
     >
-        <div>
-            <span class="text-dogger-orange-500">{{ item.http_code }}</span>
-            <p class="text-sm md:text-base font-semibold">{{ item.message }}</p>
+        <div class="text-sm md:text-base">
+            <code class="text-[10px] text-dogger-orange-500 bg-dogger-orange-200 border-dogger-orange-500 border rounded p-0.5">{{ item.env }}</code> -
+            <span class="font-bold">[{{ item.http_code }}] </span>
+            <span>{{ item.message }}</span>
         </div>
     </ItemsList>
 </template>

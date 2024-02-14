@@ -23,10 +23,11 @@ const copyToClipboard = (text) => {
     <ItemsList
         :data="projects"
         :searchbar="false"
+        detailsPath="dashboard.projects.details"
         v-slot="item"
     >
         <div>
-            <p class="text-sm md:text-base font-semibold">{{ item.name }}</p> 
+            <p class="text-sm md:text-base font-semibold">{{ item.name }}</p>
             <p
                 @click.prevent="copyToClipboard(item.key)"
                 class="text-xs md:text-sm font-medium text-gray-500"
