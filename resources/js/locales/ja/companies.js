@@ -1,0 +1,16 @@
+export default {
+    "companies": {
+        "title": "企業",
+        "add": "新しい会社を追加する",
+        "join_existing": "既存の会社に入社する",
+        "join": "会社に入社する",
+        "create": "会社を作る",
+        "invitation_code": "招待コード",
+        "not_registred_to_company": "どの会社にも登録していません",
+        "name": "名前",
+        "details": "詳細",
+        "projects": "プロジェクト",
+        "users": "ユーザー"
+
+    }
+}

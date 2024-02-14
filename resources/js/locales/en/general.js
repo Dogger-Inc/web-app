@@ -11,7 +11,10 @@ export default {
     "login":"Login",
     "register": "Register",
     "or": "Or",
+    "new_password": "New password",
+    "new_password_confirmation": "Confirm new password",
     "no_value": "Undefined",
     "submit": "Submit",
     "copied": "Copied to clipboard",
+
 }

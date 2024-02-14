@@ -53,7 +53,7 @@ const submit = (addOrJoin) => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle title="Companies">
+        <LinedTitle :title="t('companies.title')">
             <div v-if="hasCompanies" class="flex flex-row gap-4">
                 <button @click.prevent="modalStateAdd = true" class="btn primary sm">
                     {{t("companies.add")}}
@@ -110,7 +110,7 @@ const submit = (addOrJoin) => {
         </ModalLayout>
 
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
-            <LinedTitle title="Join a company" />
+            <LinedTitle :title="t('companies.join_existing')" />
 
             <form @submit.prevent="submit('join')">
                 <InputWapper

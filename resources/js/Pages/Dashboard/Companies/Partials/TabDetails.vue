@@ -21,9 +21,9 @@ const copyToClipboard = (text) => {
 
 <template>
     <dl class="grid grid-cols-1 sm:grid-cols-2">
-        <DataCell title="Nom" :value="company.name" :spacer="false" />
+        <DataCell :title="$t('companies.name')" :value="company.name" :spacer="false" />
         <DataCell
-            title="Code d'invitation"
+            :title="$t('companies.join')"
             :value="company.key"
             @click.prevent="copyToClipboard(company.key)"
             class="sm:border-t-0"
