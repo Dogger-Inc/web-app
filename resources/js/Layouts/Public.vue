@@ -1,6 +1,6 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-// import NavBar from '@/Components/Navbar.vue';
+import PublicNavBar from '@/Components/Navbar/Public.vue';
 import Footer from '@/Components/Footer.vue';
 
 const meta = {
@@ -21,7 +21,7 @@ const meta = {
     </Head>
 
     <div class="min-h-screen">
-        <!-- <NavBar /> -->
+        <PublicNavBar />
 
         <!-- Page Content -->
         <main class="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto">

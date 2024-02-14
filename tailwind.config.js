@@ -22,6 +22,7 @@ export default {
                     '900': '#7f250f',
                 },
                 'dogger-gray' : {
+                    'dark': '#333333',
                     DEFAULT: '#666666',
                     'light': '#F5F5F5',
                 }

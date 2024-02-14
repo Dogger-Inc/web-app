@@ -9,7 +9,6 @@ import {
 } from '@heroicons/vue/24/outline';
 import { CheckIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid';
 import PublicLayout from '@/Layouts/Public.vue';
-import LangageSelector from '@/Components/LangageSelector.vue';
 import MainIllustration from '@assets/images/main_illustration.png';
 
 const { t } = useI18n({});
@@ -98,7 +97,6 @@ const faqs = [
 
 <template>
     <PublicLayout>
-        <LangageSelector />
         <!-- Hero section -->
         <div class="relative pt-4 md:pt-8">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -157,8 +155,8 @@ const faqs = [
             </div>
         </div>
 
-        <!-- Feature section -->
-        <div id="feature" class="mx-auto mt-6 max-w-7xl px-6 sm:mt-32 lg:px-8">
+        <!-- Features section -->
+        <div id="features" class="mx-auto mt-6 max-w-7xl px-6 sm:mt-32 lg:px-8">
             <div class="mx-auto max-w-2xl py-12 lg:text-center">
                 <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.use_dogger') }}</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -183,8 +181,8 @@ const faqs = [
             </div>
         </div>
 
-        <!-- Testimonial section -->
-        <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+        <!-- Our mission section -->
+        <div id="our-mission" class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
             <div
                 class="relative overflow-hidden bg-gray-900 py-20 px-6 shadow-xl sm:rounded-3xl sm:py-24 sm:px-10 md:px-12 lg:px-20">
                 <img class="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0"
@@ -227,7 +225,7 @@ const faqs = [
         </div>
 
         <!-- Pricing section -->
-        <div class="py-24 sm:pt-48">
+        <div id="pricing" class="py-24 sm:pt-48">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-4xl text-center">
                     <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.pricing') }}</h2>
@@ -274,8 +272,7 @@ const faqs = [
         </div>
 
         <!-- FAQs -->
-        <div
-            class="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pt-12 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pb-32">
+        <div id="faq" class="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pt-12 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pb-32">
             <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">{{ $t('homepage.frequently_question') }}</h2>
             <dl class="mt-10 space-y-8 divide-y divide-gray-900/10">
                 <div v-for="faq in faqs" :key="faq.id" class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
