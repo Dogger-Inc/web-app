@@ -145,7 +145,7 @@ header {
             }
         }
         #sidebar {
-            @apply bg-white/50 z-20 absolute inset-0 w-full text-center;
+            @apply bg-white/90 z-20 absolute inset-0 w-full text-center;
             height: 100svh;
             backdrop-filter: blur(4px);
             pointer-events: all;
