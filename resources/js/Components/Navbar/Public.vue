@@ -12,7 +12,6 @@ const isReduced = ref(true);
 
 const anchors = [
     { id: '#features', text: t('navbar.public.features') },
-    { id: '#our-mission', text: t('navbar.public.our_mission') },
     { id: '#pricing', text: t('navbar.public.pricing') },
     { id: '#faq', text: t('navbar.public.faq') },
 ];
@@ -86,6 +85,12 @@ function setNavbarDisplay() {
                     <span class="sr-only">Github</span>
                     <img :src="GithubIcon" alt="github logo" class="h-6 w-6" />
                 </a>
+                <Link
+                    :href="route('login')"
+                    class="btn primary sm"
+                >
+                    {{ $t('signin') }}
+                </Link>
             </div>
         </nav>
         <!-- Mobile -->
@@ -134,7 +139,7 @@ header {
     
         .logo-side {
             @screen lg {
-                width: 60px;
+                width: 170px;
             }
         }
     
@@ -146,7 +151,7 @@ header {
             @apply flex items-center gap-3 justify-end;
 
             @screen lg {
-                width: 60px;
+                width: 170px;
             }
         }
         #sidebar {

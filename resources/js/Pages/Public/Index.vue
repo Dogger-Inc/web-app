@@ -182,7 +182,7 @@ const faqs = [
         </div>
 
         <!-- Our mission section -->
-        <div id="our-mission" class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+        <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
             <div
                 class="relative overflow-hidden bg-gray-900 py-14 px-6 shadow-xl rounded-xl sm:rounded-3xl sm:py-24 sm:px-10 md:px-12 lg:px-20">
                 <img class="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0"
