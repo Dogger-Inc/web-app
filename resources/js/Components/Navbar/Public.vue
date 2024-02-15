@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Link } from '@inertiajs/vue3';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
-import LangageSelector from '@/Components/LangageSelector.vue';
+import LanguageSelector from '@/Components/LanguageSelector.vue';
 import GithubIcon from '@assets/images/github.svg';
 import Logo from '@assets/images/logo.png';
 
@@ -56,7 +56,7 @@ const openSideBar = () => isReduced.value = !isReduced.value;
 function setNavbarDisplay() {
     const header = document.querySelector('header');
     let y = window.scrollY / 200;
-    y = y > 0.5 ? 0.5 : y;
+    y = y > 0.7 ? 0.7 : y;
     header.style.backdropFilter = y > 0 ? `blur(${y * 10}px)` : 'none';
     header.style.backgroundColor = `rgba(${255}, ${255}, ${255}, ${y})`;
 }
@@ -78,7 +78,7 @@ function setNavbarDisplay() {
                 </a>
             </div>
             <div class="button-side relative">
-                <LangageSelector />
+                <LanguageSelector />
                 <a href="https://github.com/Dogger-Inc" target="_blank">
                     <span class="sr-only">Github</span>
                     <img :src="GithubIcon" alt="github logo" class="h-6 w-6" />
@@ -93,7 +93,7 @@ function setNavbarDisplay() {
             </div>
             
             <div class="flex items-center gap-3">
-                <LangageSelector class="mt-2" />
+                <LanguageSelector class="mt-2" />
                 <Link href="/">
                     <img :src="Logo" alt="Dogger logo" width="40" height="40" />
                     <span class="sr-only">{{ $t('navbar.public.home') }}</span>
