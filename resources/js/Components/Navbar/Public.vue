@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Link } from '@inertiajs/vue3';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
+import LangageSelector from '@/Components/LangageSelector.vue';
 import GithubIcon from '@assets/images/github.svg';
 import Logo from '@assets/images/logo.png';
 
@@ -77,12 +78,11 @@ function setNavbarDisplay() {
                 </a>
             </div>
             <div class="button-side relative">
-                <div class="flex justify-center space-x-6 md:order-2">
-                    <a href="https://github.com/Dogger-Inc" target="_blank">
-                        <span class="sr-only">Github</span>
-                        <img :src="GithubIcon" alt="github logo" class="h-6 w-6" />
-                    </a>
-                </div>
+                <LangageSelector />
+                <a href="https://github.com/Dogger-Inc" target="_blank">
+                    <span class="sr-only">Github</span>
+                    <img :src="GithubIcon" alt="github logo" class="h-6 w-6" />
+                </a>
             </div>
         </nav>
         <!-- Mobile -->
@@ -92,10 +92,13 @@ function setNavbarDisplay() {
                 <XMarkIcon v-else class="w-6 h-6" @click="openSideBar" />
             </div>
             
-            <Link href="/">
-                <img :src="Logo" alt="Dogger logo" width="40" height="40" />
-                <span class="sr-only">{{ $t('navbar.public.home') }}</span>
-            </Link>
+            <div class="flex items-center gap-3">
+                <LangageSelector class="mt-2" />
+                <Link href="/">
+                    <img :src="Logo" alt="Dogger logo" width="40" height="40" />
+                    <span class="sr-only">{{ $t('navbar.public.home') }}</span>
+                </Link>
+            </div>
 
             <div id="sidebar" :class="{'reduced' : isReduced}">
                 <div class="relative flex flex-col justify-center gap-24 px-5 py-5 text-3xl h-full">
@@ -125,7 +128,7 @@ header {
     
         .logo-side {
             @screen lg {
-                width: 50px;
+                width: 60px;
             }
         }
     
@@ -134,13 +137,13 @@ header {
         }
     
         .button-side {
-            @apply flex items-center gap-3 md:gap-6 justify-end;
+            @apply flex items-center gap-3 justify-end;
 
             @screen lg {
-                width: 50px;
+                width: 60px;
             }
 
-            &:hover {
+            a:hover {
                 filter: invert(57%) sepia(59%) saturate(5893%) hue-rotate(353deg) brightness(103%) contrast(107%);
             }
         }

@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://dogger.host'),
+    'url' => env('APP_URL', 'http://dogger.cloud'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'fr',
+    'fallback_locale' => env('FALLBACK_LOCALE', 'fr'),
 
     /*
     |--------------------------------------------------------------------------
