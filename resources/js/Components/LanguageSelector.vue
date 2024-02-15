@@ -99,16 +99,10 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 ul {
-    @apply absolute top-8 right-0 z-50 min-w-36 divide-y divide-gray-200 rounded-md bg-gray-50 shadow-lg;
+    @apply absolute top-8 right-0 z-50 min-w-36 divide-y divide-gray-200 rounded-md bg-gray-50 overflow-hidden shadow-lg;
 
     li {
         @apply cursor-pointer px-4 py-3 text-sm flex gap-6;
-    }
-    li:first-child {
-        @apply rounded-t-md;
-    }
-    li:last-child {
-        @apply rounded-b-md;
     }
 }
 </style>
