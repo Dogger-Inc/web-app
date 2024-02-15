@@ -120,10 +120,10 @@ const faqs = [
                         <p class="mt-6 text-lg leading-8 text-gray-600">{{ $t('homepage.catchline') }}</p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <Link :href="route('login')"
-                                class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500">
                                 {{ $t('signin') }}
                             </Link>
-                            <a href="#feature" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
+                            <a href="#features" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
                                 <span aria-hidden="true">→</span>
                             </a>
                         </div>

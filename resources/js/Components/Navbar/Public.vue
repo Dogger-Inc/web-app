@@ -29,7 +29,7 @@ onMounted(() => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             const id = entry.target.getAttribute('id');
-            const navLinks = document.querySelectorAll(`nav a[href="#${id}"]`);
+            const navLinks = document.querySelectorAll(`nav a[href*="#${id}"]`);
             if (entry.isIntersecting) {
                 navLinks.forEach((navLink) => navLink.classList.add('active'));
             } else {
@@ -73,9 +73,12 @@ function setNavbarDisplay() {
                 </Link>
             </div>
             <div class="menu-side">
-                <a v-for="anchor in anchors" :key="anchor.id" :href="anchor.id" target="_self">
+                <Link v-for="anchor in anchors" :key="anchor.id" :href="`${route('homepage')}/${anchor.id}`">
                     {{ anchor.text }}
-                </a>
+                </Link>
+                <Link :href="route('doc')" :class="{'active': route().current() === 'doc'}">
+                    {{ $t('navbar.public.doc') }}
+                </Link>
             </div>
             <div class="button-side relative">
                 <LanguageSelector />
@@ -102,9 +105,12 @@ function setNavbarDisplay() {
 
             <div id="sidebar" :class="{'reduced' : isReduced}">
                 <div class="relative flex flex-col justify-center gap-24 px-5 py-5 text-3xl h-full">
-                    <a v-for="anchor in anchors" :key="anchor.id" :href="anchor.id" target="_self">
+                    <Link v-for="anchor in anchors" :key="anchor.id" :href="`${route('homepage')}/${anchor.id}`">
                         {{ anchor.text }}
-                    </a>
+                    </Link>
+                    <Link :href="route('doc')" :class="{'active': route().current() === 'doc'}">
+                        {{ $t('navbar.public.doc') }}
+                    </Link>
                 </div>
             </div>
         </nav>
@@ -141,10 +147,6 @@ header {
 
             @screen lg {
                 width: 60px;
-            }
-
-            a:hover {
-                filter: invert(57%) sepia(59%) saturate(5893%) hue-rotate(353deg) brightness(103%) contrast(107%);
             }
         }
         #sidebar {

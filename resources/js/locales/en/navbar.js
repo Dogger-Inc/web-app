@@ -6,6 +6,7 @@ export default {
             "our_mission": "Our Mission",
             "pricing": "Pricing",
             "faq": "FAQ",
+            "doc": "Docs",
         },
         "dashboard": {
     
