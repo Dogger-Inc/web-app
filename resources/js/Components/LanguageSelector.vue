@@ -36,6 +36,17 @@ const currentLocale = computed(() => {
     return langs.find((lang) => lang.value === form.locale);
 });
 
+const updateLocale = (locale) => {
+    if(!locale || !langs.some((l) => l.value === locale)) return;
+    
+    // If the locale is different from the current one, update the form manually to trigger the watcher
+    if (locale !== form.locale) {
+        form.locale = locale;
+    } else {
+        form.defaults('locale', locale);
+    }
+};
+
 watch(() => form.isDirty, () => {
     form.get(route('locale.set', { locale: form.locale }), {
         onSuccess: () => {
@@ -47,14 +58,9 @@ watch(() => form.isDirty, () => {
 
 onMounted(() => {
     const savedLocale = localStorage.getItem('locale');
-    if (savedLocale) {
-        // If the saved locale is different from the current one, we update the form manually to trigger the watch
-        if(savedLocale !== form.locale) {
-            form.locale = savedLocale;
-        } else {
-            form.defaults('locale', savedLocale);
-        }
-    }
+    const userBrowserLocale = navigator.language.split('-')[0];
+
+    updateLocale(savedLocale || userBrowserLocale);
 });
 </script>
 
