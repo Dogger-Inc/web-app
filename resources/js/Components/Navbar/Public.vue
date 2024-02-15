@@ -65,7 +65,7 @@ function setNavbarDisplay() {
         <!-- Tablet and Computer -->
         <nav class="hidden md:flex">
             <div class="logo-side">
-                <Link href="/">
+                <Link :href="route('homepage')">
                     <img :src="Logo" alt="Dogger logo" width="45" height="45" />
                     <span class="sr-only">{{ $t('navbar.public.home') }}</span>
                 </Link>
@@ -80,10 +80,7 @@ function setNavbarDisplay() {
             </div>
             <div class="button-side relative">
                 <LanguageSelector />
-                <Link
-                    :href="route('login')"
-                    class="btn primary sm"
-                >
+                <Link :href="route('login')" class="btn primary sm">
                     {{ $t('signin') }}
                 </Link>
             </div>
@@ -96,8 +93,11 @@ function setNavbarDisplay() {
             </div>
             
             <div class="flex items-center gap-3">
-                <LanguageSelector class="mt-2" />
-                <Link href="/">
+                <Link :href="route('login')" class="btn primary xs">
+                    {{ $t('signin') }}
+                </Link>
+                <LanguageSelector />
+                <Link :href="route('homepage')" class="mb-2">
                     <img :src="Logo" alt="Dogger logo" width="40" height="40" />
                     <span class="sr-only">{{ $t('navbar.public.home') }}</span>
                 </Link>
