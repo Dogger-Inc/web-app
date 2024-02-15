@@ -4,7 +4,6 @@ import { useI18n } from 'vue-i18n';
 import { Link } from '@inertiajs/vue3';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
-import GithubIcon from '@assets/images/github.svg';
 import Logo from '@assets/images/logo.png';
 
 const { t } = useI18n({});
@@ -81,10 +80,6 @@ function setNavbarDisplay() {
             </div>
             <div class="button-side relative">
                 <LanguageSelector />
-                <a href="https://github.com/Dogger-Inc" target="_blank">
-                    <span class="sr-only">Github</span>
-                    <img :src="GithubIcon" alt="github logo" class="h-6 w-6" />
-                </a>
                 <Link
                     :href="route('login')"
                     class="btn primary sm"
