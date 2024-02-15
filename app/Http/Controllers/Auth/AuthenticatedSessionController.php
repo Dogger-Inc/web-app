@@ -50,6 +50,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('dashboard.index'));
+        return redirect(route('homepage'));
     }
 }

@@ -1,5 +1,5 @@
 .btn {
-    @apply rounded-full text-base md:text-lg font-bold px-8 md:px-12 py-4 h-fit w-fit flex items-center justify-center gap-2 lg:gap-4;
+    @apply rounded-full text-base md:text-lg font-bold px-8 md:px-12 py-4 h-fit w-fit flex items-center justify-center gap-2 lg:gap-4 whitespace-nowrap;
 
     &.primary {
         @apply border text-white border-dogger-orange-500 bg-dogger-orange-400 hover:bg-dogger-orange-500;

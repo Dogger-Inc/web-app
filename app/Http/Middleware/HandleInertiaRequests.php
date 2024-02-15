@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Session;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,6 +37,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
+            'toast' => session('toast'),
             'auth' => [
                 'user' => $request->user(),
             ],
@@ -47,10 +47,12 @@ class HandleInertiaRequests extends Middleware
                 'query' => $request->query(),
                 'name' => $request->route()->getName(),
             ],
-            'toast' => function () {
-                return Session::get('toast');
+            'locale' => function() {
+                if (session()->has('locale'))
+                    return session('locale');
+                else 
+                    return config('app.locale');
             },
-            'locale' => app()->getLocale()
         ]);
     }
 }
