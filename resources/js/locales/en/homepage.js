@@ -1,6 +1,6 @@
 export default {
     "homepage": {
-        "catchline": "The powerful tool that bring back your errors.",
+        "catchline": "The powerful tool that brings back your errors.",
         "use_dogger": "Use Dogger, log better",
         "need_dogger": "The error logger you need for your app",
         "utility_dogger": "You'll not anymore log your errors by yourself, Dogger will make it for you",
