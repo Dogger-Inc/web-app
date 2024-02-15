@@ -24,6 +24,7 @@ const searchByOpts = [{ name: 'Message', key: 'message' }];
             :data="issues"
             :selectedItem="selectedItem"
             :searchByOpts="searchByOpts"
+            detailsPath="dashboard.issues.details"
             class="w-full mt-8"
             @selected-item="(value) => console.log(value)"
             v-slot="item"

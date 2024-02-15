@@ -13,12 +13,16 @@ class ProjectsController extends Controller
     public function details(Project $project): \Inertia\Response
     {
         // for advanced query purpose we need to load users and projects separately
+        $user = auth()->user();
         $users = $project->users()
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'users_page');
         $issues = $project->issues()
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'issues_page');
+
+        $userRole = $user->getRoleInCompany($project->company_id);
+        $project->editable = $userRole != 'user';
 
         $project->users = $users;
         $project->issues = $issues;
@@ -69,6 +73,25 @@ class ProjectsController extends Controller
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'Project created !',
+        ]);
+    }
+
+    public function update(): \Illuminate\Http\RedirectResponse
+    {
+        $data = request()->validate([
+            'project_id' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:100', Rule::unique('projects')],
+        ]);
+
+        $project = Project::find($data['project_id']);
+
+        $project->name = $data['name'];
+
+        $project->save();
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'Project updated !',
         ]);
     }
 }

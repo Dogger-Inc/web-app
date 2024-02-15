@@ -63,6 +63,7 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{project}/show', 'details')->name('details');
         Route::post('/create', 'store')->name('create.post');
+        Route::patch('/update', 'update')->name('update.patch');
     });
 
     //Issues
@@ -72,6 +73,7 @@ Route::group([
         'controller' => IssuesController::class
     ], function () {
         Route::get('/', 'list')->name('list');
+        Route::get('/{issue}/show', 'details')->name('details');
     });
 });
 

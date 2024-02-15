@@ -35,6 +35,28 @@ class IssuesController extends Controller
         ]);
     }
 
+    public function details(Issue $issue): \Inertia\Response
+    {
+        $currentUser = auth()->user();
+        $users = $issue->users()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $comments = $issue->comments()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'issues_page');
+
+        $issue->users = $users;
+        $issue->comments = $comments;
+
+        $userRole = $user->getRoleInCompany($issue->project()->company_id);
+        $currentUser->canAssignUsers = $userRole != 'user';
+
+        return inertia('Dashboard/Issues/Details', [
+            'issue' => $issue,
+            'currentUser' => $currentUser
+        ]);
+    }
+
     public function list (QueryService $query): \Inertia\Response
     {
         $currentUserId = auth()->user()->id;
