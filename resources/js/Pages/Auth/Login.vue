@@ -6,6 +6,7 @@ import AuthLayout from '@/Layouts/Auth.vue';
 const form = useForm({
     email: '',
     password: '',
+    remember: false,
 });
 
 const submitForm = () => {
@@ -41,9 +42,22 @@ const submitForm = () => {
                 type="password"
             />
 
-            <Link :href="route('password.request')" class="text-right -mt-4 text-gray-500 hover:text-dogger-orange-500">
-                Mot de passe oublié ?
-            </Link>
+            <div class="flex flex-col sm:flex-row gap-2 sm:justify-between sm:items-center -mt-4">
+                <label class="flex items-center" for="remember">
+                    <input
+                        v-model="form.remember"
+                        type="checkbox"
+                        id="remember"
+                        class="rounded border-gray-300 focus:ring-dogger-orange-500"
+                    />
+                    <span class="ml-2 text-gray-500">Remember me</span>
+                </label>
+
+                <Link :href="route('password.request')" class="text-gray-500 hover:text-dogger-orange-500">
+                    Mot de passe oublié ?
+                </Link>
+            </div>
+            
             <button class="btn primary mt-6 !w-full" type="submit">
                 Login
             </button>
