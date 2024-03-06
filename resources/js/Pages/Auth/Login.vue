@@ -34,13 +34,13 @@ const submitForm = () => {
             <InputWrapper
                 v-model="form.email"
                 :error="form.errors.email"
-                title="t('email')"
+                :title="t('email')"
                 type="email"
             />
             <InputWrapper
                 v-model="form.password"
                 :error="form.errors.email"
-                title="t('password')"
+                :title="t('password')"
                 type="password"
             />
 
@@ -52,11 +52,11 @@ const submitForm = () => {
                         id="remember"
                         class="rounded border-gray-300 focus:ring-dogger-orange-500"
                     />
-                    <span class="ml-2 text-gray-500">Remember me</span>
+                    <span class="ml-2 text-gray-500">{{$t('remember')}}</span>
                 </label>
 
                 <Link :href="route('password.request')" class="text-gray-500 hover:text-dogger-orange-500">
-                    Mot de passe oublié ?
+                    {{$t('password_forgotten')}}
                 </Link>
             </div>
             

@@ -15,4 +15,6 @@ export default {
     "no_value": "Non renseigné",
     "submit": "Soumettre",
     "copied": "Copié dans le presse-papier",
+    "password_forgotten": "Mot de passe oublié ?",
+    "remember": "Se souvenir de moi"
 }

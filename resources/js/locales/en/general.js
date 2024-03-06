@@ -3,12 +3,12 @@ export default {
     "signin": "Sign in",
     "signup": "Sign up",
     "learnmore": "Learn more",
-    "email":"Email",
+    "email": "Email",
     "password": "Password",
     "confirm_password": "Confirm Password",
     "firstname": "First Name",
     "lastname": "Last Name",
-    "login":"Login",
+    "login": "Login",
     "register": "Register",
     "or": "Or",
     "new_password": "New password",
@@ -16,5 +16,6 @@ export default {
     "no_value": "Undefined",
     "submit": "Submit",
     "copied": "Copied to clipboard",
-
+    "password_forgotten": "Password forgotten?",
+    "remember": "Remember me"
 }

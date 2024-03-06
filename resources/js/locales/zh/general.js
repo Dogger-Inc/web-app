@@ -15,5 +15,7 @@ export default {
     "copied": "已复制到剪贴板",
     "login": "登录",
     "register": "登记",
-    "or": "或者"
+    "or": "或者",
+    "password_forgotten": "密码忘记了？",
+    "remember": "记住账号"
 }

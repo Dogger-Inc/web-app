@@ -35,25 +35,25 @@ const submitForm = () => {
 
         <form @submit.prevent="submitForm" class="flex flex-col gap-5 lg:gap-6">
             <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
-                <InputWrapper v-model="form.firstname" :error="form.errors.firstname" title="$t('firstname')" />
-                <InputWrapper v-model="form.lastname" :error="form.errors.lastname" title="$t('lastname')" />
+                <InputWrapper v-model="form.firstname" :error="form.errors.firstname" :title="$t('firstname')" />
+                <InputWrapper v-model="form.lastname" :error="form.errors.lastname" :title="$t('lastname')" />
             </div>
             <InputWrapper
                 v-model="form.email"
                 :error="form.errors.email"
-                title="$t('email')"
+                :title="$t('email')"
                 type="email"
             />
             <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
                 <InputWrapper
                     v-model="form.password"
                     :error="form.errors.password"
-                    title="$t('password')" type="password"
+                    :title="$t('password')" type="password"
                 />
                 <InputWrapper
                     v-model="form.password_confirmation"
                     :error="form.errors.password_confirmation"
-                    title="$t('confirm_password')" type="password"
+                    :title="$t('confirm_password')" type="password"
                 />
             </div>
 

@@ -15,5 +15,7 @@ export default {
     "copied": "Скопировано в буфер обмена",
     "login": "Авторизоваться",
     "register": "регистр",
-    "or": "Или"
+    "or": "Или",
+    "password_forgotten": "Пароль забыт?",
+    "remember": "Запомнить меня"
 }

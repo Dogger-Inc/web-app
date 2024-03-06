@@ -15,5 +15,7 @@ export default {
     "copied": "クリップボードにコピーされました",
     "login": "ログイン",
     "register": "登録する",
-    "or": "または"
+    "or": "または",
+    "password_forgotten": "パスワードをお忘れですか?",
+    "remember": "私を覚えてますか"
 }

@@ -15,5 +15,7 @@ export default {
     "new_password_confirmation": "Bestätige neues Passwort",
     "no_value": "Nicht definiert",
     "submit": "Einreichen",
-    "copied": "In die Zwischenablage kopiert"
+    "copied": "In die Zwischenablage kopiert",
+    "password_forgotten": "Passwort vergessen?",
+    "remember": "Erinnere dich an mich"
 }
