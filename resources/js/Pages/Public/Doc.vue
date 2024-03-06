@@ -8,7 +8,7 @@ import PublicLayout from '@/Layouts/Public.vue';
 const content = ref('');
 const lang = usePage().props.locale;
 
-const link = `/doc/doc-${lang}.md`;
+const link = `/docs/doc-${lang}.md`;
 
 onMounted(() => {
     fetch(link).then(response => response.text()).then(text => {
