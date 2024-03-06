@@ -20,25 +20,31 @@ const copyToClipboard = (text) => {
 };
 
 const handleUpdateCompanyCode = () => {
-    router.patch(route('dashboard.companies.refresh_code.patch', { company: props.company?.id }));
+    router.patch(
+        route('dashboard.companies.refresh_code.patch', props.company?.id),
+        {},
+        { preserveState: false }
+    );
 }
 </script>
 
 <template>
-    <dl class="grid grid-cols-1 sm:grid-cols-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2">
         <DataCell title="Nom" :value="company.name" :spacer="false" />
-        <DataCell
-            title="Code d'invitation"
-            :value="company.key"
-            @click.prevent="copyToClipboard(company.key)"
-            class="sm:border-t-0"
-        />
-        <button
-            v-if="company.editable"
-            @click.prevent="handleUpdateCompanyCode"
-            class="btn generic sm mt-3"
-        >
-            Change code
-        </button>
-    </dl>
+        <div class="flex flex-row items-center gap-6">
+            <DataCell
+                title="Code d'invitation"
+                :value="company.key"
+                @click.prevent="copyToClipboard(company.key)"
+                class="sm:border-t-0"
+            />
+            <button
+                v-if="company.editable"
+                @click.prevent="handleUpdateCompanyCode"
+                class="btn generic sm"
+            >
+                Change code
+            </button>
+        </div>
+    </div>
 </template>

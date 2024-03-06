@@ -43,7 +43,8 @@ const handleUpdateProject = () => {
 
 const handleUpdateProjectCode = () => {
     router.patch(
-        route('dashboard.projects.refresh_code.patch', { project: props.project?.id }),
+        route('dashboard.projects.refresh_code.patch', props.project?.id),
+        {},
         { preserveState: false }
     );
 }
