@@ -89,8 +89,28 @@ const faqs = [
     {
         id: 2,
         question: t("homepage.faqs.open_source.question"),
-        answer: t("homepage.faqs.open_source.question"),
+        answer: t("homepage.faqs.open_source.answer"),
         link: "https://github.com/Dogger-Inc"
+    },
+    {
+        id: 3,
+        question: t("homepage.faqs.why_dogger.question"),
+        answer: t("homepage.faqs.why_dogger.answer"),
+    },
+    {
+        id: 4,
+        question: t("homepage.faqs.free_tier.question"),
+        answer: t("homepage.faqs.free_tier.answer"),
+    },
+    {
+        id: 5,
+        question: t("homepage.faqs.support.question"),
+        answer: t("homepage.faqs.support.answer"),
+    },
+    {
+        id: 6,
+        question: t("homepage.faqs.lifetime.question"),
+        answer: t("homepage.faqs.lifetime.answer"),
     }
 ]
 </script>
