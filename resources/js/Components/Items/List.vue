@@ -15,6 +15,10 @@ const props = defineProps({
         type: Boolean,
         default: true
     },
+    placeholder: {
+        type: String,
+        default: 'Aucune donnée',
+    },
     searchbar : {
         type: Boolean,
         default: true
@@ -58,7 +62,7 @@ const select = (item) => {
                 </div>
             </li>
             <li v-else-if="hasSearch" class="no-data">Aucun résultat</li>
-            <li v-else class="no-data">Aucune donnée</li>
+            <li v-else class="no-data">{{ placeholder }}</li>
         </ul>
         <Pagination v-if="hasData && pagination" :paginator="data" />
     </div>

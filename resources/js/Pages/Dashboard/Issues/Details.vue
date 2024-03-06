@@ -3,6 +3,7 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import Badge from '@/Components/Badge.vue';
 import Stacktrace from '@/Components/Stacktrace.vue';
+import List from '../../../Components/Items/List.vue';
 
 defineProps({
     issue: {
@@ -20,8 +21,6 @@ defineProps({
     <DashboardLayout>
         <LinedTitle :title="issue.message" />
 
-        {{ currentUser }}
-
         <div class="mt-12 grid grid-cols-12 gap-6">
             <div class="flex flex-col gap-6 col-span-8">
                 <div class="space-y-2">
@@ -34,6 +33,11 @@ defineProps({
                 <div class="space-y-2">
                     <span class="font-semibold">Comments</span>
 
+                    <List
+                        :data="issue.comments"
+                        :searchbar="false"
+                        placeholder="Aucun commentaire"
+                    />
                 </div>
             </div>
 

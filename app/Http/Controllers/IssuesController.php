@@ -48,7 +48,7 @@ class IssuesController extends Controller
         $issue->users = $users;
         $issue->comments = $comments;
 
-        $userRole = $user->getRoleInCompany($issue->project()->company_id);
+        $userRole = $currentUser->getRoleInCompany($issue->project()->first()->company_id);
         $currentUser->canAssignUsers = $userRole != 'user';
 
         return inertia('Dashboard/Issues/Details', [
