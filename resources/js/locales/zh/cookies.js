@@ -47,14 +47,14 @@ export default {
                 "cookie_table": [
                     {
                         "col1": "cc_cookie",
-                        "col2": ".dogger.host",
+                        "col2": ".dogger.cloud",
                         "col3": "1年",
                         "col4": "Cookie 保存 cookie 偏好设置",
                         "is_regex": true
                     },
                     {
                         "col1": "XSRF-TOKEN",
-                        "col2": "dogger.host",
+                        "col2": "dogger.cloud",
                         "col3": "2小时",
                         "col4": "会话令牌",
                         "is_regex": true
@@ -72,7 +72,7 @@ export default {
                 "cookie_table": [
                     {
                         "col1": "^_pk_id, ^_pk_ses",
-                        "col2": "analytics.dogger.host",
+                        "col2": "analytics.dogger.cloud",
                         "col3": "1年",
                         "col4": "马托莫分析",
                         "is_regex": true

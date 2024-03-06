@@ -39,14 +39,14 @@ export default {
                 "cookie_table": [
                     {
                         "col1": "cc_cookie",
-                        "col2": ".dogger.host",
+                        "col2": ".dogger.cloud",
                         "col3": "1 an",
                         "col4": "Cookie de sauvegarde des préférences de cookies",
                         "is_regex": true
                     },
                     {
                         "col1": "XSRF-TOKEN",
-                        "col2": "dogger.host",
+                        "col2": "dogger.cloud",
                         "col3": "2 heures",
                         "col4": "Token de session",
                         "is_regex": true
@@ -64,7 +64,7 @@ export default {
                 "cookie_table": [
                     {
                         "col1": "^_pk_id, ^_pk_ses",
-                        "col2": "analytics.dogger.host",
+                        "col2": "analytics.dogger.cloud",
                         "col3": "1 an",
                         "col4": "Matomo analytics",
                         "is_regex": true

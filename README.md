@@ -2,7 +2,7 @@
 
 School project with [Vue 3](https://vuejs.org/), [Laravel 10](https://laravel.com/) and [Inertia.js](https://inertiajs.com/).
 
-You can access to the production here [https://dogger.host](https://dogger.host).
+You can access to the production here [https://dogger.cloud](https://dogger.cloud).
 
 ## How to run the project
 
