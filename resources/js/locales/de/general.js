@@ -10,7 +10,6 @@ export default {
     "lastname": "Familienname, Nachname",
     "login": "Anmeldung",
     "register": "Registrieren",
-    "or": "Oder"
     "or": "Oder",
     "new_password": "Neues Passwort",
     "new_password_confirmation": "Bestätige neues Passwort",

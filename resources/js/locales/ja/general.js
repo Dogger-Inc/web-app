@@ -12,7 +12,7 @@ export default {
     "new_password_confirmation": "新しいパスワードを確認",
     "no_value": "未定義",
     "submit": "提出する",
-    "copied": "クリップボードにコピーされました"
+    "copied": "クリップボードにコピーされました",
     "login": "ログイン",
     "register": "登録する",
     "or": "または"

@@ -12,7 +12,7 @@ let cc = initCookieConsent();
 
 // run plugin with your configuration
 cc.run({
-    current_lang: localStorage.getItem('dogger_locale') || "en",
+    current_lang: localStorage.getItem('locale') || "en",
     autoclear_cookies: true,                   // default: false
     page_scripts: true,                        // default: false
 
