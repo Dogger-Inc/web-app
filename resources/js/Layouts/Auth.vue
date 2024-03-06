@@ -1,5 +1,6 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
+import Logo from '@assets/images/logo.png';
 
 const meta = {
     title: 'Dogger',
@@ -20,6 +21,14 @@ const meta = {
 
     <!-- Page Content -->
     <main class="flex justify-center items-center min-h-screen p-4">
-        <slot />
+        <div class="max-w-md w-full mb-14 flex flex-col gap-6 md:gap-12">
+            <div>
+                <Link :href="route('homepage')">
+                    <img :src="Logo" alt="Logo Dogger" class="mx-auto w-24" />
+                </Link>
+                <slot name="header" />
+            </div>
+            <slot />
+        </div>
     </main>
 </template>
