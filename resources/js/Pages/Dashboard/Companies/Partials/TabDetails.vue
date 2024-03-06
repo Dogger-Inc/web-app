@@ -34,6 +34,7 @@ const handleUpdateCompanyCode = () => {
             class="sm:border-t-0"
         />
         <button
+            v-if="company.editable"
             @click.prevent="handleUpdateCompanyCode"
             class="btn generic sm mt-3"
         >

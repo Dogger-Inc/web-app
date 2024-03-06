@@ -107,6 +107,7 @@ watch(
                 class="sm:border-t-0"
             />
             <button
+                v-if="project.editable"
                 @click.prevent="handleUpdateProjectCode"
                 class="btn generic sm mt-3"
             >
