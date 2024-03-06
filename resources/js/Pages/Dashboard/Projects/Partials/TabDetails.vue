@@ -5,7 +5,7 @@ import DataCell from '@/Components/Items/DataCell.vue';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import { ref } from 'vue';
 import { watch } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, router } from '@inertiajs/vue3';
 
 const { t } = useI18n({});
 const toast = useToast();
@@ -41,6 +41,13 @@ const handleUpdateProject = () => {
     });
 }
 
+const handleUpdateProjectCode = () => {
+    router.patch(
+        route('dashboard.projects.refresh_code.patch', { project: props.project?.id }),
+        { preserveState: false }
+    );
+}
+
 watch(
     () => props.project,
     () => {
@@ -57,7 +64,7 @@ watch(
 </script>
 
 <template>
-    <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="grid grid-cols-1">
             <div v-if="!showUpdateForm" class="space-y-2">
                 <DataCell title="Nom" :value="project.name" :spacer="false" />
@@ -92,11 +99,19 @@ watch(
                 </div>
             </form>
         </div>
-        <DataCell
-            title="Code d'invitation"
-            :value="project.key"
-            @click.prevent="copyToClipboard(project.key)"
-            class="sm:border-t-0"
-        />
-    </dl>
+        <div>
+            <DataCell
+                title="Code d'invitation"
+                :value="project.key"
+                @click.prevent="copyToClipboard(project.key)"
+                class="sm:border-t-0"
+            />
+            <button
+                @click.prevent="handleUpdateProjectCode"
+                class="btn generic sm mt-3"
+            >
+                Change code
+            </button>
+        </div>
+    </div>
 </template>

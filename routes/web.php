@@ -41,6 +41,7 @@ Route::group([
         Route::get('/{company}/show', 'details')->name('details');
         Route::post('/create', 'store')->name('create.post');
         Route::get('/join/{company:key}', 'join')->name('join');
+        Route::patch('/{company}/invitation', 'refresh_code')->name('refresh_code.patch');
     });
 
     //Profile
@@ -64,6 +65,7 @@ Route::group([
         Route::get('/{project}/show', 'details')->name('details');
         Route::post('/create', 'store')->name('create.post');
         Route::patch('/update', 'update')->name('update.patch');
+        Route::patch('/{project}/invitation', 'refresh_code')->name('refresh_code.patch');
     });
 
     //Issues

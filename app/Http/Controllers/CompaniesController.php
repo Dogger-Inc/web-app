@@ -62,6 +62,18 @@ class CompaniesController extends Controller
         ]);
     }
 
+    public function refresh_code(Company $company): \Illuminate\Http\RedirectResponse
+    {
+        $company->key = strtoupper(Str::random(8));
+
+        $company->save();
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'Invitation code updated !',
+        ]);
+    }
+
     public function join(Company $company) {
 
         $user = auth()->user();

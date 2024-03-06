@@ -59,7 +59,7 @@ class ProjectsController extends Controller
     {
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100', Rule::unique('projects')],
-            'company_id' => ['required', 'integer'],
+            'company_id' => ['required', 'integer', Rule::exists('companies', 'id')],
         ]);
 
         $project = Project::create([
@@ -76,10 +76,22 @@ class ProjectsController extends Controller
         ]);
     }
 
+    public function refresh_code(Project $project): \Illuminate\Http\RedirectResponse
+    {
+        $project->key = strtoupper(Str::random(8));
+
+        $project->save();
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'Invitation code updated !',
+        ]);
+    }
+
     public function update(): \Illuminate\Http\RedirectResponse
     {
         $data = request()->validate([
-            'project_id' => ['required', 'integer'],
+            'project_id' => ['required', 'integer', Rule::exists('projects', 'id')],
             'name' => ['required', 'string', 'max:100', Rule::unique('projects')],
         ]);
 
