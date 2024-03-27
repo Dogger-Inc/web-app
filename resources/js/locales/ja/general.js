@@ -7,6 +7,7 @@ export default {
     "email": "Eメール",
     "password": "パスワード",
     "confirm_password": "パスワードを認証する",
+    "name": "名前",
     "firstname": "ファーストネーム",
     "lastname": "苗字",
     "new_password": "新しいパスワード",

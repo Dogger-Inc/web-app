@@ -5,6 +5,7 @@ import homepage from './homepage'
 import companies from './companies'
 import navbar from './navbar'
 import profile from './profile'
+import issues from './issues'
 import lang from './lang'
 import login from './login'
 import register from './register'
@@ -21,5 +22,6 @@ export default {
     ...login,
     ...register,
     ...forgotPassword,
-    ...projects
+    ...projects,
+    ...issues,
 }

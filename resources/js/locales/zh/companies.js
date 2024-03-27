@@ -8,9 +8,9 @@ export default {
         "change_code": "更改代码",
         "invitation_code": "邀请代码",
         "not_registred_to_company": "您没有注册任何公司",
-        "name": "姓名",
         "details": "细节",
         "projects": "项目",
-        "users": "用户"
+        "users": "用户",
+        "issues": "问题"
     }
 }

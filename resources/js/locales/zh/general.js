@@ -7,6 +7,7 @@ export default {
     "email": "电子邮件",
     "password": "密码",
     "confirm_password": "确认密码",
+    "name": "姓名",
     "firstname": "名",
     "lastname": "姓",
     "new_password": "新密码",

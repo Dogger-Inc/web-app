@@ -8,9 +8,9 @@ export default {
         "change_code": "コードを変更する",
         "invitation_code": "招待コード",
         "not_registred_to_company": "どの会社にも登録していません",
-        "name": "名前",
         "details": "詳細",
         "projects": "プロジェクト",
-        "users": "ユーザー"
+        "users": "ユーザー",
+        "issues": "問題"
     }
 }

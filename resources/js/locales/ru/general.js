@@ -7,6 +7,7 @@ export default {
     "email": "Электронная почта",
     "password": "Пароль",
     "confirm_password": "Подтвердите пароль",
+    "name": "Имя",
     "firstname": "Имя",
     "lastname": "Фамилия",
     "new_password": "Новый пароль",

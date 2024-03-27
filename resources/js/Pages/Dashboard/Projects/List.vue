@@ -66,7 +66,7 @@ const submit = () => {
                     v-model="form.name"
                     :error="form.errors.name"
                     :required="true"
-                    title="Name"
+                    :title="t('name')"
                 />
                 <SelectWrapper
                     v-model="form.company_id"
@@ -74,7 +74,7 @@ const submit = () => {
                     :required="true"
                     :options="companies"
                     reduce="id"
-                    title="Company"
+                    :title="t('companies.title')"
                 />
                 <button class="btn primary sm float-right" type="submit">{{t('projects.submit')}}</button>
             </form>

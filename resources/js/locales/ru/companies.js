@@ -8,9 +8,9 @@ export default {
         "change_code": "Изменить код",
         "invitation_code": "Код приглашения",
         "not_registred_to_company": "Вы не зарегистрированы ни в одной компании",
-        "name": "Имя",
         "details": "Подробности",
         "projects": "Проект(ы)",
-        "users": "Пользователь(и)"
+        "users": "Пользователь(и)",
+        "issues": "Проблемы"
     }
 }

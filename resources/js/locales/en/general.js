@@ -7,6 +7,7 @@ export default {
     "email": "Email",
     "password": "Password",
     "confirm_password": "Confirm Password",
+    "name": "Name",
     "firstname": "First Name",
     "lastname": "Last Name",
     "login": "Login",

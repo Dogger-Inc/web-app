@@ -8,9 +8,9 @@ export default {
         "change_code": "Change code",
         "invitation_code": "Invitation code",
         "not_registred_to_company": "You are not register to any company",
-        "name": "Name",
         "details": "Details",
         "projects": "Project(s)",
-        "users": "User(s)"
+        "users": "User(s)",
+        "issues": "Issue(s)"
     }
 }

@@ -1,9 +1,11 @@
 import dashboard from './dashboard'
+import projects from './projects'
 import general from './general'
 import homepage from './homepage'
 import companies from './companies'
 import navbar from './navbar'
 import profile from './profile'
+import issues from './issues'
 import lang from './lang'
 import login from './login'
 import register from './register'
@@ -19,5 +21,7 @@ export default {
     ...lang,
     ...login,
     ...register,
-    ...forgotPassword
+    ...forgotPassword,
+    ...projects,
+    ...issues,
 }

@@ -7,6 +7,7 @@ export default {
     "email": "E-mail",
     "password": "Mot de passe",
     "confirm_password": "Confirmez le mot de passe",
+    "name": "Nom",
     "firstname": "Prénom",
     "lastname": "Nom de famille",
     "no_value": "Non renseigné",

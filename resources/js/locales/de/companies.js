@@ -8,9 +8,9 @@ export default {
         "change_code": "Code ändern",
         "invitation_code": "Einladungscode",
         "not_registred_to_company": "Sie sind bei keinem Unternehmen registriert",
-        "name": "Name",
         "details": "Einzelheiten",
         "projects": "Projekt(e)",
-        "users": "Benutzer"
+        "users": "Benutzer",
+        "issues": "Probleme"
     }
 }

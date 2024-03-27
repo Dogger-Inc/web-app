@@ -30,7 +30,7 @@ const handleUpdateCompanyCode = () => {
 
 <template>
     <div class="grid grid-cols-1 sm:grid-cols-2">
-        <DataCell :title="$t('companies.name')" :value="company.name" :spacer="false" />
+        <DataCell :title="$t('name')" :value="company.name" :spacer="false" />
         <div class="flex flex-row items-center gap-6">
             <DataCell
                 :title="$t('companies.join')"
