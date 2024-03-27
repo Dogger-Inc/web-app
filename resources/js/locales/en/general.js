@@ -17,5 +17,7 @@ export default {
     "submit": "Submit",
     "copied": "Copied to clipboard",
     "password_forgotten": "Password forgotten?",
-    "remember": "Remember me"
+    "remember": "Remember me",
+    "send_code": "Send verification code",
+    "go_back": "Go back"
 }

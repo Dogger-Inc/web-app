@@ -17,5 +17,7 @@ export default {
     "register": "登记",
     "or": "或者",
     "password_forgotten": "密码忘记了？",
-    "remember": "记住账号"
+    "remember": "记住账号",
+    "send_code": "发送验证码",
+    "go_back": "回去"
 }

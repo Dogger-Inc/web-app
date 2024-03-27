@@ -17,5 +17,7 @@ export default {
     "register": "登録する",
     "or": "または",
     "password_forgotten": "パスワードをお忘れですか?",
-    "remember": "私を覚えてますか"
+    "remember": "私を覚えてますか",
+    "send_code": "確認コードを送信する",
+    "go_back": "戻る",
 }

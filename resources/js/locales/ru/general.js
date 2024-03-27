@@ -17,5 +17,7 @@ export default {
     "register": "регистр",
     "or": "Или",
     "password_forgotten": "Пароль забыт?",
-    "remember": "Запомнить меня"
+    "remember": "Запомнить меня",
+    "send_code": "Отправить код подтверждения",
+    "go_back": "Возвращаться"
 }

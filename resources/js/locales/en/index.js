@@ -7,6 +7,7 @@ import profile from './profile'
 import lang from './lang'
 import login from './login'
 import register from './register'
+import forgotPassword from './forgotPassword'
 
 export default {
     ...dashboard,
@@ -18,4 +19,5 @@ export default {
     ...lang,
     ...login,
     ...register,
+    ...forgotPassword
 }

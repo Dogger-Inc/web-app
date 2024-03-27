@@ -17,5 +17,7 @@ export default {
     "submit": "Einreichen",
     "copied": "In die Zwischenablage kopiert",
     "password_forgotten": "Passwort vergessen?",
-    "remember": "Erinnere dich an mich"
+    "remember": "Erinnere dich an mich",
+    "send_code": "Bestätigungscode senden",
+    "go_back": "Geh zurück",
 }

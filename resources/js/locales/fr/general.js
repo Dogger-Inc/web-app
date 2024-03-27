@@ -16,5 +16,7 @@ export default {
     "submit": "Soumettre",
     "copied": "Copié dans le presse-papier",
     "password_forgotten": "Mot de passe oublié ?",
-    "remember": "Se souvenir de moi"
+    "remember": "Se souvenir de moi",
+    "send_code": "Envoyer le code de vérification",
+    "go_back": "Revenir en arrière"
 }
