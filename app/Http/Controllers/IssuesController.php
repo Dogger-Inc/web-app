@@ -76,7 +76,7 @@ class IssuesController extends Controller
 
     public function addComment(Issue $issue) {
         $data = request()->validate([
-            'reply_to' => ['nullable', 'integer'],
+            'reply_to' => ['nullable', 'integer', Rule::exist('users', 'id')],
             'content' => ['string'],
         ]);
 
