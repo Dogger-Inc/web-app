@@ -20,5 +20,6 @@ export default {
     "password_forgotten": "Mot de passe oublié ?",
     "remember": "Se souvenir de moi",
     "send_code": "Envoyer le code de vérification",
-    "go_back": "Revenir en arrière"
+    "go_back": "Revenir en arrière",
+    "results": "Résultats"
 }

@@ -22,4 +22,5 @@ export default {
     "remember": "私を覚えてますか",
     "send_code": "確認コードを送信する",
     "go_back": "戻る",
+    "results": "結果"
 }

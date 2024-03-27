@@ -21,5 +21,6 @@ export default {
     "password_forgotten": "密码忘记了？",
     "remember": "记住账号",
     "send_code": "发送验证码",
-    "go_back": "回去"
+    "go_back": "回去",
+    "results": "结果"
 }

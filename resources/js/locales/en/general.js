@@ -21,5 +21,6 @@ export default {
     "password_forgotten": "Password forgotten?",
     "remember": "Remember me",
     "send_code": "Send verification code",
-    "go_back": "Go back"
+    "go_back": "Go back",
+    "results": "Results",
 }

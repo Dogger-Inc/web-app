@@ -22,4 +22,5 @@ export default {
     "remember": "Erinnere dich an mich",
     "send_code": "Bestätigungscode senden",
     "go_back": "Geh zurück",
+    "results": "Ergebnisse",
 }
