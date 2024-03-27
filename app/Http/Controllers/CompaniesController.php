@@ -27,6 +27,7 @@ class CompaniesController extends Controller
 
     public function details(Company $company): \Inertia\Response
     {
+        $user = auth()->user();
         // for advanced query purpose we need to load users and projects separately
         $users = $company->users()
             ->orderBy('created_at', 'desc')
@@ -34,6 +35,9 @@ class CompaniesController extends Controller
         $projects = $company->projects()
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'projects_page');
+
+        $userRole = $user->getRoleInCompany($company->id);
+        $company->editable = $userRole != 'user';
 
         $company->users = $users;
         $company->projects = $projects;
@@ -53,12 +57,24 @@ class CompaniesController extends Controller
             'name' => $data['name'],
             'key' => strtoupper(Str::random(8)),
         ]);
-        
+
         $company->users()->attach(auth()->user()->id, ['role' => 'owner', 'is_active' => true]);
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'Company created !',
+        ]);
+    }
+
+    public function refresh_code(Company $company): \Illuminate\Http\RedirectResponse
+    {
+        $company->key = strtoupper(Str::random(8));
+
+        $company->save();
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'Invitation code updated !',
         ]);
     }
 
@@ -78,6 +94,6 @@ class CompaniesController extends Controller
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'Company joined !',
-        ]); 
+        ]);
     }
 }

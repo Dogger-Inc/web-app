@@ -29,26 +29,25 @@ const formJoin = useForm({
     key: '',
 });
 
-const submit = (addOrJoin) => {
-    if(addOrJoin === "add") {
-        formAdd.post(route('dashboard.companies.create.post'), {
-            onStart: () => formAdd.clearErrors(),
-            onSuccess() {
-                modalStateAdd.value = false;
-                formAdd.reset();
-            },
-        });
-    }
-    else {
-        router.get(route('dashboard.companies.join', formJoin.key), {
-            onStart: () => formJoin.clearErrors(),
-            onSuccess() {
-                modalStateJoin.value = false;
-                formJoin.reset();
-            },
-        });
-    }    
-};
+const submitAdd = () => {
+    formAdd.post(route('dashboard.companies.create.post'), {
+        onStart: () => formAdd.clearErrors(),
+        onSuccess() {
+            modalStateAdd.value = false;
+            formAdd.reset();
+        },
+    });
+}
+
+const submitJoin = () => {
+    router.get(route('dashboard.companies.join', formJoin.key), {
+        onStart: () => formJoin.clearErrors(),
+        onSuccess() {
+            modalStateJoin.value = false;
+            formJoin.reset();
+        },
+    });
+}
 </script>
 
 <template>
@@ -96,7 +95,7 @@ const submit = (addOrJoin) => {
         <ModalLayout :state="modalStateAdd" @close="modalStateAdd = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle :title="t('companies.add')" />
 
-            <form @submit.prevent="submit('add')">
+            <form @submit.prevent="submitAdd">
                 <InputWapper
                     v-model="formAdd.name"
                     :title="t('companies.name')"
@@ -112,7 +111,7 @@ const submit = (addOrJoin) => {
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Join a company" />
 
-            <form @submit.prevent="submit('join')">
+            <form @submit.prevent="submitJoin">
                 <InputWapper
                     v-model="formJoin.key"
                     :title="t('companies.invitation_code')"
