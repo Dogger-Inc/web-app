@@ -4,6 +4,8 @@ import LinedTitle from '@/Components/LinedTitle.vue';
 import Badge from '@/Components/Badge.vue';
 import Stacktrace from '@/Components/Stacktrace.vue';
 import List from '../../../Components/Items/List.vue';
+import { useI18n } from 'vue-i18n';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
     issue: {
@@ -15,11 +17,15 @@ defineProps({
         required: true,
     }
 });
+
+const { t } = useI18n();
 </script>
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="issue.message" />
+        <LinedTitle :title="issue.message">
+            <Link href="/issues" class="btn primary sm">{{ t('issues.back') }}</Link>
+        </LinedTitle>
 
         <div class="mt-12 grid grid-cols-12 gap-6">
             <div class="flex flex-col gap-6 col-span-8">
@@ -45,10 +51,10 @@ defineProps({
                 <div class="space-y-2">
                     <span class="font-semibold">Tags</span>
                     <div class="flex flex-row gap-2 items-center">
-                        <Badge :title="issue.env" />
-                        <Badge :title="`${issue.http_code}`" />
-                        <Badge :title="issue.type" />
-                        <Badge :title="issue.status" />
+                        <Badge v-if="issue.env" :title="issue.env" />
+                        <Badge v-if="issue.http_code" :title="`${issue.http_code}`" />
+                        <Badge v-if="issue.type" :title="issue.type" />
+                        <Badge v-if="issue.status" :title="issue.status" />
                     </div>
                 </div>
 

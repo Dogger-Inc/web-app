@@ -65,7 +65,7 @@ class ProjectsController extends Controller
         $project = Project::create([
             'name' => $data['name'],
             'company_id' => $data['company_id'],
-            'key' => strtoupper(Str::random(8)),
+            'key' => strtoupper(Str::random(16)),
         ]);
 
         $project->users()->attach(auth()->user()->id);
@@ -78,7 +78,7 @@ class ProjectsController extends Controller
 
     public function refresh_code(Project $project): \Illuminate\Http\RedirectResponse
     {
-        $project->key = strtoupper(Str::random(8));
+        $project->key = strtoupper(Str::random(16));
 
         $project->save();
 

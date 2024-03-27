@@ -28,7 +28,7 @@ class Issue extends Model
     // One to Many
     public function project():  \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Project::class, 'project_id');
+        return $this->belongsTo(Project::class);
     }
 
     // Many to Many

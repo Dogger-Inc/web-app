@@ -4,7 +4,6 @@ import { useToast } from 'vue-toastification';
 import DataCell from '@/Components/Items/DataCell.vue';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import { ref } from 'vue';
-import { watch } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 
 const { t } = useI18n({});
@@ -18,9 +17,9 @@ const props = defineProps({
 });
 
 const showUpdateForm = ref(false);
-let updateForm = useForm({
-    project_id: undefined,
-    name: undefined,
+const updateForm = useForm({
+    project_id: props.project.id,
+    name: props.project.name,
     errors: {
         name: false
     }
@@ -48,20 +47,6 @@ const handleUpdateProjectCode = () => {
         { preserveState: false }
     );
 }
-
-watch(
-    () => props.project,
-    () => {
-        if (!props.project) return;
-
-        updateForm = {
-            ...updateForm,
-            project_id: props.project.id,
-            name: props.project.name
-        }
-    },
-    { immediate: true, deep: true }
-)
 </script>
 
 <template>

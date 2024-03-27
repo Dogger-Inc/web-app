@@ -27,14 +27,10 @@ const form = useForm({
 const { t } = useI18n();
 
 const modalState = ref(false);
-const searchByOpts = [{ name: t('projects.name'), key: 'name' }];
 
 const submit = () => {
-    console.log(form)
     form.post(route('dashboard.projects.create.post'), {
-        onStart() {
-            form.clearErrors();
-        },
+        onStart: () => form.clearErrors(),
         onSuccess() {
             modalState.value = false;
             form.reset();
@@ -52,7 +48,7 @@ const submit = () => {
 
         <ItemsList
             :data="projects"
-            :searchByOpts="searchByOpts"
+            :searchByOpts="[{ name: t('projects.name'), key: 'name' }]"
             detailsPath="dashboard.projects.details"
             class="mt-8"
             v-slot="item"

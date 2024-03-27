@@ -5,6 +5,7 @@ import homepage from './homepage'
 import companies from './companies'
 import navbar from './navbar'
 import profile from './profile'
+import issues from './issues'
 import lang from './lang'
 
 export default {
@@ -16,4 +17,5 @@ export default {
     ...profile,
     ...lang,
     ...projects,
+    ...issues,
 }
