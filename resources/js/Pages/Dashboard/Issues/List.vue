@@ -12,9 +12,6 @@ const props = defineProps({
     },
 });
 
-const selectedItem = ref(null);
-const searchByOpts = [{ name: 'Message', key: 'message' }];
-
 </script>
 
 <template>
@@ -24,11 +21,9 @@ const searchByOpts = [{ name: 'Message', key: 'message' }];
         <ItemsList
             :data="issues"
             v-slot="item"
-            :selectedItem="selectedItem"
-            :searchByOpts="searchByOpts"
+            :searchByOpts="[{ name: 'Message', key: 'message' }]"
             detailsPath="dashboard.issues.details"
             class="w-full mt-8"
-            @selected-item="(value) => console.log(value)"
         >
             <div class="text-sm md:text-base flex flex-row items-center gap-2">
                 <Badge :title="item.env" />

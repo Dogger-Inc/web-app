@@ -3,7 +3,7 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import Badge from '@/Components/Badge.vue';
 import Stacktrace from '@/Components/Stacktrace.vue';
-import List from '../../../Components/Items/List.vue';
+import List from '@/Components/Items/List.vue';
 import { useI18n } from 'vue-i18n';
 import { Link } from '@inertiajs/vue3';
 
