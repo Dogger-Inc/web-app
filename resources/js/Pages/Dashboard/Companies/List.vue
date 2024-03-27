@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 import ModalLayout from '@/Layouts/Modal.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
@@ -29,25 +30,26 @@ const formJoin = useForm({
     key: '',
 });
 
-const submitAdd = () => {
-    formAdd.post(route('dashboard.companies.create.post'), {
-        onStart: () => formAdd.clearErrors(),
-        onSuccess() {
-            modalStateAdd.value = false;
-            formAdd.reset();
-        },
-    });
-}
-
-const submitJoin = () => {
-    router.get(route('dashboard.companies.join', formJoin.key), {
-        onStart: () => formJoin.clearErrors(),
-        onSuccess() {
-            modalStateJoin.value = false;
-            formJoin.reset();
-        },
-    });
-}
+const submit = (addOrJoin) => {
+    if(addOrJoin === "add") {
+        formAdd.post(route('dashboard.companies.create.post'), {
+            onStart: () => formAdd.clearErrors(),
+            onSuccess() {
+                modalStateAdd.value = false;
+                formAdd.reset();
+            },
+        });
+    }
+    else {
+        router.get(route('dashboard.companies.join', formJoin.key), {
+            onStart: () => formJoin.clearErrors(),
+            onSuccess() {
+                modalStateJoin.value = false;
+                formJoin.reset();
+            },
+        });
+    }    
+};
 </script>
 
 <template>
@@ -95,7 +97,7 @@ const submitJoin = () => {
         <ModalLayout :state="modalStateAdd" @close="modalStateAdd = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle :title="t('companies.add')" />
 
-            <form @submit.prevent="submitAdd">
+            <form @submit.prevent="submit('add')">
                 <InputWapper
                     v-model="formAdd.name"
                     :title="t('companies.name')"
@@ -111,7 +113,7 @@ const submitJoin = () => {
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Join a company" />
 
-            <form @submit.prevent="submitJoin">
+            <form @submit.prevent="submit('join')">
                 <InputWapper
                     v-model="formJoin.key"
                     :title="t('companies.invitation_code')"
