@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import {
     ChartBarIcon,
@@ -12,6 +12,9 @@ import PublicLayout from '@/Layouts/Public.vue';
 import MainIllustration from '@assets/images/main_illustration.png';
 
 const { t } = useI18n({});
+
+const isLoggedIn = usePage().props.auth.user !== null;
+
 const features = [
     {
         name: t("homepage.features.easy_to_implement.title"),
@@ -141,7 +144,7 @@ const faqs = [
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <Link :href="route('login')"
                                 class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500">
-                                {{ $t('signin') }}
+                                {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
                             </Link>
                             <a href="#features" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
                                 <span aria-hidden="true">→</span>
