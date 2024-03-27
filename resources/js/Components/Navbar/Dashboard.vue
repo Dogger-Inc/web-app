@@ -13,18 +13,20 @@ import {
 } from '@headlessui/vue';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({});
 
 const navigation = [
-    { name: 'Dashboard', href: 'dashboard.index' },
-    { name: 'Companies', href: 'dashboard.companies.list' },
-    // { name: 'Projects', href: '#' },
-    // { name: 'Issues', href: '#' },
-    // { name: 'Performances', href: '#' },
+    { name: t('navbar.dashboard.dashboard'), href: 'dashboard.index' },
+    { name: t('navbar.dashboard.companies'), href: 'dashboard.companies.list' },
+    // { name: t('navbar.dashboard.projects'), href: '#' },
+    // { name: t('navbar.dashboard.issues'), href: '#' },
+    // { name: t('navbar.dashboard.performances'), href: '#' },
 ];
 
 const profileNavigation = [
-    { name: 'Your Profile', href: 'dashboard.profile.show' },
-    { name: 'Sign out', href: 'logout' },
+    { name: t('navbar.dashboard.profile'), href: 'dashboard.profile.show' },
+    { name: t('navbar.dashboard.signout'), href: 'logout' },
 ];
 
 const isCurrentRoute = (path) => {
@@ -39,7 +41,7 @@ const isCurrentRoute = (path) => {
                 <div class="flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-1 text-gray-400">
-                        <span class="sr-only">Open main menu</span>
+                        <span class="sr-only">{{ $t('navbar.dashboard.main_menu') }}</span>
                         <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                         <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
                     </DisclosureButton>
@@ -65,7 +67,7 @@ const isCurrentRoute = (path) => {
                     <!-- Profile dropdown -->
                     <Menu as="div" class="relative inline-flex">
                         <MenuButton>
-                            <span class="sr-only">Open user menu</span>
+                            <span class="sr-only">{{ $t('navbar.dashboard.user_menu') }}</span>
                             <UserIcon class="h-6 w-6 text-gray-700" />
                         </MenuButton>
 

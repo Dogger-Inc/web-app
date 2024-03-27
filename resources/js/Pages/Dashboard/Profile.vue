@@ -36,7 +36,7 @@ const editPassword = () => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="t('profile.title')" />
+        <LinedTitle :title="t('profile.profile')" />
         <div class="card mt-12">
             <div class="grid grid-cols-2 gap-4 w-full">
                 <InputWapper 

@@ -8,7 +8,15 @@ export default {
             "doc": "Документация"
           },
         "dashboard": {
-
-        }
+            "main_menu": "Открыть главное меню",
+            "user_menu": "Открыть меню пользователя",
+            "dashboard": "Панель приборов",
+            "companies": "Компании",
+            "projects": "Проекты",
+            "issues": "Проблемы",
+            "performances": "Спектакли",
+            "profile": "Ваш профиль",
+            "signout": "выход"
+          }
     }
 }

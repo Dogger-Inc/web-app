@@ -8,7 +8,15 @@ export default {
             "doc": "Dokumentation"
         },
         "dashboard": {
-
+            "main_menu": "Hauptmenü öffnen",
+            "user_menu": "Benutzermenü öffnen",
+            "dashboard": "Armaturenbrett",
+            "companies": "Firmen",
+            "projects": "Projekte",
+            "issues": "Probleme",
+            "performances": "Aufführungen",
+            "profile": "Dein Profil",
+            "signout": "Abmelden"
         }
     }
 }

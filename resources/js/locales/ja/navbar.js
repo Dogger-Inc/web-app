@@ -8,7 +8,15 @@ export default {
             "doc": "ドキュメンテーション"
         },
         "dashboard": {
-
+            "main_menu": "メインメニューを開く",
+            "user_menu": "ユーザーメニューを開く",
+            "dashboard": "ダッシュボード",
+            "companies": "企業",
+            "projects": "プロジェクト",
+            "issues": "問題",
+            "performances": "公演",
+            "profile": "あなたのプロフィール",
+            "signout": "サインアウト"
         }
     }
 }
