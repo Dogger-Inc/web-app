@@ -1,67 +1,88 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { router, usePage } from "@inertiajs/vue3";
+import { watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { usePage, useForm } from '@inertiajs/vue3';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline';
+
+const { t } = useI18n({});
 
 const props = defineProps({
     paginator: {
         type: Object,
-        required: true,
+        required: true
     },
-    reloadProps: Array,
+    pageName: {
+        type: String,
+        default: 'page'
+    },
+    perPageSelect: {
+        type: Boolean,
+        default: false
+    }
 });
 
-const urlParams = ref({});
+const allParams = usePage().props.route.query;
 
-watch(() => usePage().props.route.query, (params) => {
-    delete params.page;
-    urlParams.value = params;
-}, { deep: true, immediate: true });
+const form = useForm({
+    ...allParams,
+    perPage: allParams.perPage ?? props.paginator.per_page,
+    [props.pageName]: allParams[props.pageName] ?? props.paginator.current_page
+});
 
 const isPreviousButton = (key) => key === 0;
 const isNextButton = (key) => key === props.paginator.links.length - 1;
-const isDisabled = (key) => {
+const isDisabled = (key, url) => {
     return (props.paginator.current_page - 1 === 0 && key === 0)
-        || (props.paginator.current_page === props.paginator.last_page && key === props.paginator.links.length - 1);
+        || (props.paginator.current_page === props.paginator.last_page && key === props.paginator.links.length - 1)
+        || url === null;
 };
 
-const control = (url) => {
-    if(url) {
-        if(props.reloadProps) {
-            router.get(url, urlParams.value, { preserveScroll: true, preserveState: true, only: props.reloadProps });
-        } else {
-            router.get(url, urlParams.value, { preserveScroll: true, preserveState: false });
-        }
+watch(() => form.isDirty, (newVal) => {
+    if (newVal) {
+        form.get(props.paginator.path, {
+            preserveScroll: true,
+            preserveState: false,
+        });
     }
-}
+});
+
+const setPage = (link) => {
+    if (!link.url) return;
+    const value = new URL(link.url).searchParams.get(props.pageName);
+    form[props.pageName] = value;
+};
 </script>
 
 <template>
-    <template v-if="paginator.links.length > 3">
-        <div class="flex gap-5 p-3 justify-center items-center">
-            <template v-for="(link, key) in paginator.links" :key="`link-${key}`">
-                <button
-                    v-if="isPreviousButton(key)" @click.prevent="control(link.url)"
-                    class="hover:text-dogger-orange-400"
-                    :class="{'disabled': isDisabled(key)}"
-                >
-                    <ChevronLeftIcon class="w-8 h-8 px-1" />
-                </button>
-                <button
-                    v-else-if="isNextButton(key)" @click.prevent="control(link.url)"
-                    class="hover:text-dogger-orange-400"
-                    :class="{'disabled': isDisabled(key)}"
-                >
-                    <ChevronRightIcon class="w-8 h-8 px-1" />
-                </button>
-                <button
-                    v-else-if="link.active" @click.prevent="control(link.url)"
-                    v-html="link.label" class="text-dogger-orange-400 text-lg"
-                    :class="{'disabled': isDisabled(key)}"
-                />
-            </template>
+    <div v-if="paginator.total > 0" class="grid grid-cols-3 sm:grid-cols-5 gap-5 items-center p-3">
+        <div class="text-sm text-gray-700 hidden sm:block">
+            {{ paginator.total }} {{t('results')}}
         </div>
-    </template>
+        <div class="col-span-3 flex gap-5 justify-center items-center">
+            <button
+                v-if="paginator.links.length > 3"
+                v-for="(link, key) in paginator.links"
+                @click="setPage(link)"
+                :key="`link-${key}`"
+                :class="{ 'disabled' : isDisabled(key, link.url) }"
+                class="hover:text-dogger-orange-400"
+            >
+                <ChevronLeftIcon v-if="isPreviousButton(key)" class="w-8 h-8 px-1" />
+                <ChevronRightIcon v-else-if="isNextButton(key)" class="w-8 h-8 px-1" />
+                <span v-else :class="{ 'text-dogger-orange-400' : link.active }" class="text-lg">
+                    {{ link.label }}
+                </span>
+            </button>
+        </div>
+        <div v-if="perPageSelect" class="hidden sm:block ml-auto">
+            <select v-model="form.perPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>

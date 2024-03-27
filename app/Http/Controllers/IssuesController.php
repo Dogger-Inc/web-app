@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Issue;
-use App\Services\QueryService;
 use Illuminate\Validation\Rule;
 
 class IssuesController extends Controller
 {
+    public function list (): \Inertia\Response
+    {
+        $issues = Issue::autoSearch('message')
+            ->autoOrder()
+            ->autoPaginate();
+
+        return inertia('Dashboard/Issues/List', [
+            'issues' => $issues,
+        ]);
+    }
+
     public function create() {
         $data = request()->validate([
             'project_id' => ['required', 'integer'],
@@ -64,19 +74,6 @@ class IssuesController extends Controller
         return inertia('Dashboard/Issues/Details', [
             'issue' => $issue,
             'currentUser' => $currentUser
-        ]);
-    }
-
-    public function list (QueryService $query): \Inertia\Response
-    {
-        $issues = Issue::query();
-
-        $issues = $query->search($issues, 'message');
-        $issues = $query->order($issues);
-        $issues = $query->paginate($issues);
-
-        return inertia('Dashboard/Issues/List', [
-            'issues' => $issues,
         ]);
     }
 

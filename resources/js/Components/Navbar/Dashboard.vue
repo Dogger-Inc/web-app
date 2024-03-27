@@ -20,6 +20,7 @@ const navigation = [
     { name: 'Projects', href: 'dashboard.projects.list' },
     { name: 'Issues', href: 'dashboard.issues.list' },
     // { name: 'Performances', href: '#' },
+    { name: 'Documentation', href: 'doc' },
 ];
 
 const profileNavigation = [

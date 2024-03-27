@@ -6,10 +6,32 @@ use App\Models\Project;
 use App\Models\Company;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Services\QueryService;
 
 class ProjectsController extends Controller
 {
+    public function list (): \Inertia\Response
+    {
+        $currentUserId = auth()->user()->id;
+
+        $projects = Project::whereHas('users', function ($query) use ($currentUserId) {
+            $query->where('user_id', $currentUserId);
+        })
+            ->autoSearch('name')
+            ->autoOrder()
+            ->autoPaginate();
+
+        $companies = Company::whereHas('users', function ($query) use ($currentUserId) {
+            $query->where('user_id', $currentUserId);
+        })
+            ->orderBy('name', 'asc')
+            ->get();
+
+        return inertia('Dashboard/Projects/List', [
+            'projects' => $projects,
+            'companies' => $companies,
+        ]);
+    }
+
     public function details(Project $project): \Inertia\Response
     {
         // for advanced query purpose we need to load users and projects separately
@@ -29,29 +51,6 @@ class ProjectsController extends Controller
 
         return inertia('Dashboard/Projects/Details', [
             'project' => $project,
-        ]);
-    }
-
-
-    public function list (QueryService $query): \Inertia\Response
-    {
-        $currentUserId = auth()->user()->id;
-        $projects = Project::whereHas('users', function ($query) use ($currentUserId) {
-            $query->where('user_id', $currentUserId);
-        });
-
-        $projects = $query->search($projects, 'name');
-        $projects = $query->order($projects);
-        $projects = $query->paginate($projects);
-
-        $companies = Company::whereHas('users', function ($query) use ($currentUserId) {
-            $query->where('user_id', $currentUserId);
-        });
-        $companies = $query->order($companies)->get();
-
-        return inertia('Dashboard/Projects/List', [
-            'projects' => $projects,
-            'companies' => $companies,
         ]);
     }
 
