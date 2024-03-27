@@ -59,14 +59,13 @@ class IssuesController extends Controller
 
     public function list (QueryService $query): \Inertia\Response
     {
-        $currentUserId = auth()->user()->id;
         $issues = Issue::query();
 
         $issues = $query->search($issues, 'message');
         $issues = $query->order($issues);
         $issues = $query->paginate($issues);
 
-        return inertia('Dashboard/Issues', [
+        return inertia('Dashboard/Issues/List', [
             'issues' => $issues,
         ]);
     }
