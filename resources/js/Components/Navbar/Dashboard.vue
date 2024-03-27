@@ -11,6 +11,7 @@ import {
     MenuItem,
     MenuItems
 } from '@headlessui/vue';
+import Avatar from '@/Components/Avatar.vue';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
 import { useI18n } from 'vue-i18n';
@@ -68,8 +69,8 @@ const isCurrentRoute = (path) => {
                     <!-- Profile dropdown -->
                     <Menu as="div" class="relative inline-flex">
                         <MenuButton>
+                            <Avatar/>
                             <span class="sr-only">{{ $t('navbar.dashboard.user_menu') }}</span>
-                            <UserIcon class="h-6 w-6 text-gray-700" />
                         </MenuButton>
 
                         <transition
