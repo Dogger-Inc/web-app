@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 import ModalLayout from '@/Layouts/Modal.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';

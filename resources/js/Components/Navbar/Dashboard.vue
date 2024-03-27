@@ -2,7 +2,7 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { UserIcon } from '@heroicons/vue/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
-import { 
+import {
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
@@ -19,9 +19,10 @@ const { t } = useI18n({});
 const navigation = [
     { name: t('navbar.dashboard.dashboard'), href: 'dashboard.index' },
     { name: t('navbar.dashboard.companies'), href: 'dashboard.companies.list' },
-    // { name: t('navbar.dashboard.projects'), href: '#' },
-    // { name: t('navbar.dashboard.issues'), href: '#' },
+    { name: t('navbar.dashboard.projects'), href: 'dashboard.projects.list' },
+    { name: t('navbar.dashboard.issues'), href: 'dashboard.issues.list' },
     // { name: t('navbar.dashboard.performances'), href: '#' },
+    { name: t('navbar.dashboard.documentation'), href: 'doc' },
 ];
 
 const profileNavigation = [
@@ -94,7 +95,7 @@ const isCurrentRoute = (path) => {
 
         <DisclosurePanel class="sm:hidden">
             <div class="space-y-1 px-2 pb-3 pt-2">
-                <DisclosureButton 
+                <DisclosureButton
                     v-for="item in navigation" :key="item.name"
                     :class="[isCurrentRoute(item.href) ? 'bg-gray-100' : 'hover:bg-gray-50', 'block rounded-md px-3 py-2 text-base font-medium']"
                     :aria-current="isCurrentRoute(item.href) ? 'page' : undefined"
@@ -107,4 +108,3 @@ const isCurrentRoute = (path) => {
         </DisclosurePanel>
     </Disclosure>
 </template>
-  

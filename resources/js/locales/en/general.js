@@ -1,5 +1,6 @@
 export default {
     "hello": "Hello",
+    "mainpage": "Main page",
     "signin": "Sign in",
     "signup": "Sign up",
     "learnmore": "Learn more",

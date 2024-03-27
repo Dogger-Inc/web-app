@@ -4,7 +4,7 @@ import LinedTitle from '@/Components/LinedTitle.vue';
 import TabbedCard from '@/Components/Items/TabbedCard.vue';
 import TabDetails from '@/Pages/Dashboard/Companies/Partials/TabDetails.vue';
 import TabProjects from '@/Pages/Dashboard/Companies/Partials/TabProjects.vue';
-import TabUsers from '@/Pages/Dashboard/Companies/Partials/TabUsers.vue';
+import TabUsers from '@/Components/Tabs/TabUsers.vue';
 
 defineProps({
     company: {

@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
 
 const { t } = useI18n({});
 const isReduced = ref(true);
+const isLoggedIn = usePage().props.auth.user !== null;
 
 const anchors = [
     { id: '#features', text: t('navbar.public.features') },
@@ -81,7 +82,7 @@ function setNavbarDisplay() {
             <div class="button-side relative">
                 <LanguageSelector />
                 <Link :href="route('login')" class="btn primary sm">
-                    {{ $t('signin') }}
+                    {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
                 </Link>
             </div>
         </nav>
@@ -94,7 +95,7 @@ function setNavbarDisplay() {
             
             <div class="flex items-center gap-3">
                 <Link :href="route('login')" class="btn primary xs">
-                    {{ $t('signin') }}
+                    {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
                 </Link>
                 <LanguageSelector />
                 <Link :href="route('homepage')" class="mb-2">
