@@ -1,16 +1,10 @@
 <script setup >
 import { usePage } from '@inertiajs/vue3';
-import { onMounted, ref } from 'vue';
+import {computed } from 'vue';
 
 const user = usePage().props.auth.user;
-const initialsLetter = ref('');
-
-const extractFirstLetter = (firstName, lastName) => {
-    return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();;
-}
-
-onMounted(() => {
-    initialsLetter.value = extractFirstLetter(user.firstname, user.lastname);
+const initialsLetter = computed (() => {
+    return user.firstname.charAt(0).toUpperCase() + user.lastname.charAt(0).toUpperCase();
 })
 </script>
 
