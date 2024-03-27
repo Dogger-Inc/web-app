@@ -23,11 +23,20 @@ const { t } = useI18n();
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="issue.message">
+        <LinedTitle :title="issue.message" truncate>
             <Link href="/issues" class="btn primary sm">{{ t('issues.back') }}</Link>
         </LinedTitle>
 
-        <div class="mt-12 grid grid-cols-12 gap-6">
+        <div class="mt-12">
+            <div class="space-y-2">
+                <span class="font-semibold">Complete name</span>
+                <div class="flex flex-row gap-2 items-center">
+                    {{issue.message}}
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-12 gap-6">
             <div class="flex flex-col gap-6 col-span-8">
                 <div class="space-y-2">
                     <span class="font-semibold">Stacktrace</span>
