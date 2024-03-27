@@ -7,4 +7,5 @@ export default {
     "no_value": "Undefined",
     "submit": "Submit",
     "copied": "Copied to clipboard",
+    "results": "Results",
 }

@@ -121,7 +121,7 @@ class AppServiceProvider extends ServiceProvider
          * 
          * @return Builder
          */
-        Builder::macro('autoPaginate', function(string $pageName = 'page', int $defaultPerPage = 9) {
+        Builder::macro('autoPaginate', function(string $pageName = 'page', int $defaultPerPage = 10) {
             $data = request()->validate([
                 'search' => ['nullable', 'string', 'max:255'],
                 'searchBy' => ['nullable', 'string', 'max:255'],
