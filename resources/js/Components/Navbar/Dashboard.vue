@@ -67,7 +67,7 @@ const isCurrentRoute = (path) => {
                     <!-- Profile dropdown -->
                     <Menu as="div" class="relative inline-flex">
                         <MenuButton>
-                            <Avatar></Avatar>
+                            <Avatar/>
                             <span class="sr-only">Open user menu</span>
                         </MenuButton>
 
