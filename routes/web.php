@@ -78,6 +78,8 @@ Route::group([
     ], function () {
         Route::get('/', 'list')->name('list');
         Route::get('/{issue}/show', 'details')->name('details');
+        Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
+        Route::patch('/{issue}/comment', 'editComment')->name('editComment.patch');
     });
 });
 
