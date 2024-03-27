@@ -51,8 +51,6 @@ const { t } = useI18n();
                     <CommentsThread
                         :comments="issue.comments"
                         :commentableId="props.issue?.id"
-                        :current-user="currentUser"
-                        editPath="dashboard.issues.editComment.patch"
                         addPath="dashboard.issues.addComment.post"
                     />
                 </div>

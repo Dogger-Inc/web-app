@@ -8,24 +8,17 @@ import {
     MenuItems
 } from '@headlessui/vue';
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 
 const props = defineProps({
     comments: {
         type: Array,
         default: () => [],
     },
-    currentUser: {
-        type: Object,
-        required: true,
-    },
     commentableId: {
         type: Number,
-        required: true,
-    },
-    editPath: {
-        type: String,
         required: true,
     },
     addPath: {
@@ -44,13 +37,15 @@ const addCommentForm = useForm({
 })
 
 const editCommentForm = useForm({
-    comment_id: '',
     content: '',
 })
 
+const page = usePage();
+const currentUser = computed(() => page.props.auth.user);
+
 const handleSubmitComment = () => {
     if (commentToEdit.value) {
-        editCommentForm.patch(route(props.editPath, props.commentableId), {
+        editCommentForm.patch(route('dashboard.comments.editComment.patch', commentToEdit.value.id), {
             onStart: () => editCommentForm.clearErrors(),
             onSuccess: () => editCommentForm.reset(),
         });
@@ -67,13 +62,11 @@ const handleSubmitComment = () => {
 const handleEditMessage = (comment) => {
     answerToComment.value = undefined;
     commentToEdit.value = comment;
-    editCommentForm.comment_id = comment.id;
     editCommentForm.content = comment.content;
 }
 
 const handleCancelEditMessage = () => {
     commentToEdit.value = undefined;
-    editCommentForm.comment_id = '';
     editCommentForm.content = '';
 }
 
@@ -115,7 +108,7 @@ const handleCancelAnswerMessage = () => {
                     'flex-row-reverse': currentUser.id === comment.user_id,
                     'flex-row': currentUser.id !== comment.user_id,
                 }">
-                <span class="bg-gray-200 h-8 w-8 rounded-full"></span>
+                <span class="bg-gray-200 h-8 w-8 rounded-full min-w-8"></span>
                 <div
                     class="flex flex-col border rounded px-2 py-1"
                     :class="{
@@ -135,7 +128,7 @@ const handleCancelAnswerMessage = () => {
                     <span class="text-xs opacity-40">{{ dayjs(comment.created_at).format('DD/MM/YYYY HH:mm') }}</span>
                 </div>
                 <Menu as="div" class="relative inline-flex">
-                    <MenuButton class="hidden border rounded shadow p-2 group-hover:block">
+                    <MenuButton class="invisible border rounded shadow p-2 group-hover:visible">
                         <span class="sr-only">Open message menu</span>
                         <EllipsisVerticalIcon class="w-3 h-3" />
                     </MenuButton>
@@ -148,7 +141,7 @@ const handleCancelAnswerMessage = () => {
                         leave-from-class="transform opacity-100 scale-100"
                         leave-to-class="transform opacity-0 scale-95"
                     >
-                        <MenuItems class="absolute top-8 right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-gray-50 py-1 shadow-lg">
+                        <MenuItems class="absolute top-8 left-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-gray-50 py-1 shadow-lg">
                             <MenuItem>
                                 <div
                                     class="flex flex-row items-center gap-2 px-4 py-2 text-xs cursor-pointer hover:bg-gray-100"

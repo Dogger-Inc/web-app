@@ -53,17 +53,14 @@ class IssuesController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         $comments = $issue->comments()
-            ->orderBy('created_at', 'asc')
-            ->get();
-
-        foreach ($comments as $comment) {
-            $comment->load([
+            ->with([
                 'user',
                 'replyTo' => function ($query) {
                     $query->with(['user']);
                 }
-            ]);
-        }
+            ])
+            ->orderBy('created_at', 'asc')
+            ->get();
 
         $issue->users = $users;
         $issue->comments = $comments;
@@ -80,7 +77,7 @@ class IssuesController extends Controller
     public function addComment(Issue $issue) {
         $data = request()->validate([
             'reply_to' => ['nullable', 'integer'],
-            'content' => ['string', 'max:255'],
+            'content' => ['string'],
         ]);
 
         $comment = Comment::create([
@@ -92,18 +89,5 @@ class IssuesController extends Controller
         ]);
 
         $issue->comments()->save($comment);
-    }
-
-    public function editComment(Issue $issue) {
-        $data = request()->validate([
-            'comment_id' => ['nullable', 'integer'],
-            'content' => ['string', 'max:255'],
-        ]);
-
-        $comment = Comment::find($data['comment_id']);
-
-        $comment->content = $data['content'];
-
-        $comment->save();
     }
 }
