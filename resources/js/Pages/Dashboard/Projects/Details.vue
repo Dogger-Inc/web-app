@@ -2,12 +2,12 @@
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import TabbedCard from '@/Components/Items/TabbedCard.vue';
-import TabDetails from '@/Pages/Dashboard/Companies/Partials/TabDetails.vue';
-import TabProjects from '@/Pages/Dashboard/Companies/Partials/TabProjects.vue';
+import TabDetails from '@/Pages/Dashboard/Projects/Partials/TabDetails.vue';
+import TabIssues from '@/Pages/Dashboard/Projects/Partials/TabIssues.vue';
 import TabUsers from '@/Components/Tabs/TabUsers.vue';
 
 defineProps({
-    company: {
+    project: {
         type: Object,
         required: true,
     }
@@ -16,17 +16,17 @@ defineProps({
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="company.name" />
+        <LinedTitle :title="project.name" />
 
         <TabbedCard class="mt-6 sm:mt-10">
             <div title="Informations">
-                <TabDetails :company="company" />
+                <TabDetails :project="project" />
             </div>
-            <div title="Projet(s)">
-                <TabProjects :projects="company.projects" />
+            <div title="Issue(s)">
+                <TabIssues :issues="project.issues" />
             </div>
             <div title="Utilisateur(s)">
-                <TabUsers :users="company.users" />
+                <TabUsers :users="project.users" />
             </div>
         </TabbedCard>
     </DashboardLayout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Issue;
+use App\Services\QueryService;
 use Illuminate\Validation\Rule;
 
 class IssuesController extends Controller
@@ -24,13 +25,48 @@ class IssuesController extends Controller
             'message' => $data['message'],
             'stacktrace' => $data['stacktrace'],
             'type' => $data['type'],
-            'env' => $data['env'],
+            'env' => $data['env'] ?? null,
             'triggered_at' => $data['triggered_at'] ?? now(),
             'status' => 'new',
         ]);
 
         return response()->json([
             'state' => 'success',
+        ]);
+    }
+
+    public function details(Issue $issue): \Inertia\Response
+    {
+        $currentUser = auth()->user();
+        $users = $issue->users()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $comments = $issue->comments()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'issues_page');
+
+        $issue->users = $users;
+        $issue->comments = $comments;
+
+        $userRole = $currentUser->getRoleInCompany($issue->project()->first()->company_id);
+        $currentUser->canAssignUsers = $userRole != 'user';
+
+        return inertia('Dashboard/Issues/Details', [
+            'issue' => $issue,
+            'currentUser' => $currentUser
+        ]);
+    }
+
+    public function list (QueryService $query): \Inertia\Response
+    {
+        $issues = Issue::query();
+
+        $issues = $query->search($issues, 'message');
+        $issues = $query->order($issues);
+        $issues = $query->paginate($issues);
+
+        return inertia('Dashboard/Issues/List', [
+            'issues' => $issues,
         ]);
     }
 }

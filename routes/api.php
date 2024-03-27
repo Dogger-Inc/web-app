@@ -17,7 +17,7 @@ use App\Http\Controllers\PerformancesController;
 
 // Project Keys routes
 Route::group([
-    'middleware' => ['project_key'],   
+    'middleware' => ['project_key'],
 ], function () {
     Route::post('/issues/new', [IssuesController::class, 'create']);
     Route::post('/performances/new', [PerformancesController::class, 'create']);
