@@ -21,5 +21,12 @@ export default {
     "remember": "Se souvenir de moi",
     "send_code": "Envoyer le code de vérification",
     "go_back": "Revenir en arrière",
-    "results": "Résultats"
+    "results": "Résultats",
+    "no_result": "Aucun résultat",
+    "no_data": "Aucune donnée disponible",
+    "research": "Rechercher...",
+    "research_by": "Rechercher par...",
+    "no_option": "Aucune option",
+    "select_option": "Sélectionner une option",
+    "select_many_options": "Sélectionner une (ou plusieurs) option(s)",
 }

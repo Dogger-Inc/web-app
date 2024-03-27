@@ -22,5 +22,12 @@ export default {
     "remember": "私を覚えてますか",
     "send_code": "確認コードを送信する",
     "go_back": "戻る",
-    "results": "結果"
+    "results": "結果",
+    "no_result": "検索結果はありません",
+    "no_data": "何もデータが見つかりませんでした",
+    "research": "研究…",
+    "research_by": "研究者によると...",
+    "no_option": "オプションなし",
+    "select_option": "選択肢一つを選択してください",
+    "select_many_options": "1 つ (または複数) のオプションを選択してください"
 }

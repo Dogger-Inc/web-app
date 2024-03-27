@@ -23,4 +23,11 @@ export default {
     "send_code": "Send verification code",
     "go_back": "Go back",
     "results": "Results",
+    "no_result": "No result",
+    "no_data": "No data found",
+    "research": "Research...",
+    "research_by": "Research by...",
+    "no_option": "No options",
+    "select_option": "Select an option",
+    "select_many_options": "Select one (or more) option(s)"
 }

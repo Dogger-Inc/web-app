@@ -6,6 +6,9 @@ import {
     ArrowSmallDownIcon,
     ArrowSmallUpIcon
 } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
     searchByOpts: {
@@ -65,7 +68,7 @@ watch(form, (val) => {
                 v-model="form.search"
                 type="text"
                 ref="searchBar"
-                placeholder="Rechercher..."
+                :placeholder="t('research')"
                 class="block w-full rounded-md pl-4 pr-10 py-2"
             />
             <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
@@ -74,7 +77,7 @@ watch(form, (val) => {
         </div>
         <div v-if="searchByOpts.length > 0" class="hidden sm:block px-4 py-2 min-w-[25%]">
             <select v-model="form.searchBy" class="w-full">
-                <option disabled value="">Rechercher par</option>
+                <option disabled value="">{{t('research_by')}}</option>
                 <option v-for="opt in searchByOpts" :key="opt.key" :value="opt.key">
                     {{ opt.name }}
                 </option>

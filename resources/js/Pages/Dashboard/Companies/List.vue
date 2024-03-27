@@ -68,7 +68,7 @@ const submit = (addOrJoin) => {
         <ItemsList
             v-if="hasCompanies"
             :data="companies"
-            :searchByOpts="[{ name: t('companies.name'), key: 'name' }]"
+            :searchByOpts="[{ name: t('name'), key: 'name' }]"
             detailsPath="dashboard.companies.details"
             class="mt-8"
             v-slot="item"
@@ -100,7 +100,7 @@ const submit = (addOrJoin) => {
             <form @submit.prevent="submit('add')">
                 <InputWapper
                     v-model="formAdd.name"
-                    :title="t('companies.name')"
+                    :title="t('name')"
                     :error="formAdd.errors.name"
                     :required="true"
                 />

@@ -22,5 +22,12 @@ export default {
     "remember": "记住账号",
     "send_code": "发送验证码",
     "go_back": "回去",
-    "results": "结果"
+    "results": "结果",
+    "no_result": "没有结果",
+    "no_data": "没有找到数据",
+    "research": "研究...",
+    "research": "研究人员...",
+    "no_option": "无选项",
+    "select_option": "选择一个选项",
+    "select_many_options": "选择一个（或多个）选项"
 }

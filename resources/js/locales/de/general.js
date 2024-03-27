@@ -23,4 +23,11 @@ export default {
     "send_code": "Bestätigungscode senden",
     "go_back": "Geh zurück",
     "results": "Ergebnisse",
+    "no_result": "Kein Ergebnis",
+    "no_data": "Keine Daten gefunden",
+    "research": "Forschung...",
+    "research_by": "Forschung von...",
+    "no_option": "Keine Optionen",
+    "select_option": "Wähle eine Option",
+    "select_many_options": "Wählen Sie eine (oder mehrere) Option(en)"
 }

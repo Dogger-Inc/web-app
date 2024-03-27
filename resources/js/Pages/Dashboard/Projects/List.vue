@@ -9,6 +9,8 @@ import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
+
 const props = defineProps({
     projects: {
         type: Object,
@@ -24,7 +26,6 @@ const form = useForm({
     name: '',
     company_id: undefined,
 });
-const { t } = useI18n();
 
 const modalState = ref(false);
 
@@ -42,7 +43,7 @@ const submit = () => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle title="Projects">
+        <LinedTitle :title="t('projects.projects')">
             <button @click.prevent="modalState = true" class="btn primary sm">{{ t('projects.add') }}</button>
         </LinedTitle>
 
