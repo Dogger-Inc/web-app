@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 
 const emit = defineEmits(['close']);
 const props = defineProps({
@@ -40,6 +41,9 @@ const clickOutside = (event) => {
     <div class="modalBg" v-if="state" @click="(e) => clickOutside(e)">
         <div ref="modalContent" class="relative" :class="additionalClasses">
             <slot />
+            <div @click="emit('close')" class="absolute right-2 top-2 h-6 w-6 flex justify-center items-center cursor-pointer hover:text-red-500">
+                <XMarkIcon/>
+            </div>
         </div>
     </div>
 </template>

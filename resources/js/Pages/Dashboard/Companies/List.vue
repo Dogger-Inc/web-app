@@ -30,25 +30,26 @@ const formJoin = useForm({
     key: '',
 });
 
-const submitAdd = () => {
-    formAdd.post(route('dashboard.companies.create.post'), {
-        onStart: () => formAdd.clearErrors(),
-        onSuccess() {
-            modalStateAdd.value = false;
-            formAdd.reset();
-        },
-    });
-}
-
-const submitJoin = () => {
-    router.get(route('dashboard.companies.join', formJoin.key), {
-        onStart: () => formJoin.clearErrors(),
-        onSuccess() {
-            modalStateJoin.value = false;
-            formJoin.reset();
-        },
-    });
-}
+const submit = (addOrJoin) => {
+    if(addOrJoin === "add") {
+        formAdd.post(route('dashboard.companies.create.post'), {
+            onStart: () => formAdd.clearErrors(),
+            onSuccess() {
+                modalStateAdd.value = false;
+                formAdd.reset();
+            },
+        });
+    }
+    else {
+        router.get(route('dashboard.companies.join', formJoin.key), {
+            onStart: () => formJoin.clearErrors(),
+            onSuccess() {
+                modalStateJoin.value = false;
+                formJoin.reset();
+            },
+        });
+    }    
+};
 </script>
 
 <template>
@@ -96,7 +97,7 @@ const submitJoin = () => {
         <ModalLayout :state="modalStateAdd" @close="modalStateAdd = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle :title="t('companies.add')" />
 
-            <form @submit.prevent="submitAdd">
+            <form @submit.prevent="submit('add')">
                 <InputWapper
                     v-model="formAdd.name"
                     :title="t('companies.name')"
@@ -107,15 +108,12 @@ const submitJoin = () => {
                     {{ t("submit") }}
                 </button>
             </form>
-            <div @click="modalStateAdd = false" class="absolute right-2 top-2 h-6 w-6 flex justify-center items-center cursor-pointer hover:text-red-500">
-                <XMarkIcon/>
-            </div>
         </ModalLayout>
 
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
             <LinedTitle title="Join a company" />
 
-            <form @submit.prevent="submitJoin">
+            <form @submit.prevent="submit('join')">
                 <InputWapper
                     v-model="formJoin.key"
                     :title="t('companies.invitation_code')"
@@ -126,9 +124,6 @@ const submitJoin = () => {
                     {{ t("submit") }}
                 </button>
             </form>
-            <div @click="modalStateJoin = false" class="absolute right-2 top-2 h-6 w-6 flex justify-center items-center cursor-pointer hover:text-red-500">
-                <XMarkIcon/>
-            </div>
         </ModalLayout>
     </DashboardLayout>
 </template>
