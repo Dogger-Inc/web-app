@@ -3,7 +3,6 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import Badge from '@/Components/Badge.vue';
-import { ref } from 'vue';
 
 const props = defineProps({
     issues: {
