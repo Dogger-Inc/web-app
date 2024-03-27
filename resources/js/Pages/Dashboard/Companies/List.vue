@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 import ModalLayout from '@/Layouts/Modal.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
@@ -107,6 +108,9 @@ const submit = (addOrJoin) => {
                     {{ t("submit") }}
                 </button>
             </form>
+            <div @click="modalStateAdd = false" class="absolute right-2 top-2 h-6 w-6 flex justify-center items-center cursor-pointer hover:text-red-500">
+                <XMarkIcon/>
+            </div>
         </ModalLayout>
 
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
@@ -123,6 +127,9 @@ const submit = (addOrJoin) => {
                     {{ t("submit") }}
                 </button>
             </form>
+            <div @click="modalStateJoin = false" class="absolute right-2 top-2 h-6 w-6 flex justify-center items-center cursor-pointer hover:text-red-500">
+                <XMarkIcon/>
+            </div>
         </ModalLayout>
     </DashboardLayout>
 </template>
