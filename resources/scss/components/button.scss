@@ -1,25 +1,25 @@
 .btn {
-    @apply rounded-full text-base md:text-lg font-bold px-8 md:px-12 py-4 h-fit w-fit flex items-center justify-center gap-2 lg:gap-4;
+    @apply rounded-lg text-base md:text-lg font-bold px-8 md:px-12 py-4 h-fit w-fit flex items-center justify-center gap-2 lg:gap-4 whitespace-nowrap;
 
     &.primary {
-        @apply border text-white border-dogger-orange-500 bg-dogger-orange-400 hover:bg-dogger-orange-500;
+        @apply border text-white border-dogger-orange-400 bg-dogger-orange-400 hover:bg-dogger-orange-500 hover:border-dogger-orange-500;
     }
     &.generic {
-        @apply border text-black border-dogger-orange-400 hover:bg-dogger-orange-400;
+        @apply border text-black border-dogger-orange-400 hover:bg-dogger-orange-400 hover:text-white;
     }
     &.warning {
         @apply border text-red-500 border-red-500 hover:bg-red-500 hover:text-white;
     }
 
     &:disabled {
-        @apply cursor-not-allowed bg-gray-300 text-gray-700;
+        @apply cursor-not-allowed bg-gray-300 text-gray-700 hover:bg-gray-300 hover:text-gray-700;
     }
     &.sm {
-        @apply text-sm rounded-2xl;
+        @apply text-sm rounded-lg;
         padding: 10px 24px;
     }
     &.xs {
-        @apply text-xs rounded-2xl;
+        @apply text-xs rounded-lg;
         padding: 5px 14px;
     }
 }

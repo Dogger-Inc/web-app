@@ -21,6 +21,8 @@ use App\Http\Controllers\IssuesController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', [StaticViewController::class, 'homepage'])->name('homepage');
+Route::get('/documentation', [StaticViewController::class, 'doc'])->name('doc');
+Route::get('/locale/{locale}', [StaticViewController::class, 'setLocale'])->name('locale.set');
 
 Route::group([
     'as' => 'dashboard.',

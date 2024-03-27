@@ -11,6 +11,7 @@ import {
     MenuItem,
     MenuItems
 } from '@headlessui/vue';
+import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
 
 const navigation = [
@@ -35,7 +36,7 @@ const isCurrentRoute = (path) => {
     <Disclosure as="nav" class="bg-white" v-slot="{ open }">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <div class="flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-1 text-gray-400">
                         <span class="sr-only">Open main menu</span>
@@ -59,9 +60,10 @@ const isCurrentRoute = (path) => {
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="flex items-center gap-3 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <LanguageSelector />
                     <!-- Profile dropdown -->
-                    <Menu as="div" class="relative ml-3">
+                    <Menu as="div" class="relative inline-flex">
                         <MenuButton>
                             <span class="sr-only">Open user menu</span>
                             <UserIcon class="h-6 w-6 text-gray-700" />
@@ -75,7 +77,7 @@ const isCurrentRoute = (path) => {
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95"
                         >
-                            <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
+                            <MenuItems class="absolute top-8 right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-50 py-1 shadow-lg">
                                 <MenuItem v-for="item in profileNavigation" :key="item.name" v-slot="{ active }">
                                     <Link :href="route(item.href)" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
                                         {{ item.name }}

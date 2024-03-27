@@ -9,7 +9,6 @@ import {
 } from '@heroicons/vue/24/outline';
 import { CheckIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid';
 import PublicLayout from '@/Layouts/Public.vue';
-import LangageSelector from '@/Components/LangageSelector.vue';
 import MainIllustration from '@assets/images/main_illustration.png';
 
 const { t } = useI18n({});
@@ -90,15 +89,34 @@ const faqs = [
     {
         id: 2,
         question: t("homepage.faqs.open_source.question"),
-        answer: t("homepage.faqs.open_source.question"),
+        answer: t("homepage.faqs.open_source.answer"),
         link: "https://github.com/Dogger-Inc"
+    },
+    {
+        id: 3,
+        question: t("homepage.faqs.why_dogger.question"),
+        answer: t("homepage.faqs.why_dogger.answer"),
+    },
+    {
+        id: 4,
+        question: t("homepage.faqs.free_tier.question"),
+        answer: t("homepage.faqs.free_tier.answer"),
+    },
+    {
+        id: 5,
+        question: t("homepage.faqs.support.question"),
+        answer: t("homepage.faqs.support.answer"),
+    },
+    {
+        id: 6,
+        question: t("homepage.faqs.lifetime.question"),
+        answer: t("homepage.faqs.lifetime.answer"),
     }
 ]
 </script>
 
 <template>
     <PublicLayout>
-        <LangageSelector />
         <!-- Hero section -->
         <div class="relative pt-4 md:pt-8">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -122,10 +140,10 @@ const faqs = [
                         <p class="mt-6 text-lg leading-8 text-gray-600">{{ $t('homepage.catchline') }}</p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <Link :href="route('login')"
-                                class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500">
                                 {{ $t('signin') }}
                             </Link>
-                            <a href="#feature" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
+                            <a href="#features" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
                                 <span aria-hidden="true">→</span>
                             </a>
                         </div>
@@ -157,8 +175,8 @@ const faqs = [
             </div>
         </div>
 
-        <!-- Feature section -->
-        <div id="feature" class="mx-auto mt-6 max-w-7xl px-6 sm:mt-32 lg:px-8">
+        <!-- Features section -->
+        <div id="features" class="mx-auto mt-6 max-w-7xl px-6 sm:mt-32 lg:px-8">
             <div class="mx-auto max-w-2xl py-12 lg:text-center">
                 <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.use_dogger') }}</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -183,10 +201,10 @@ const faqs = [
             </div>
         </div>
 
-        <!-- Testimonial section -->
+        <!-- Our mission section -->
         <div class="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
             <div
-                class="relative overflow-hidden bg-gray-900 py-20 px-6 shadow-xl sm:rounded-3xl sm:py-24 sm:px-10 md:px-12 lg:px-20">
+                class="relative overflow-hidden bg-gray-900 py-14 px-6 shadow-xl rounded-xl sm:rounded-3xl sm:py-24 sm:px-10 md:px-12 lg:px-20">
                 <img class="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0"
                     src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80"
                     alt="" />
@@ -227,7 +245,7 @@ const faqs = [
         </div>
 
         <!-- Pricing section -->
-        <div class="py-24 sm:pt-48">
+        <div id="pricing" class="py-24 sm:pt-48">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-4xl text-center">
                     <h2 class="text-base font-semibold leading-7 text-dogger-orange-400">{{ $t('homepage.pricing') }}</h2>
@@ -274,8 +292,7 @@ const faqs = [
         </div>
 
         <!-- FAQs -->
-        <div
-            class="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pt-12 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pb-32">
+        <div id="faq" class="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pt-12 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pb-32">
             <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">{{ $t('homepage.frequently_question') }}</h2>
             <dl class="mt-10 space-y-8 divide-y divide-gray-900/10">
                 <div v-for="faq in faqs" :key="faq.id" class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">

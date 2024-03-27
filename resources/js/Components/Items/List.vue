@@ -52,7 +52,7 @@ const select = (item) => {
                 :key="item.id"
                 @click="select(item)"
                 :class="{'cursor-pointer': isClickable}"
-                class="hover:bg-dogger-gray-light"
+                class="hover:bg-dogger-gray-light rounded-lg"
             >
                 <div v-if="slots.default" class="inline-flex gap-4 items-center truncate">
                     <slot v-bind="item" />

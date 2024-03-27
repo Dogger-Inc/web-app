@@ -2,7 +2,7 @@
 import { computed, onMounted, watch } from 'vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import { useToast } from 'vue-toastification';
-import NavBar from '@/Components/Navbar.vue';
+import DashboardNavBar from '@/Components/Navbar/Dashboard.vue';
 import Footer from '@/Components/Footer.vue';
 
 const meta = {
@@ -41,7 +41,7 @@ const setToast = () => {
     </Head>
 
     <div class="min-h-screen">
-        <NavBar />
+        <DashboardNavBar />
 
         <!-- Page Content -->
         <main class="px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 max-w-6xl mx-auto">

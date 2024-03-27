@@ -11,4 +11,21 @@ class StaticViewController extends Controller
     {
         return Inertia::render('Public/Index');
     }
+
+    public function doc(): Response
+    {
+        return Inertia::render('Public/Doc');
+    }
+
+    public function setLocale(string $locale): \Illuminate\Http\RedirectResponse
+    {
+        $availableLocales = ['en', 'fr', 'de', 'zh', 'ja', 'ru'];
+        if (!in_array($locale, $availableLocales)) {
+            abort(400);
+        }
+
+        session()->put('locale', $locale);
+
+        return redirect()->back();
+    }
 }

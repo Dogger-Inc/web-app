@@ -1,6 +1,6 @@
 export default {
     "homepage": {
-        "catchline": "The powerful tool that bring back your errors.",
+        "catchline": "The powerful tool that brings back your errors.",
         "use_dogger": "Use Dogger, log better",
         "need_dogger": "The error logger you need for your app",
         "utility_dogger": "You'll not anymore log your errors by yourself, Dogger will make it for you",
@@ -74,6 +74,22 @@ export default {
             "open_source": {
                 "question": "Is Dogger open source ?",
                 "answer": "Yes, Dogger is open source and you can check our GitHub repository to learn more."
+            },
+            "why_dogger": {
+                "question": "Why should I use Dogger ?",
+                "answer": "Dogger is the best tool to log your errors, it's easy to implement, lightweight and it's free."
+            },
+            "free_tier": {
+                "question": "What does the free tier include ?",
+                "answer": "The free tier includes unlimited projects, unlimited errors and 10 users. It's self-hosted and open-source."
+            },
+            "support": {
+                "question": "What kind of support do you offer ?",
+                "answer": "We offer an email support for the Startup tier and a priority support for the Enterprise tier."
+            },
+            "lifetime": {
+                "question": "What does 'lifetime access' exactly mean?",
+                "answer": "Lifetime access means that you will have access to Dogger for the lifetime of the product. You will also receive all future updates and improvements to the product."
             }
         }
     }

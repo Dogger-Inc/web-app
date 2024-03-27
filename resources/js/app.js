@@ -21,8 +21,8 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
    	 	const i18n = createI18n({
             legacy: false,
-            locale: localStorage.getItem('dogger_locale') || props.initialPage.props.locale,
-            fallbackLocale: import.meta.env.VITE_APP_I18N_FALLBACK_LOCALE,
+            locale: props.initialPage.props.locale,
+            fallbackLocale: import.meta.env.FALLBACK_LOCALE,
             messages: loadLocaleMessages(),
             dateTimeFormats
         })
