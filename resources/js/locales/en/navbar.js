@@ -15,6 +15,7 @@ export default {
             "projects": "Projects",
             "issues": "Issues",
             "performances": "Performances",
+            "documentation": "Documentation",
             "profile": "Your Profile",
             "signout": "Sign out",
         }

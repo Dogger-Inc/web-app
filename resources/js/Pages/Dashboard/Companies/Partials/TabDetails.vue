@@ -43,7 +43,7 @@ const handleUpdateCompanyCode = () => {
                 @click.prevent="handleUpdateCompanyCode"
                 class="btn generic sm"
             >
-                {{$t('companies.join')}}
+                {{$t('companies.change_code')}}
             </button>
         </div>
     </div>

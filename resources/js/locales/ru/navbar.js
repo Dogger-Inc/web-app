@@ -15,6 +15,7 @@ export default {
             "projects": "Проекты",
             "issues": "Проблемы",
             "performances": "Спектакли",
+            "documentation": "Документация",
             "profile": "Ваш профиль",
             "signout": "выход"
           }

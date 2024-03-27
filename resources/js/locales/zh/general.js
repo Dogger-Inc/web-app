@@ -1,5 +1,6 @@
 export default {
     "hello": "你好",
+    "mainpage": "主页",
     "signin": "登入",
     "signup": "报名",
     "learnmore": "了解更多",

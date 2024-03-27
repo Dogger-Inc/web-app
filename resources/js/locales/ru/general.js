@@ -1,5 +1,6 @@
 export default {
     "hello": "Привет",
+    "mainpage": "Главная страница",
     "signin": "Войти",
     "signup": "Зарегистрироваться",
     "learnmore": "Узнать больше",

@@ -15,8 +15,9 @@ export default {
             "projects": "Projets",
             "issues": "Erreurs",
             "performances": "Performances",
+            "documentation": "Documentation",
             "profile": "Votre profil",
             "signout": "Se déconnecter"
-          }
+        }
     }
 }

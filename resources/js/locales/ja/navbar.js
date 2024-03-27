@@ -15,6 +15,7 @@ export default {
             "projects": "プロジェクト",
             "issues": "問題",
             "performances": "公演",
+            "documentation": "ドキュメンテーション",
             "profile": "あなたのプロフィール",
             "signout": "サインアウト"
         }

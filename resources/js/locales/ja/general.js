@@ -1,5 +1,6 @@
 export default {
     "hello": "こんにちは",
+    "mainpage": "メインページ",
     "signin": "サインイン",
     "signup": "サインアップ",
     "learnmore": "もっと詳しく知る",

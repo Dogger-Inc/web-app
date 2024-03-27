@@ -5,12 +5,12 @@ export default {
         "join_existing": "既存の会社に入社する",
         "join": "会社に入社する",
         "create": "会社を作る",
+        "change_code": "コードを変更する",
         "invitation_code": "招待コード",
         "not_registred_to_company": "どの会社にも登録していません",
         "name": "名前",
         "details": "詳細",
         "projects": "プロジェクト",
         "users": "ユーザー"
-
     }
 }

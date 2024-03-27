@@ -15,6 +15,7 @@ export default {
             "projects": "项目",
             "issues": "问题",
             "performances": "演出",
+            "documentation": "文档",
             "profile": "你的个人资料",
             "signout": "登出"
         }
