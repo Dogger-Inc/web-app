@@ -5,20 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use App\Services\QueryService;
 
 class CompaniesController extends Controller
 {
-    public function list (QueryService $query): \Inertia\Response
+    public function list (): \Inertia\Response
     {
         $currentUserId = auth()->user()->id;
+
         $companies = Company::whereHas('users', function ($query) use ($currentUserId) {
             $query->where('user_id', $currentUserId);
-        });
-
-        $companies = $query->search($companies, 'name');
-        $companies = $query->order($companies);
-        $companies = $query->paginate($companies);
+        })
+            ->autoSearch('name')
+            ->autoOrder()
+            ->autoPaginate();
 
         return inertia('Dashboard/Companies/List', [
             'companies' => $companies,
