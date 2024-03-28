@@ -2,7 +2,9 @@
 import { useForm, Link } from '@inertiajs/vue3';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import AuthLayout from '@/Layouts/Auth.vue';
+import { useI18n } from "vue-i18n"; 
 
+const { t } = useI18n({});
 const form = useForm({
     email: '',
     password: '',
@@ -18,12 +20,12 @@ const submitForm = () => {
     <AuthLayout>
         <template v-slot:header>
             <h2 class="mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-                Sign in to your account
+                {{ $t('login.title') }}
             </h2>
             <p class="mt-2 text-center text-sm text-gray-600">
-                Or
+                {{ $t('or') }}
                 <Link :href="route('register')" class="font-medium text-dogger-orange-400 hover:text-dogger-orange-500">
-                    create a new account
+                    {{ $t('login.create_account') }}
                 </Link>
             </p>
         </template>
@@ -32,13 +34,13 @@ const submitForm = () => {
             <InputWrapper
                 v-model="form.email"
                 :error="form.errors.email"
-                title="Email"
+                :title="t('email')"
                 type="email"
             />
             <InputWrapper
                 v-model="form.password"
                 :error="form.errors.email"
-                title="Password"
+                :title="t('password')"
                 type="password"
             />
 
@@ -50,16 +52,16 @@ const submitForm = () => {
                         id="remember"
                         class="rounded border-gray-300 focus:ring-dogger-orange-500"
                     />
-                    <span class="ml-2 text-gray-500">Remember me</span>
+                    <span class="ml-2 text-gray-500">{{$t('remember')}}</span>
                 </label>
 
                 <Link :href="route('password.request')" class="text-gray-500 hover:text-dogger-orange-500">
-                    Mot de passe oublié ?
+                    {{$t('password_forgotten')}}
                 </Link>
             </div>
             
             <button class="btn primary mt-6 !w-full" type="submit">
-                Login
+                {{$t('signin')}}
             </button>
         </form>
     </AuthLayout>

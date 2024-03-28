@@ -29,7 +29,7 @@ const { t } = useI18n();
 
         <div class="mt-12">
             <div class="space-y-2">
-                <span class="font-semibold">Complete name</span>
+                <span class="font-semibold">{{t('issues.complete_name')}}</span>
                 <div class="flex flex-row gap-2 items-center">
                     {{issue.message}}
                 </div>
@@ -39,26 +39,26 @@ const { t } = useI18n();
         <div class="mt-6 grid grid-cols-12 gap-6">
             <div class="flex flex-col gap-6 col-span-8">
                 <div class="space-y-2">
-                    <span class="font-semibold">Stacktrace</span>
+                    <span class="font-semibold">{{t('issues.stacktrace')}}</span>
                     <div class="flex flex-row gap-2 items-center">
                         <Stacktrace :text="issue.stacktrace" />
                     </div>
                 </div>
 
                 <div class="space-y-2">
-                    <span class="font-semibold">Comments</span>
+                    <span class="font-semibold">{{t('issues.comments')}}</span>
 
                     <List
                         :data="issue.comments"
                         :searchbar="false"
-                        placeholder="Aucun commentaire"
+                        placeholder="t('issues.no_comment')"
                     />
                 </div>
             </div>
 
             <div class="col-span-4 flex flex-col gap-10">
                 <div class="space-y-2">
-                    <span class="font-semibold">Tags</span>
+                    <span class="font-semibold">{{t('issues.tags')}}</span>
                     <div class="flex flex-row gap-2 items-center">
                         <Badge v-if="issue.env" :title="issue.env" />
                         <Badge v-if="issue.http_code" :title="`${issue.http_code}`" />
@@ -68,7 +68,7 @@ const { t } = useI18n();
                 </div>
 
                 <div class="space-y-2">
-                    <span class="font-semibold">Assigned users</span>
+                    <span class="font-semibold">{{t('issues.assigned_user')}}s</span>
                     <div class="flex flex-col gap-2">
                         <span v-for="user in issue.users" :key="user.id" class="border p-2 text-sm rounded">
                             {{ user.fullname }} ({{ user.email }})

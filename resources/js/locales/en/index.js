@@ -7,6 +7,9 @@ import navbar from './navbar'
 import profile from './profile'
 import issues from './issues'
 import lang from './lang'
+import login from './login'
+import register from './register'
+import forgotPassword from './forgotPassword'
 
 export default {
     ...dashboard,
@@ -16,6 +19,9 @@ export default {
     ...navbar,
     ...profile,
     ...lang,
+    ...login,
+    ...register,
+    ...forgotPassword,
     ...projects,
     ...issues,
 }

@@ -41,20 +41,20 @@ const editPassword = () => {
             <div class="grid grid-cols-2 gap-4 w-full">
                 <InputWapper 
                     v-model="formEditProfile.firstname" 
-                    :title="t('profile.firstname')" 
+                    :title="t('firstname')" 
                     :error="formEditProfile.errors.firstname"
                     :required="true" 
                 />
                 <InputWapper
                     v-model="formEditProfile.lastname" 
-                    :title="t('profile.lastname')" 
+                    :title="t('lastname')" 
                     :error="formEditProfile.errors.lastname"
                     :required="true" 
                 />
             </div>
             <InputWapper
                 v-model="formEditProfile.email" 
-                :title="t('profile.email')" 
+                :title="t('email')" 
                 :error="formEditProfile.errors.email"
                 :required="true"
                 class="mt-4"
@@ -77,14 +77,14 @@ const editPassword = () => {
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <InputWapper
                     v-model="formEditPassword.password" 
-                    :title="t('profile.new_password')" 
+                    :title="t('new_password')" 
                     :error="formEditPassword.errors.password"
                     :required="true"
                     :type="'password'"
                 />
                 <InputWapper
                     v-model="formEditPassword.password_confirmation" 
-                    :title="t('profile.new_password_confirmation')" 
+                    :title="t('new_password_confirmation')" 
                     :error="formEditPassword.errors.password_confirmation"
                     :required="true"
                     :type="'password'"
