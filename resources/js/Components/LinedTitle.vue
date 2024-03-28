@@ -29,13 +29,18 @@ const lineWidth = computed(() => {
 
 <template>
     <section class="flex justify-between flex-col md:flex-row gap-10 md:gap-4">
-        <div class="relative">
+        <div
+            class="relative"
+            :class="{
+                'w-9/12': truncate,
+            }"
+            >
             <h3
                 v-if="sm"
                 ref="titleRef"
                 class="font-medium text-xl w-fit"
                 :class="{
-                    'truncate w-9/12': truncate,
+                    'truncate w-full': truncate,
                 }"
             >
                 {{ title }}
@@ -45,7 +50,7 @@ const lineWidth = computed(() => {
                 ref="titleRef"
                 class="font-bold text-2xl w-fit"
                 :class="{
-                    'truncate w-9/12': truncate,
+                    'truncate w-full': truncate,
                 }"
             >
                 {{ title }}

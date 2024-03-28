@@ -28,8 +28,8 @@ const props = defineProps({
             class="w-full mt-8"
         >
             <div class="text-sm md:text-base flex flex-row items-center gap-2">
-                <Badge :title="item.env" />
-                <Badge :title="`${item.http_code}`" />
+                <Badge v-if="item.env" :title="item.env" />
+                <Badge v-if="item.http_code" :title="`${item.http_code}`" />
                 <span>{{ item.message }}</span>
             </div>
         </ItemsList>

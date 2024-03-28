@@ -73,7 +73,7 @@ const isCurrentRoute = (path) => {
                             <span class="sr-only">{{ $t('navbar.dashboard.user_menu') }}</span>
                         </MenuButton>
 
-                        <transition
+                        <Transition
                             enter-active-class="transition ease-out duration-100"
                             enter-from-class="transform opacity-0 scale-95"
                             enter-to-class="transform opacity-100 scale-100"
@@ -88,7 +88,7 @@ const isCurrentRoute = (path) => {
                                     </Link>
                                 </MenuItem>
                             </MenuItems>
-                        </transition>
+                        </Transition>
                     </Menu>
                 </div>
             </div>

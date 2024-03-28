@@ -21,6 +21,7 @@
         "@headlessui/vue": "^1.7.17",
         "@heroicons/vue": "2.0.18",
         "@vueform/multiselect": "^2.6.6",
+        "dayjs": "^1.11.10",
         "vanilla-cookieconsent": "^2.9.2",
         "vue-i18n": "^9.7.1",
         "vue-markdown-render": "^2.1.1",

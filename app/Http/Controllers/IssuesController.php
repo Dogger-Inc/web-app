@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Issue;
 use Illuminate\Validation\Rule;
 
@@ -52,8 +53,14 @@ class IssuesController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         $comments = $issue->comments()
-            ->orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'issues_page');
+            ->with([
+                'user',
+                'replyTo' => function ($query) {
+                    $query->with(['user']);
+                }
+            ])
+            ->orderBy('created_at', 'asc')
+            ->get();
 
         $issue->users = $users;
         $issue->comments = $comments;
@@ -65,5 +72,22 @@ class IssuesController extends Controller
             'issue' => $issue,
             'currentUser' => $currentUser
         ]);
+    }
+
+    public function addComment(Issue $issue) {
+        $data = request()->validate([
+            'reply_to' => ['nullable', 'integer', Rule::exists('users', 'id')],
+            'content' => ['string'],
+        ]);
+
+        $comment = Comment::create([
+            'user_id' => auth()->user()->id,
+            'reply_to' => $data['reply_to'],
+            'content' => $data['content'],
+            'commentable_type' => 'issue',
+            'commentable_id' => $issue->id,
+        ]);
+
+        $issue->comments()->save($comment);
     }
 }

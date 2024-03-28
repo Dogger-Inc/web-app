@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
@@ -78,6 +79,17 @@ Route::group([
     ], function () {
         Route::get('/', 'list')->name('list');
         Route::get('/{issue}/show', 'details')->name('details');
+        Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
+        Route::patch('/{issue}/comment', 'editComment')->name('editComment.patch');
+    });
+
+    //Comments
+    Route::group([
+        'prefix' => 'comments',
+        'as' => 'comments.',
+        'controller' => CommentsController::class
+    ], function () {
+        Route::patch('/{comment}', 'editComment')->name('editComment.patch');
     });
 });
 

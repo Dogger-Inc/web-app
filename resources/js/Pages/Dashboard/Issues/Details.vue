@@ -3,11 +3,11 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import Badge from '@/Components/Badge.vue';
 import Stacktrace from '@/Components/Stacktrace.vue';
-import List from '@/Components/Items/List.vue';
+import CommentsThread from '@/Components/CommentsThread.vue';
 import { useI18n } from 'vue-i18n';
 import { Link } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     issue: {
         type: Object,
         required: true,
@@ -48,10 +48,10 @@ const { t } = useI18n();
                 <div class="space-y-2">
                     <span class="font-semibold">{{t('issues.comments')}}</span>
 
-                    <List
-                        :data="issue.comments"
-                        :searchbar="false"
-                        placeholder="t('issues.no_comment')"
+                    <CommentsThread
+                        :comments="issue.comments"
+                        :commentableId="props.issue?.id"
+                        addPath="dashboard.issues.addComment.post"
                     />
                 </div>
             </div>
