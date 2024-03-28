@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { useForm, Link } from '@inertiajs/vue3';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import AuthLayout from '@/Layouts/Auth.vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({});
 
 const props = defineProps({
     disabledDuration: {
@@ -43,38 +45,38 @@ const submit = () => {
     <AuthLayout>
         <template v-slot:header>
             <h2 class="mt-6 text-center text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-                Mot de passe oublié ?
+                {{ $t('password_forgotten') }}
             </h2>
         </template>
 
         <template v-if="isSuccess">
             <div class="font-medium text-lg text-center">
                 <p>
-                    Un <span>email de confirmation</span> à bien été envoyé à l'adresse suivante <span>{{ form.email }}</span> !
+                    <span>{{ $t('forgot_password.confirm_mail') }}</span> {{ $t('forgot_password.confirm_mail_text') }} <span>{{ form.email }}</span> !
                 </p>
-                <p class="mt-4">Merci de vérifier votre boite mail !</p>
+                <p class="mt-4">{{ $t('forgot_password.check_mail') }}</p>
             </div>
             <button
                 @click.prevent="submit"
                 :disabled="disabledRemainingTime > 0 || form.processing"
                 class="btn generic mt-10 !w-full"
             >
-                Envoyer un nouveau code {{ disabledRemainingTime > 0 ? `(${disabledRemainingTime}s)` : '' }}
+                {{ $t('forgot_password.send_new_code') }} {{ disabledRemainingTime > 0 ? `(${disabledRemainingTime}s)` : '' }}
             </button>
         </template>
         <form v-else @submit.prevent="submit" class="flex flex-col gap-5 lg:gap-6">
             <InputWrapper
                 v-model="form.email"
                 :error="form.errors.email"
-                title="Email"
+                :title="t('email')"
                 type="email"
             />
 
             <button type="submit" :disabled="form.processing" class="btn primary !w-full mt-5">
-                Envoyer le code de vérification
+                {{ $t('send_code') }}
             </button>
             <Link :href="route('login')" class="btn generic !w-full">
-                Revenir en arrière
+                {{ $t('go_back') }}
             </Link>
         </form>
     </AuthLayout>

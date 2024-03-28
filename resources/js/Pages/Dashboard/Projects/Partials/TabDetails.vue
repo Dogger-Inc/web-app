@@ -53,7 +53,7 @@ const handleUpdateProjectCode = () => {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="grid grid-cols-1">
             <div v-if="!showUpdateForm" class="space-y-2">
-                <DataCell title="Nom" :value="project.name" :spacer="false" />
+                <DataCell :title="t('name')" :value="project.name" :spacer="false" />
                 <button
                     v-if="project.editable"
                     @click.prevent="showUpdateForm = true"
@@ -67,7 +67,7 @@ const handleUpdateProjectCode = () => {
                     v-model="updateForm.name"
                     :error="updateForm.errors.name"
                     :required="true"
-                    title="Name"
+                    :title="t('name')"
                 />
                 <div class="flex flex-row items-center gap-2">
                     <button
@@ -87,7 +87,7 @@ const handleUpdateProjectCode = () => {
         </div>
         <div>
             <DataCell
-                title="Code d'invitation"
+                :title="t('companies.invitation_code')"
                 :value="project.key"
                 @click.prevent="copyToClipboard(project.key)"
                 class="sm:border-t-0"
@@ -97,7 +97,7 @@ const handleUpdateProjectCode = () => {
                 @click.prevent="handleUpdateProjectCode"
                 class="btn generic sm mt-3"
             >
-                Change code
+                {{ $t('companies.change_code')}}
             </button>
         </div>
     </div>

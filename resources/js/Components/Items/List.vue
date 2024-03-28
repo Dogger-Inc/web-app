@@ -4,6 +4,9 @@ import { usePage, router } from '@inertiajs/vue3';
 import { ChevronRightIcon } from '@heroicons/vue/24/outline';
 import Pagination from '@/Components/Items/Pagination.vue';
 import SearchBar from '@/Components/Items/Searchbar.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const slots = useSlots();
 const props = defineProps({
@@ -17,7 +20,6 @@ const props = defineProps({
     },
     placeholder: {
         type: String,
-        default: 'Aucune donnée',
     },
     searchbar : {
         type: Boolean,
@@ -26,7 +28,7 @@ const props = defineProps({
     searchByOpts : Array,
     detailsPath : String,
 });
-
+const placeholderToShow = computed( () => props.placeholder || t("no_data") )
 const hasSearch = usePage().props.route.query.search ? true : false;
 
 const newData = computed(() => paginationOpts.value.enabled ? props.data.data : props.data);
@@ -63,8 +65,8 @@ const select = (item) => {
                     <ChevronRightIcon class="h-5 w-5 text-wiibus-black hidden sm:block" />
                 </div>
             </li>
-            <li v-else-if="hasSearch" class="no-data">Aucun résultat</li>
-            <li v-else class="no-data">{{ placeholder }}</li>
+            <li v-else-if="hasSearch" class="no-data">{{$t('no_result')}}</li>
+            <li v-else class="no-data">{{ placeholderToShow }}</li>
         </ul>
         <Pagination
             v-if="hasData && paginationOpts.enabled"
