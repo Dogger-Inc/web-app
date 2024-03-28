@@ -47,7 +47,10 @@ const handleSubmitComment = () => {
 
     addCommentForm.post(route(props.addPath, props.commentableId), {
         onStart: () => addCommentForm.clearErrors(),
-        onSuccess: () => addCommentForm.reset(),
+        onSuccess: () => {
+            thread.value.scrollTop = thread.value.scrollHeight;
+            addCommentForm.reset()
+        }
     });
 }
 
