@@ -23,7 +23,7 @@ const currentUser = computed(() => page.props.auth.user);
 </script>
 
 <template>
-    <div class="flex flex-col gap-2 w-full text-sm group">
+    <div class="flex flex-col gap-2 w-full text-sm group break-all">
         <div
             v-if="comment.reply_to"
             class="flex flex-row gap-2 text-xs opacity-50 items-center"
