@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\IssuesController;
+use App\Http\Controllers\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ Route::group([
     'as' => 'dashboard.',
     'middleware' => ['auth'],
 ], function () {
-    Route::get('/dashboard', function () {
-        return Inertia\Inertia::render('Dashboard/Index');
-    })->name('index');
+    Route::get('/dashboard', [StatsController::class, 'index'])->name('index');
 
 
     //Companies
