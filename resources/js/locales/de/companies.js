@@ -10,7 +10,8 @@ export default {
         "not_registred_to_company": "Sie sind bei keinem Unternehmen registriert",
         "details": "Einzelheiten",
         "projects": "Projekt(e)",
-        "users": "Benutzer",
+        "active_users": "Aktive Benutzer",
+        "pending_users": "Ausstehende Benutzer (inaktiv)",
         "issues": "Probleme"
     }
 }
