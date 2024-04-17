@@ -15,6 +15,7 @@ return new class extends Migration
             $table->dropForeign('performances_project_id_foreign');
             $table->dropColumn('project_id');
             $table->dropColumn('env');
+            $table->decimal('duration')->change();
             $table->foreignId('group_id')
                 ->constrained('performance_groups')
                 ->onDelete('cascade')
