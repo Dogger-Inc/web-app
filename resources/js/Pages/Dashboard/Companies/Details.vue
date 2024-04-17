@@ -20,10 +20,10 @@ defineProps({
         <LinedTitle :title="company.name" />
 
         <TabbedCard class="mt-6 sm:mt-10">
-            <div title="Informations">
+            <div :title="t('companies.details')">
                 <TabDetails :company="company" />
             </div>
-            <div title="Projet(s)">
+            <div :title="t('companies.projects')">
                 <TabProjects :projects="company.projects" />
             </div>
             <div title="Utilisateur(s) actif(s)">

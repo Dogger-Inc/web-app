@@ -1,6 +1,8 @@
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const modelValue = defineModel();
 const props = defineProps({
     title: {
@@ -17,11 +19,9 @@ const props = defineProps({
     },
     noOptText: {
         type: String,
-        default: 'Aucune option'
     },
     placeholder: {
         type: String,
-        default: 'Sélectionner une option'
     },
     reduce: String,
     error: String,
@@ -35,6 +35,8 @@ const props = defineProps({
     }
 });
 
+const noOptTextToShow = computed( () => props.noOptText || t("no_option") )
+const placeholderToShow = computed( () => props.placeholder || t("select_option") )
 const id = computed(() => {
     // slug the title and add random string to avoid duplicate ids
     const slug = props.title.toLowerCase().replace(/\s/g, '-');
@@ -62,8 +64,8 @@ const getOptValue = (opt) => {
             :disabled="disabled"
             v-model="modelValue"
         >
-            <option v-if="options.length === 0" disabled value="">{{ noOptText }}</option>
-            <option v-else disabled value="">{{ placeholder }}</option>
+            <option v-if="options.length === 0" disabled value="">{{ noOptTextToShow }}</option>
+            <option v-else disabled value="">{{ placeholderToShow }}</option>
             <option v-for="(opt, index) in options" :key="index" :value="getOptValue(opt)">
                 {{ opt[label] }}
             </option>

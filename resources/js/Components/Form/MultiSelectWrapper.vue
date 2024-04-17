@@ -1,7 +1,9 @@
 <script setup>
 import { computed } from 'vue';
 import Multiselect from '@vueform/multiselect';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const modelValue = defineModel();
 const props = defineProps({
     title: {
@@ -18,11 +20,9 @@ const props = defineProps({
     },
     noOptText: {
         type: String,
-        default: 'Aucune option'
     },
     placeholder: {
         type: String,
-        default: 'Sélectionner une (ou plusieurs) option(s)'
     },
     reduce: String,
     error: String,
@@ -36,6 +36,8 @@ const props = defineProps({
     }
 });
 
+const noOptTextToShow = computed( () => props.noOptText || t("no_option") )
+const placeholderToShow = computed( () => props.placeholder || t("select_many_options") )
 const formatedOptions = computed(() => {
     return props.options.map((option) => {
         return {
@@ -62,14 +64,14 @@ const id = computed(() => {
         <Multiselect
             :id="id"
             :options="formatedOptions"
-            :placeholder="placeholder"
+            :placeholder="placeholderToShow"
             :required="required"
             :disabled="disabled"
             :close-on-select="false"
             :canClear="false"
             :searchable="true"
             :caret="false"
-            :no-options-text="noOptText"
+            :no-options-text="noOptTextToShow"
             v-model="modelValue"
             no-results-text="Aucun résultat"
             mode="tags"

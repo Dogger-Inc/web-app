@@ -1,6 +1,5 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
-import { UserIcon } from '@heroicons/vue/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import {
     Disclosure,
@@ -14,19 +13,21 @@ import {
 import Avatar from '@/Components/Avatar.vue';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({});
 
 const navigation = [
-    { name: 'Dashboard', href: 'dashboard.index' },
-    { name: 'Companies', href: 'dashboard.companies.list' },
-    { name: 'Projects', href: 'dashboard.projects.list' },
-    { name: 'Issues', href: 'dashboard.issues.list' },
-    // { name: 'Performances', href: '#' },
-    { name: 'Documentation', href: 'doc' },
+    { name: t('navbar.dashboard.dashboard'), href: 'dashboard.index' },
+    { name: t('navbar.dashboard.companies'), href: 'dashboard.companies.list' },
+    { name: t('navbar.dashboard.projects'), href: 'dashboard.projects.list' },
+    { name: t('navbar.dashboard.issues'), href: 'dashboard.issues.list' },
+    // { name: t('navbar.dashboard.performances'), href: '#' },
+    { name: t('navbar.dashboard.documentation'), href: 'doc' },
 ];
 
 const profileNavigation = [
-    { name: 'Your Profile', href: 'dashboard.profile.show' },
-    { name: 'Sign out', href: 'logout' },
+    { name: t('navbar.dashboard.profile'), href: 'dashboard.profile.show' },
+    { name: t('navbar.dashboard.signout'), href: 'logout' },
 ];
 
 const isCurrentRoute = (path) => {
@@ -41,7 +42,7 @@ const isCurrentRoute = (path) => {
                 <div class="flex items-center sm:hidden">
                     <!-- Mobile menu button-->
                     <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-1 text-gray-400">
-                        <span class="sr-only">Open main menu</span>
+                        <span class="sr-only">{{ $t('navbar.dashboard.main_menu') }}</span>
                         <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                         <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
                     </DisclosureButton>
@@ -68,10 +69,10 @@ const isCurrentRoute = (path) => {
                     <Menu as="div" class="relative inline-flex">
                         <MenuButton>
                             <Avatar/>
-                            <span class="sr-only">Open user menu</span>
+                            <span class="sr-only">{{ $t('navbar.dashboard.user_menu') }}</span>
                         </MenuButton>
 
-                        <transition
+                        <Transition
                             enter-active-class="transition ease-out duration-100"
                             enter-from-class="transform opacity-0 scale-95"
                             enter-to-class="transform opacity-100 scale-100"
@@ -86,7 +87,7 @@ const isCurrentRoute = (path) => {
                                     </Link>
                                 </MenuItem>
                             </MenuItems>
-                        </transition>
+                        </Transition>
                     </Menu>
                 </div>
             </div>

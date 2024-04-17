@@ -30,10 +30,10 @@ const handleUpdateCompanyCode = () => {
 
 <template>
     <div class="grid grid-cols-1 sm:grid-cols-2">
-        <DataCell title="Nom" :value="company.name" :spacer="false" />
+        <DataCell :title="$t('name')" :value="company.name" :spacer="false" />
         <div class="flex flex-row items-center gap-6">
             <DataCell
-                title="Code d'invitation"
+                :title="$t('companies.join')"
                 :value="company.key"
                 @click.prevent="copyToClipboard(company.key)"
                 class="sm:border-t-0"
@@ -43,7 +43,7 @@ const handleUpdateCompanyCode = () => {
                 @click.prevent="handleUpdateCompanyCode"
                 class="btn generic sm"
             >
-                Change code
+                {{$t('companies.change_code')}}
             </button>
         </div>
     </div>

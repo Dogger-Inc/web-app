@@ -1,6 +1,6 @@
 export default {
 	"homepage": {
-		"catchline": "Das leistungsstarke Tool, das Ihre Fehler zurückbringt.",
+		"catchline": "Das leistungsstarke Werkzeug, das Ihre Fehler zurückbringt.",
 		"use_dogger": "Benutze Dogger, protokolliere besser",
 		"need_dogger": "Der Fehlerlogger, den Sie für Ihre App benötigen",
 		"utility_dogger": "Sie müssen Ihre Fehler nicht mehr selbst protokollieren, Dogger macht das für Sie",
