@@ -14,11 +14,13 @@ const props = defineProps({
 });
 
 const revokeUser = (id) => {
-    router
-        .delete(route('dashboard.companies.reject.delete', {company: props.company.id, user: id}), 
-        {},
-        { preserveState: false }
-    )
+    if(props.company) {
+        router
+        .delete(route('dashboard.companies.reject.delete', { company: props.company.id, user: id }),
+            {},
+            { preserveState: false }
+        )
+    }
 }
 
 </script>
@@ -31,8 +33,10 @@ const revokeUser = (id) => {
                 {{ item.email }}
             </p>
         </div>
-        <div class="h-full ml-auto flex gap-4">
-            <button @click="revokeUser(item.id)" class="btn warning sm">Revoke</button>
+        <div v-if="props.company">
+            <div class="h-full ml-auto flex gap-4">
+                <button @click="revokeUser(item.id)" class="btn warning sm">Revoke</button>
+            </div>
         </div>
     </ItemsList>
 </template>
