@@ -15,7 +15,7 @@ class StatsController extends Controller
 
     public function index(): Response
     {
-        $stats = Cache::remember('homepage-stats', now()->addMinutes(1), function () {
+        $stats = Cache::remember('homepage-stats', now()->addMinutes(30), function () {
             $user = auth()->user();
             $countsData = $this->getCardsData($user->companies);
             $chartData = $this->getChartData($user->companies);
@@ -27,6 +27,12 @@ class StatsController extends Controller
         });
 
         return Inertia::render('Dashboard/Index', $stats);
+    }
+
+    public function clearCache()
+    {
+        Cache::forget('homepage-stats');
+        return redirect()->back();
     }
 
 

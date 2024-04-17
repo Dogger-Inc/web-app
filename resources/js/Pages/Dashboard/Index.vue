@@ -1,13 +1,15 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { Link } from '@inertiajs/vue3';
 import { useI18n } from "vue-i18n"; 
-import DashboardLayout from '@/Layouts/Dashboard.vue';
 import {
+    ArrowPathIcon,
     RectangleStackIcon,
     ExclamationTriangleIcon,
     BuildingOffice2Icon,
     ChartBarIcon
 } from '@heroicons/vue/24/outline';
+import DashboardLayout from '@/Layouts/Dashboard.vue';
 import SelectWrapper from '@/Components/Form/SelectWrapper.vue';
 import CountCard from '@/Components/Stats/CountCard.vue';
 import LineChart from '@/Components/Stats/LineChart.vue';
@@ -48,7 +50,12 @@ const chartDataFormated = computed(() => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="t('dashboard.title')" />
+        <LinedTitle :title="t('dashboard.title')">
+            <Link :href="route('dashboard.cache.clear')" class="btn generic sm">
+                {{ $t('dashboard.refresh') }}
+                <ArrowPathIcon class="h-5 w-5" />
+            </Link>
+        </LinedTitle>
 
         <section class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-6 sm:mt-10">
             <CountCard
