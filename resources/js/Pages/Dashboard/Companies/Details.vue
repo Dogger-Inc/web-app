@@ -27,10 +27,10 @@ defineProps({
                 <TabProjects :projects="company.projects" />
             </div>
             <div title="Utilisateur(s) actif(s)">
-                <TabUsers :users="company.activeUsers" />
+                <TabUsers :users="company.activeUsers" :company="company.id" />
             </div>
             <div title="En attente (inactif)">
-                <TabUsersPending :users="company.inactiveUsers" />
+                <TabUsersPending :users="company.inactiveUsers" :company="company.id" />
             </div>
         </TabbedCard>
     </DashboardLayout>

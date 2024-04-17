@@ -101,4 +101,40 @@ class CompaniesController extends Controller
             'message' => 'Company joined !',
         ]);
     }
+
+    public function revoke(Company $company, $userId) {
+        $user = auth()->user();
+
+        if($user->id == $userId) {
+            return redirect()->back()->with('toast', [
+                'type' => 'error',
+                'message' => 'You can\'t revoke yourself !',
+            ]);
+        }
+
+        $company->users()->detach($userId);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User revoked !',
+        ]);
+    }
+
+    public function accept(Company $company, $userId) {
+        $company->users()->updateExistingPivot($userId, ['is_active' => true]);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User accepted !',
+        ]);
+    }
+
+    public function reject(Company $company, $userId) {
+        $company->users()->detach($userId);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User rejected !',
+        ]);
+    }
 }

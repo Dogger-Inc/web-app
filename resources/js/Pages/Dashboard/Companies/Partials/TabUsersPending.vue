@@ -1,12 +1,34 @@
 <script setup>
 import ItemsList from '@/Components/Items/List.vue';
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     users: {
         type: Object,
         required: true,
     },
+
+    company: {
+        type: Object,
+        required: true,
+    }
 });
+
+const acceptUser = (id) => {
+    router
+        .patch(route('dashboard.companies.accept.patch', {company: props.company, user: id}), 
+        {},
+        {preserveState: false}
+    )
+}
+
+const rejectUser = (id) => {
+    router
+        .delete(route('dashboard.companies.reject.delete', {company: props.company, user: id}), 
+        {},
+        {preserveState: false}
+    )
+}
 
 </script>
 
@@ -23,8 +45,8 @@ const props = defineProps({
             </p>
         </div>
         <div class="h-full ml-auto flex gap-4">
-            <button class="btn success sm">Accepter</button>
-            <button class="btn warning sm">Refuser</button>
+            <button @click="acceptUser(item.id)"class="btn success sm">Accept</button>
+            <button @click="rejectUser(item.id)" class="btn warning sm">Reject</button>
         </div>
     </ItemsList>
 </template>
