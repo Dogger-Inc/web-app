@@ -98,4 +98,44 @@ class PerformancesController extends Controller
 
         $performanceGroup->comments()->save($comment);
     }
+
+    public function assignUser(PerformanceGroup $performanceGroup) {
+        $data = request()->validate([
+            'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
+        ]);
+
+        if($performanceGroup->users()->where('user_id', $data['user_id'])->exists()) {
+            return redirect()->back()->with('toast', [
+                'type' => 'error',
+                'message' => 'User already assigned to performance !',
+            ]);
+        }
+
+        $performanceGroup->users()->attach($data['user_id']);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User assigned to performance !',
+        ]);
+    }
+
+    public function unassignUser(PerformanceGroup $performanceGroup) {
+        $data = request()->validate([
+            'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
+        ]);
+
+        if($performanceGroup->users()->where('user_id', $data['user_id'])->doesntExist()) {
+            return redirect()->back()->with('toast', [
+                'type' => 'error',
+                'message' => 'User not assigned to performance !',
+            ]);
+        }
+
+        $performanceGroup->users()->detach($data['user_id']);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User unassigned from performance !',
+        ]);
+    }
 }

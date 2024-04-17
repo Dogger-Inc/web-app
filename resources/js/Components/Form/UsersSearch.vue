@@ -1,0 +1,90 @@
+<template>
+    <div class="flex flex-col gap-2 relative users-select">
+        <input
+            v-model="search"
+            type="search"
+            placeholder="Search user here..."
+            class="border rounded p-2 text-sm"
+        />
+        <div
+            v-if="displayResult"
+            class="absolute w-full top-full transform translate-y-2 shadow rounded-lg overflow-hidden border flex flex-col gap-2 text-sm bg-white"
+        >
+            <div
+                v-for="user in results" :key="user.id"
+                class="cursor-pointer hover:bg-gray-50 p-2 flex flex-col bg-white"
+                @click="() => handleSelectItem(user)"
+            >
+                <span>{{ user.fullname }}</span>
+                <span class="text-xs italic text-gray-400">{{ user.email }}</span>
+            </div>
+            <span v-if="results.length === 0" class="text-xs text-gray-400 p-2 text-center bg-white">No results</span>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { onMounted, onUnmounted, ref, watch } from 'vue';
+import axios from 'axios';
+
+const emit = defineEmits(['select']);
+const props = defineProps({
+    property: {
+        type: String,
+        default: 'email',
+    },
+})
+
+const search = ref('');
+const results = ref([]);
+const timer = ref(undefined);
+const displayResult = ref(false)
+
+async function fetchUsers() {
+    try {
+        const { data } = await axios.get(route('dashboard.users.search'), { params: { search: search.value, 'property': 'email' } });
+        results.value = data;
+        displayResult.value = true;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+function handleClickOutside(event) {
+  if (displayResult.value === false) {
+    return;
+  }
+
+  const { target } = event;
+  const isOutsideClick = !target.closest('.users-select');
+
+  if (!isOutsideClick) {
+    return;
+  }
+
+  displayResult.value = false;
+}
+
+function handleSelectItem(item) {
+    displayResult.value = false;
+    search.value = '';
+    emit('select', item)
+}
+
+watch(
+    () => search.value,
+    () => {
+        clearTimeout(timer.value);
+        timer.value = setTimeout(fetchUsers, 1000);
+    }
+)
+
+onMounted(() => {
+  document.querySelector('body').addEventListener('click', handleClickOutside, { passive: true });
+});
+
+onUnmounted(() => {
+  document.querySelector('body').removeEventListener('click', handleClickOutside);
+});
+
+</script>

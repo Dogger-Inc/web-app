@@ -8,6 +8,7 @@ use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\IssuesController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,14 @@ Route::group([
         return Inertia\Inertia::render('Dashboard/Index');
     })->name('index');
 
+    //Users
+    Route::group([
+        'prefix' => 'users',
+        'as' => 'users.',
+        'controller' => UsersController::class
+    ], function () {
+        Route::get('/search', 'search')->name('search');
+    });
 
     //Companies
     Route::group([
@@ -81,6 +90,8 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{issue}/show', 'details')->name('details');
         Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
+        Route::post('/{issue}/assign', 'assignUser')->name('assignUser.post');
+        Route::post('/{issue}/unassign', 'unassignUser')->name('unassignUser.post');
     });
 
     //Comments
@@ -101,6 +112,8 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{performance}/show', 'details')->name('details');
         Route::post('/{performanceGroup}/comment', 'addComment')->name('addComment.post');
+        Route::post('/{performanceGroup}/assign', 'assignUser')->name('assignUser.post');
+        Route::post('/{performanceGroup}/unassign', 'unassignUser')->name('unassignUser.post');
     });
 });
 

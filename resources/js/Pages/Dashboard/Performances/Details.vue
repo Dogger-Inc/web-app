@@ -1,11 +1,13 @@
 <script setup>
+import { XMarkIcon } from '@heroicons/vue/24/solid';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import Badge from '@/Components/Badge.vue';
 import CommentsThread from '@/Components/CommentsThread.vue';
 import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
-import { Link } from '@inertiajs/vue3';
+import UsersSearch from '@/Components/Form/UsersSearch.vue';
+import { Link, useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
     group: {
@@ -23,6 +25,26 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
+
+function handleAssignUser(user) {
+    const form = useForm({
+        user_id: user.id
+    });
+    form.post(route('dashboard.performances.assignUser.post', props.group.id), {
+        onStart: () => form.clearErrors(),
+        onSuccess: () => {},
+    }, { preserveState: false, preserveScroll: true });
+}
+
+function handleUnassignUser(user) {
+    const form = useForm({
+        user_id: user.id
+    });
+    form.post(route('dashboard.performances.unassignUser.post', props.group.id), {
+        onStart: () => form.clearErrors(),
+        onSuccess: () => {},
+    }, { preserveState: false, preserveScroll: true });
+}
 </script>
 
 <template>
@@ -77,11 +99,22 @@ const { t } = useI18n();
                 </div>
 
                 <div class="space-y-2">
-                    <span class="font-semibold">{{t('performances.assigned_user')}}s</span>
+                    <span class="font-semibold">{{t('performances.assigned_user')}}</span>
+                    <UsersSearch @select="handleAssignUser" />
                     <div class="flex flex-col gap-2">
-                        <span v-for="user in group.users" :key="user.id" class="border p-2 text-sm rounded">
-                            {{ user.fullname }} ({{ user.email }})
-                        </span>
+                        <div
+                            v-for="user in group.users"
+                            :key="user.id"
+                            class="border p-2 text-sm rounded flex flex-row items-center justify-between"
+                        >
+                            <span>{{ user.fullname }} ({{ user.email }})</span>
+                            <button
+                                class="bg-red-400 text-white rounded p-0.5"
+                                @click="() => handleUnassignUser(user)"
+                            >
+                                <XMarkIcon class="h-4 w-4" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
