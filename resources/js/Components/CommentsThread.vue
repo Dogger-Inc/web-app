@@ -84,7 +84,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thread" class="space-y-4 h-96 overflow-y-auto pr-3">
+    <div ref="thread" class="space-y-4 max-h-96 overflow-y-auto pr-3 relative">
         <CommentsThreadMessage
             v-for="comment in comments"
             :key="comment.id"
@@ -93,6 +93,7 @@ onMounted(() => {
             @anwser="handleAnswerMessage"
         />
     </div>
+
     <form
         class="flex flex-col gap-2"
         :class="{

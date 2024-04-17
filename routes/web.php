@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\PerformancesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
@@ -80,7 +81,6 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{issue}/show', 'details')->name('details');
         Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
-        Route::patch('/{issue}/comment', 'editComment')->name('editComment.patch');
     });
 
     //Comments
@@ -90,6 +90,17 @@ Route::group([
         'controller' => CommentsController::class
     ], function () {
         Route::patch('/{comment}', 'editComment')->name('editComment.patch');
+    });
+
+    //Performances
+    Route::group([
+        'prefix' => 'performances',
+        'as' => 'performances.',
+        'controller' => PerformancesController::class
+    ], function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/{performance}/show', 'details')->name('details');
+        Route::post('/{performanceGroup}/comment', 'addComment')->name('addComment.post');
     });
 });
 

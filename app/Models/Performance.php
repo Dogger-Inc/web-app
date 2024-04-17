@@ -15,17 +15,11 @@ class Performance extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'project_id',
+        'group_id',
         'duration',
         'comment',
         'env',
     ];
-
-    // One to Many
-    public function project():  \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
 
     // Polymorphic
     public function comments(): \Illuminate\Database\Eloquent\Relations\MorphMany

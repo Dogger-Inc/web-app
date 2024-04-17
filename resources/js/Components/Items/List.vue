@@ -27,6 +27,10 @@ const props = defineProps({
     },
     searchByOpts : Array,
     detailsPath : String,
+    detailsValue : {
+        type: String,
+        default: 'id'
+    },
 });
 const placeholderToShow = computed( () => props.placeholder || t("no_data") )
 const hasSearch = usePage().props.route.query.search ? true : false;
@@ -42,7 +46,7 @@ const paginationOpts = computed(() => ({
 
 const select = (item) => {
     if(!props.detailsPath) return;
-    router.get(route(props.detailsPath, item.id));
+    router.get(route(props.detailsPath, item[props.detailsValue]));
 }
 </script>
 
