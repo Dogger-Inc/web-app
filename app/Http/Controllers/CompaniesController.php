@@ -102,7 +102,7 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function reject(Company $company, $userId) {
+    public function reject(Company $company, int $userId) {
         $user = auth()->user();
 
         if($user->id == $userId) {
@@ -120,7 +120,7 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function accept(Company $company, $userId) {
+    public function accept(Company $company, int $userId) {
         $company->users()->updateExistingPivot($userId, ['is_active' => true]);
 
         return redirect()->back()->with('toast', [

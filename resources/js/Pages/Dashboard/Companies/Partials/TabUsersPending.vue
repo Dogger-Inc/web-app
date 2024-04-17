@@ -16,7 +16,7 @@ const props = defineProps({
 
 const acceptUser = (id) => {
     router
-        .patch(route('dashboard.companies.accept.patch', {company: props.company.id, user: id}), 
+        .patch(route('dashboard.companies.accept.patch', {company: props.company.id, userId: id}), 
         {},
         {preserveState: false}
     )
@@ -24,7 +24,7 @@ const acceptUser = (id) => {
 
 const rejectUser = (id) => {
     router
-        .delete(route('dashboard.companies.reject.delete', {company: props.company, user: id}), 
+        .delete(route('dashboard.companies.reject.delete', {company: props.company, userId: id}), 
         {},
         {preserveState: false}
     )
