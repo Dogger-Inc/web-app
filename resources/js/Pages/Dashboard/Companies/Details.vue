@@ -20,17 +20,17 @@ defineProps({
         <LinedTitle :title="company.name" />
 
         <TabbedCard class="mt-6 sm:mt-10">
-            <div :title="t('companies.details')">
+            <div title="Informations">
                 <TabDetails :company="company" />
             </div>
-            <div :title="t('companies.projects')">
+            <div title="Projet(s)">
                 <TabProjects :projects="company.projects" />
             </div>
             <div title="Utilisateur(s) actif(s)">
-                <TabUsers :users="company.activeUsers" :company="company" />
+                <TabUsers :users="company.activeUsers" :company-id="company.id" />
             </div>
             <div title="En attente (inactif)">
-                <TabUsersPending :users="company.inactiveUsers" :company="company" />
+                <TabUsersPending :users="company.inactiveUsers" :company-id="company.id" />
             </div>
         </TabbedCard>
     </DashboardLayout>

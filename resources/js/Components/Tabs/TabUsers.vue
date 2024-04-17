@@ -11,11 +11,10 @@ const props = defineProps({
 });
 
 const revokeUser = (id) => {
-    if (!props.company) return;
+    if (!props.companyId) return;
 
     router.delete(
         route('dashboard.companies.reject.delete', { company: props.companyId, userId: id }),
-        {},
         { preserveState: false }
     );
 }
