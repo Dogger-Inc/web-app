@@ -8,7 +8,7 @@ export default defineConfig({
 		alias: {
             $fonts: resolve('public/fonts'),
             '@assets': resolve('resources/assets'),
-            'ziggy-js': resolve('vendor/tightenco/ziggy/dist/vue.es'),
+            'ziggy-js': resolve('vendor/tightenco/ziggy'),
         },
 	},
     plugins: [
