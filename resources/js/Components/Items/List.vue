@@ -1,9 +1,12 @@
 <script setup>
-import { ref, computed, watch, useSlots } from 'vue';
+import { computed, useSlots } from 'vue';
 import { usePage, router } from '@inertiajs/vue3';
 import { ChevronRightIcon } from '@heroicons/vue/24/outline';
 import Pagination from '@/Components/Items/Pagination.vue';
 import SearchBar from '@/Components/Items/Searchbar.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const slots = useSlots();
 const props = defineProps({
@@ -11,9 +14,12 @@ const props = defineProps({
         type: Object,
         required: true
     },
-    pagination : {
-        type: Boolean,
-        default: true
+    pagination: {
+        type: Object,
+        default: () => ({enabled: true, perPageSelect: true, pageName: 'page'})
+    },
+    placeholder: {
+        type: String,
     },
     searchbar : {
         type: Boolean,
@@ -22,15 +28,17 @@ const props = defineProps({
     searchByOpts : Array,
     detailsPath : String,
 });
-
-const newData = ref([]);
-const hasData = computed(() => newData.value.length > 0);
+const placeholderToShow = computed( () => props.placeholder || t("no_data") )
 const hasSearch = usePage().props.route.query.search ? true : false;
-const isClickable = computed(() => props.detailsPath ? true : false);
 
-watch(() => props.data, (newVal) => {
-    newData.value = props.pagination ? newVal.data : newVal;
-}, { deep: true, immediate: true });
+const newData = computed(() => paginationOpts.value.enabled ? props.data.data : props.data);
+const hasData = computed(() => newData.value.length > 0);
+const isClickable = computed(() => props.detailsPath ? true : false);
+const paginationOpts = computed(() => ({
+    enabled: props.pagination.enabled,
+    perPageSelect: props.pagination.perPageSelect,
+    pageName: props.pagination.pageName
+}));
 
 const select = (item) => {
     if(!props.detailsPath) return;
@@ -48,7 +56,7 @@ const select = (item) => {
                 :key="item.id"
                 @click="select(item)"
                 :class="{'cursor-pointer': isClickable}"
-                class="hover:bg-dogger-gray-light"
+                class="hover:bg-dogger-gray-light rounded-lg"
             >
                 <div v-if="slots.default" class="inline-flex gap-4 items-center truncate">
                     <slot v-bind="item" />
@@ -57,10 +65,15 @@ const select = (item) => {
                     <ChevronRightIcon class="h-5 w-5 text-wiibus-black hidden sm:block" />
                 </div>
             </li>
-            <li v-else-if="hasSearch" class="no-data">Aucun résultat</li>
-            <li v-else class="no-data">Aucune donnée</li>
+            <li v-else-if="hasSearch" class="no-data">{{$t('no_result')}}</li>
+            <li v-else class="no-data">{{ placeholderToShow }}</li>
         </ul>
-        <Pagination v-if="hasData && pagination" :paginator="data" />
+        <Pagination
+            v-if="hasData && paginationOpts.enabled"
+            :paginator="data"
+            :per-page-select="paginationOpts.perPageSelect"
+            :page-name="paginationOpts.pageName"
+        />
     </div>
 </template>
 

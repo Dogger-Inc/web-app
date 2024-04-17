@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import {
     ChartBarIcon,
@@ -12,6 +12,9 @@ import PublicLayout from '@/Layouts/Public.vue';
 import MainIllustration from '@assets/images/main_illustration.png';
 
 const { t } = useI18n({});
+
+const isLoggedIn = usePage().props.auth.user !== null;
+
 const features = [
     {
         name: t("homepage.features.easy_to_implement.title"),
@@ -89,8 +92,28 @@ const faqs = [
     {
         id: 2,
         question: t("homepage.faqs.open_source.question"),
-        answer: t("homepage.faqs.open_source.question"),
+        answer: t("homepage.faqs.open_source.answer"),
         link: "https://github.com/Dogger-Inc"
+    },
+    {
+        id: 3,
+        question: t("homepage.faqs.why_dogger.question"),
+        answer: t("homepage.faqs.why_dogger.answer"),
+    },
+    {
+        id: 4,
+        question: t("homepage.faqs.free_tier.question"),
+        answer: t("homepage.faqs.free_tier.answer"),
+    },
+    {
+        id: 5,
+        question: t("homepage.faqs.support.question"),
+        answer: t("homepage.faqs.support.answer"),
+    },
+    {
+        id: 6,
+        question: t("homepage.faqs.lifetime.question"),
+        answer: t("homepage.faqs.lifetime.answer"),
     }
 ]
 </script>
@@ -121,7 +144,7 @@ const faqs = [
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <Link :href="route('login')"
                                 class="rounded-md bg-dogger-orange-400 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-dogger-orange-500">
-                                {{ $t('signin') }}
+                                {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
                             </Link>
                             <a href="#features" class="text-sm font-semibold leading-6 text-gray-900">{{ $t('learnmore') }}
                                 <span aria-hidden="true">→</span>

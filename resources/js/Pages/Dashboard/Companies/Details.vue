@@ -4,7 +4,7 @@ import LinedTitle from '@/Components/LinedTitle.vue';
 import TabbedCard from '@/Components/Items/TabbedCard.vue';
 import TabDetails from '@/Pages/Dashboard/Companies/Partials/TabDetails.vue';
 import TabProjects from '@/Pages/Dashboard/Companies/Partials/TabProjects.vue';
-import TabUsers from '@/Pages/Dashboard/Companies/Partials/TabUsers.vue';
+import TabUsers from '@/Components/Tabs/TabUsers.vue';
 
 defineProps({
     company: {
@@ -19,13 +19,13 @@ defineProps({
         <LinedTitle :title="company.name" />
 
         <TabbedCard class="mt-6 sm:mt-10">
-            <div title="Informations">
+            <div :title="t('companies.details')">
                 <TabDetails :company="company" />
             </div>
-            <div title="Projet(s)">
+            <div :title="t('companies.projects')">
                 <TabProjects :projects="company.projects" />
             </div>
-            <div title="Utilisateur(s)">
+            <div :title="t('companies.users')">
                 <TabUsers :users="company.users" />
             </div>
         </TabbedCard>

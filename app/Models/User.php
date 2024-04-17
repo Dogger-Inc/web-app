@@ -52,6 +52,17 @@ class User extends Authenticatable
         'fullname'
     ];
 
+    public function getRoleInCompany($companyId)
+    {
+        $company = $this->companies()->where('company_id', $companyId)->first();
+
+        if (!$company) {
+            return null;
+        }
+
+        return $company->pivot->role;
+    }
+
 
     // One to Many
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany

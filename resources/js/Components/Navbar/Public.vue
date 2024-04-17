@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LanguageSelector from '@/Components/LanguageSelector.vue';
 import Logo from '@assets/images/logo.png';
 
 const { t } = useI18n({});
 const isReduced = ref(true);
+const isLoggedIn = usePage().props.auth.user !== null;
 
 const anchors = [
     { id: '#features', text: t('navbar.public.features') },
@@ -65,7 +66,7 @@ function setNavbarDisplay() {
         <!-- Tablet and Computer -->
         <nav class="hidden md:flex">
             <div class="logo-side">
-                <Link href="/">
+                <Link :href="route('homepage')">
                     <img :src="Logo" alt="Dogger logo" width="45" height="45" />
                     <span class="sr-only">{{ $t('navbar.public.home') }}</span>
                 </Link>
@@ -80,11 +81,8 @@ function setNavbarDisplay() {
             </div>
             <div class="button-side relative">
                 <LanguageSelector />
-                <Link
-                    :href="route('login')"
-                    class="btn primary sm"
-                >
-                    {{ $t('signin') }}
+                <Link :href="route('login')" class="btn primary sm">
+                    {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
                 </Link>
             </div>
         </nav>
@@ -96,8 +94,11 @@ function setNavbarDisplay() {
             </div>
             
             <div class="flex items-center gap-3">
-                <LanguageSelector class="mt-2" />
-                <Link href="/">
+                <Link :href="route('login')" class="btn primary xs">
+                    {{ isLoggedIn ? $t('mainpage') : $t('signin') }}
+                </Link>
+                <LanguageSelector />
+                <Link :href="route('homepage')" class="mb-2">
                     <img :src="Logo" alt="Dogger logo" width="40" height="40" />
                     <span class="sr-only">{{ $t('navbar.public.home') }}</span>
                 </Link>

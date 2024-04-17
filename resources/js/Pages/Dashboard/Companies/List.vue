@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 import ModalLayout from '@/Layouts/Modal.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
@@ -53,7 +54,7 @@ const submit = (addOrJoin) => {
 
 <template>
     <DashboardLayout>
-        <LinedTitle title="Companies">
+        <LinedTitle :title="t('companies.title')">
             <div v-if="hasCompanies" class="flex flex-row gap-4">
                 <button @click.prevent="modalStateAdd = true" class="btn primary sm">
                     {{t("companies.add")}}
@@ -67,7 +68,7 @@ const submit = (addOrJoin) => {
         <ItemsList
             v-if="hasCompanies"
             :data="companies"
-            :searchByOpts="[{ name: t('companies.name'), key: 'name' }]"
+            :searchByOpts="[{ name: t('name'), key: 'name' }]"
             detailsPath="dashboard.companies.details"
             class="mt-8"
             v-slot="item"
@@ -99,7 +100,7 @@ const submit = (addOrJoin) => {
             <form @submit.prevent="submit('add')">
                 <InputWapper
                     v-model="formAdd.name"
-                    :title="t('companies.name')"
+                    :title="t('name')"
                     :error="formAdd.errors.name"
                     :required="true"
                 />
@@ -110,7 +111,7 @@ const submit = (addOrJoin) => {
         </ModalLayout>
 
         <ModalLayout :state="modalStateJoin" @close="modalStateJoin = false" additionalClasses="card max-w-3xl w-full">
-            <LinedTitle title="Join a company" />
+            <LinedTitle :title="t('companies.join_existing')" />
 
             <form @submit.prevent="submit('join')">
                 <InputWapper

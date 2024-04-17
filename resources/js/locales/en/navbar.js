@@ -8,7 +8,16 @@ export default {
             "doc": "Docs",
         },
         "dashboard": {
-    
+            "main_menu": "Open main menu",
+            "user_menu": "Open user menu",
+            "dashboard": "Dashboard",
+            "companies": "Companies",
+            "projects": "Projects",
+            "issues": "Issues",
+            "performances": "Performances",
+            "documentation": "Documentation",
+            "profile": "Your Profile",
+            "signout": "Sign out",
         }
     }
 }
