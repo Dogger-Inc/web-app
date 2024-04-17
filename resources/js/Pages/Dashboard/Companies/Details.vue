@@ -5,6 +5,8 @@ import TabbedCard from '@/Components/Items/TabbedCard.vue';
 import TabDetails from '@/Pages/Dashboard/Companies/Partials/TabDetails.vue';
 import TabProjects from '@/Pages/Dashboard/Companies/Partials/TabProjects.vue';
 import TabUsers from '@/Components/Tabs/TabUsers.vue';
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({});
 
 defineProps({
     company: {

@@ -6,6 +6,7 @@ export default {
         "submit": "提出する",
         "edit": "プロジェクトを更新する",
         "update": "確認する",
-        "cancel": "キャンセル"
+        "cancel": "キャンセル",
+        "key": "プロジェクトキー"
     }
 }
