@@ -3,19 +3,13 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import Badge from '@/Components/Badge.vue';
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { useI18n } from 'vue-i18n';
-
-dayjs.extend(duration)
-dayjs.extend(relativeTime)
 
 const { t } = useI18n({});
 
 const props = defineProps({
     performanceGroups: {
-        type: Array,
+        type: Object,
         required: true,
     },
 });
@@ -24,7 +18,7 @@ const props = defineProps({
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="t('performances.issues')"></LinedTitle>
+        <LinedTitle :title="t('performances.performances')"></LinedTitle>
 
         <ItemsList
             :data="performanceGroups"

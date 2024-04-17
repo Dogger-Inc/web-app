@@ -11,7 +11,11 @@ class PerformancesController extends Controller
 {
     public function list (): \Inertia\Response
     {
-        $groups = PerformanceGroup::autoSearch('message')
+        $user = auth()->user();
+        $projects = $user->projects()->get();
+
+        $groups = PerformanceGroup::whereBelongsTo($projects)
+            ->autoSearch('message')
             ->autoOrder()
             ->autoPaginate();
 

@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Issue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\Rule;
 
 class IssuesController extends Controller
 {
     public function list (): \Inertia\Response
     {
-        $issues = Issue::autoSearch('message')
+        $user = auth()->user();
+        $projects = $user->projects()->get();
+
+        $issues = Issue::whereBelongsTo($projects)
+            ->autoSearch('message')
             ->autoOrder()
             ->autoPaginate();
 
