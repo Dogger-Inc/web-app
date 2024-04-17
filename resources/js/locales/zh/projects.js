@@ -6,6 +6,7 @@ export default {
         "submit": "提交",
         "edit": "更新项目",
         "update": "确认",
-        "cancel": "取消"
+        "cancel": "取消",
+        "key": "项目重点"
     }
 }
