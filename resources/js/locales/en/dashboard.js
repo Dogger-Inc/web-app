@@ -7,5 +7,6 @@ export default {
         "projects_count": "Projects count",
         "issues_count": "Issues count",
         "last24h_issues_count": "Last 24h issues count",
+        "refresh": "Refresh"
     }
 }
