@@ -102,7 +102,7 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function revoke(Company $company, $userId) {
+    public function reject(Company $company, $userId) {
         $user = auth()->user();
 
         if($user->id == $userId) {
@@ -126,15 +126,6 @@ class CompaniesController extends Controller
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'User accepted !',
-        ]);
-    }
-
-    public function reject(Company $company, $userId) {
-        $company->users()->detach($userId);
-
-        return redirect()->back()->with('toast', [
-            'type' => 'success',
-            'message' => 'User rejected !',
         ]);
     }
 }

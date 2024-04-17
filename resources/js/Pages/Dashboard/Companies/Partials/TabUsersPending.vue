@@ -16,7 +16,7 @@ const props = defineProps({
 
 const acceptUser = (id) => {
     router
-        .patch(route('dashboard.companies.accept.patch', {company: props.company, user: id}), 
+        .patch(route('dashboard.companies.accept.patch', {company: props.company.id, user: id}), 
         {},
         {preserveState: false}
     )

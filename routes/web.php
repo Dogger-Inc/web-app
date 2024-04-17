@@ -45,8 +45,8 @@ Route::group([
         Route::post('/create', 'store')->name('create.post');
         Route::get('/join/{company:key}', 'join')->name('join');
         Route::patch('/{company}/invitation', 'refresh_code')->name('refresh_code.patch');
-        Route::delete('/{company}/{user}/revoke', 'revoke')->name('revoke.delete');
-        Route::patch('/{company}/{user}/accept', 'accept')->name('accept.patch');
+        Route::delete('/{company}/reject/{user}', 'reject')->name('reject.delete');
+        Route::patch('/{company}/accept/{user}', 'accept')->name('accept.patch');
     });
 
     //Profile

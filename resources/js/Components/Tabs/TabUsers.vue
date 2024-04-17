@@ -15,7 +15,7 @@ const props = defineProps({
 
 const revokeUser = (id) => {
     router
-        .delete(route('dashboard.companies.revoke.delete', {company: props.company, user: id}), 
+        .delete(route('dashboard.companies.reject.delete', {company: props.company.id, user: id}), 
         {},
         { preserveState: false }
     )
