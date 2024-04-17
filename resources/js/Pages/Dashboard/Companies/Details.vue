@@ -7,8 +7,6 @@ import TabDetails from '@/Pages/Dashboard/Companies/Partials/TabDetails.vue';
 import TabProjects from '@/Pages/Dashboard/Companies/Partials/TabProjects.vue';
 import TabUsersPending from '@/Pages/Dashboard/Companies/Partials/TabUsersPending.vue';
 import TabUsers from '@/Components/Tabs/TabUsers.vue';
-import { useI18n } from 'vue-i18n';
-const { t } = useI18n({});
 
 const { t } = useI18n({});
 
