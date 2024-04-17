@@ -7,27 +7,26 @@ const props = defineProps({
         type: Object,
         required: true,
     },
-
-    company: {
-        type: Object,
-        required: true,
+    companyId: {
+        type: Number,
+        required: true
     }
 });
 
 const acceptUser = (id) => {
-    router
-        .patch(route('dashboard.companies.accept.patch', {company: props.company.id, userId: id}), 
+    router.patch(
+        route('dashboard.companies.accept.patch', {company: props.companyId, userId: id}), 
         {},
         {preserveState: false}
-    )
+    );
 }
 
 const rejectUser = (id) => {
-    router
-        .delete(route('dashboard.companies.reject.delete', {company: props.company, userId: id}), 
+    router.delete(
+        route('dashboard.companies.reject.delete', {company: props.companyId, userId: id}), 
         {},
         {preserveState: false}
-    )
+    );
 }
 
 </script>
