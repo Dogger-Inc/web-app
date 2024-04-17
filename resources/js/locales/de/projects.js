@@ -6,6 +6,7 @@ export default {
         "submit": "Einreichen",
         "edit": "Projekt aktualisieren",
         "update": "Bestätigen",
-        "cancel": "Stornieren"
+        "cancel": "Stornieren",
+        "key": "Projektschlüssel"
     }
 }
