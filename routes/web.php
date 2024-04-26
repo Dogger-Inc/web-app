@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PerformancesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
@@ -27,13 +27,13 @@ Route::get('/', [StaticViewController::class, 'homepage'])->name('homepage');
 Route::get('/documentation', [StaticViewController::class, 'doc'])->name('doc');
 Route::get('/locale/{locale}', [StaticViewController::class, 'setLocale'])->name('locale.set');
 
+
 Route::group([
     'as' => 'dashboard.',
     'middleware' => ['auth'],
 ], function () {
-    Route::get('/dashboard', function () {
-        return Inertia\Inertia::render('Dashboard/Index');
-    })->name('index');
+    Route::get('/dashboard', [StatsController::class, 'index'])->name('index');
+    Route::get('/dashboard/cache/clear', [StatsController::class, 'clearCache'])->name('cache.clear');
 
     //Users
     Route::group([
@@ -55,6 +55,8 @@ Route::group([
         Route::post('/create', 'store')->name('create.post');
         Route::get('/join/{company:key}', 'join')->name('join');
         Route::patch('/{company}/invitation', 'refresh_code')->name('refresh_code.patch');
+        Route::delete('/{company}/reject/{userId}', 'reject')->name('reject.delete');
+        Route::patch('/{company}/accept/{userId}', 'accept')->name('accept.patch');
     });
 
     //Profile

@@ -6,6 +6,7 @@ export default {
         "submit": "Soumettre",
         "edit": "Mettre à jour le projet",
         "update": "Confirmer",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "key": "Clé du projet"
     }
 }

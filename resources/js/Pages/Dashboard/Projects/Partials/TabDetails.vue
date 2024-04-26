@@ -87,7 +87,7 @@ const handleUpdateProjectCode = () => {
         </div>
         <div>
             <DataCell
-                :title="t('companies.invitation_code')"
+                :title="t('projects.key')"
                 :value="project.key"
                 @click.prevent="copyToClipboard(project.key)"
                 class="sm:border-t-0"

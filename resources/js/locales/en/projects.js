@@ -6,6 +6,7 @@ export default {
         "submit": "Submit",
         "edit": "Update project",
         "update": "Confirm",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "key":"Project key",
     }
 }
