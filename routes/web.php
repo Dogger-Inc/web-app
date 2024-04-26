@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\IssuesController;
+use App\Http\Controllers\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,14 +26,13 @@ Route::get('/', [StaticViewController::class, 'homepage'])->name('homepage');
 Route::get('/documentation', [StaticViewController::class, 'doc'])->name('doc');
 Route::get('/locale/{locale}', [StaticViewController::class, 'setLocale'])->name('locale.set');
 
+
 Route::group([
     'as' => 'dashboard.',
     'middleware' => ['auth'],
 ], function () {
-    Route::get('/dashboard', function () {
-        return Inertia\Inertia::render('Dashboard/Index');
-    })->name('index');
-
+    Route::get('/dashboard', [StatsController::class, 'index'])->name('index');
+    Route::get('/dashboard/cache/clear', [StatsController::class, 'clearCache'])->name('cache.clear');
 
     //Companies
     Route::group([
