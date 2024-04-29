@@ -7,7 +7,7 @@ import Stacktrace from '@/Components/Stacktrace.vue';
 import CommentsThread from '@/Components/CommentsThread.vue';
 import { useI18n } from 'vue-i18n';
 import UsersSearch from '@/Components/Form/UsersSearch.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 const props = defineProps({
     issue: {
@@ -23,23 +23,21 @@ const props = defineProps({
 const { t } = useI18n();
 
 function handleAssignUser(user) {
-    const form = useForm({
-        user_id: user.id
-    });
-    form.post(route('dashboard.issues.assignUser.post', props.issue.id), {
-        onStart: () => form.clearErrors(),
-        onSuccess: () => {},
-    }, { preserveState: false, preserveScroll: true });
+    router.post(
+        route('dashboard.issues.assignUser.post', props.issue.id),
+        { user_id: user.id },
+        {},
+        { preserveState: false, preserveScroll: true }
+    );
 }
 
 function handleUnassignUser(user) {
-    const form = useForm({
-        user_id: user.id
-    });
-    form.post(route('dashboard.issues.unassignUser.post', props.issue.id), {
-        onStart: () => form.clearErrors(),
-        onSuccess: () => {},
-    }, { preserveState: false, preserveScroll: true });
+    router.post(
+        route('dashboard.issues.unassignUser.post', props.issue.id),
+        { user_id: user.id },
+        {},
+        { preserveState: false, preserveScroll: true }
+    );
 }
 </script>
 

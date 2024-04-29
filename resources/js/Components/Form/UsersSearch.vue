@@ -6,20 +6,20 @@
             placeholder="Search user here..."
             class="border rounded p-2 text-sm"
         />
-        <div
+        <ul
             v-if="displayResult"
-            class="absolute w-full top-full transform translate-y-2 shadow rounded-lg overflow-hidden border flex flex-col gap-2 text-sm bg-white"
+            class="absolute w-full top-full transform translate-y-2 shadow rounded-lg overflow-hidden border text-sm bg-white"
         >
-            <div
+            <li
                 v-for="user in results" :key="user.id"
                 class="cursor-pointer hover:bg-gray-50 p-2 flex flex-col bg-white"
                 @click="() => handleSelectItem(user)"
             >
                 <span>{{ user.fullname }}</span>
                 <span class="text-xs italic text-gray-400">{{ user.email }}</span>
-            </div>
+            </li>
             <span v-if="results.length === 0" class="text-xs text-gray-400 p-2 text-center bg-white">No results</span>
-        </div>
+        </ul>
     </div>
 </template>
 
@@ -42,6 +42,8 @@ const displayResult = ref(false)
 
 async function fetchUsers() {
     try {
+        if (!search.value) return;
+
         const { data } = await axios.get(route('dashboard.users.search'), { params: { search: search.value, 'property': 'email' } });
         results.value = data;
         displayResult.value = true;

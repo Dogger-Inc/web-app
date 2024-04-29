@@ -26,4 +26,11 @@ class Performance extends Model
     {
         return $this->MorphMany(Comment::class, 'commentable');
     }
+
+    // One to Many
+    public function group():  \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(PerformanceGroup::class, 'id', 'group_id');
+    }
+
 }
