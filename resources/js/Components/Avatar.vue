@@ -9,7 +9,7 @@ const initialsLetter = computed (() => {
 </script>
 
 <template>
-    <div class="rounded-full bg-dogger-orange-600 p-2 text-white font-bold flex items-center justify-center">
+    <div class="h-12 w-12 rounded-full bg-dogger-orange-600 p-2 text-white font-bold flex items-center justify-center">
         {{ initialsLetter }}
     </div>
 </template>

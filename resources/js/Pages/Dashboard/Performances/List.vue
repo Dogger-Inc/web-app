@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n({});
 
 const props = defineProps({
-    issues: {
+    performanceGroups: {
         type: Object,
         required: true,
     },
@@ -18,19 +18,19 @@ const props = defineProps({
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="t('issues.issues')"></LinedTitle>
+        <LinedTitle :title="t('performances.performances')"></LinedTitle>
 
         <ItemsList
-            :data="issues"
+            :data="performanceGroups"
             v-slot="item"
-            :searchByOpts="[{ name: t('issues.message'), key: 'message' }]"
-            detailsPath="dashboard.issues.details"
+            :searchByOpts="[{ name: t('performances.comment'), key: 'comment' }]"
+            detailsPath="dashboard.performances.details"
+            detailsValue="key"
             class="w-full mt-8"
         >
             <div class="text-sm md:text-base flex flex-row items-center gap-2">
                 <Badge v-if="item.env" :title="item.env" />
-                <Badge v-if="item.http_code" :title="`${item.http_code}`" />
-                <span>{{ item.message }}</span>
+                <span>{{ item.key }}</span>
             </div>
         </ItemsList>
     </DashboardLayout>

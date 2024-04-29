@@ -1,6 +1,5 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
-import { UserIcon } from '@heroicons/vue/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import {
     Disclosure,
@@ -22,7 +21,7 @@ const navigation = [
     { name: t('navbar.dashboard.companies'), href: 'dashboard.companies.list' },
     { name: t('navbar.dashboard.projects'), href: 'dashboard.projects.list' },
     { name: t('navbar.dashboard.issues'), href: 'dashboard.issues.list' },
-    // { name: t('navbar.dashboard.performances'), href: '#' },
+    { name: t('navbar.dashboard.performances'), href: 'dashboard.performances.list' },
     { name: t('navbar.dashboard.documentation'), href: 'doc' },
 ];
 
@@ -73,7 +72,7 @@ const isCurrentRoute = (path) => {
                             <span class="sr-only">{{ $t('navbar.dashboard.user_menu') }}</span>
                         </MenuButton>
 
-                        <transition
+                        <Transition
                             enter-active-class="transition ease-out duration-100"
                             enter-from-class="transform opacity-0 scale-95"
                             enter-to-class="transform opacity-100 scale-100"
@@ -88,7 +87,7 @@ const isCurrentRoute = (path) => {
                                     </Link>
                                 </MenuItem>
                             </MenuItems>
-                        </transition>
+                        </Transition>
                     </Menu>
                 </div>
             </div>

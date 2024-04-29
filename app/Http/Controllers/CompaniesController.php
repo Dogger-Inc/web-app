@@ -28,9 +28,14 @@ class CompaniesController extends Controller
     {
         $user = auth()->user();
         // for advanced query purpose we need to load users and projects separately
-        $users = $company->users()
+        $inactiveUsers = $company->users()
             ->orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'users_page');
+            ->wherePivot('is_active', false)
+            ->paginate(10, ['*'], 'users_disabled_page');
+        $activeUsers = $company->users()
+            ->orderBy('created_at', 'desc')
+            ->wherePivot('is_active', true)
+            ->paginate(10, ['*'], 'users_active_page');
         $projects = $company->projects()
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'projects_page');
@@ -38,7 +43,8 @@ class CompaniesController extends Controller
         $userRole = $user->getRoleInCompany($company->id);
         $company->editable = $userRole != 'user';
 
-        $company->users = $users;
+        $company->inactiveUsers = $inactiveUsers;
+        $company->activeUsers = $activeUsers;
         $company->projects = $projects;
 
         return inertia('Dashboard/Companies/Details', [
@@ -93,6 +99,33 @@ class CompaniesController extends Controller
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => 'Company joined !',
+        ]);
+    }
+
+    public function reject(Company $company, int $userId) {
+        $user = auth()->user();
+
+        if($user->id == $userId) {
+            return redirect()->back()->with('toast', [
+                'type' => 'error',
+                'message' => 'You can\'t revoke yourself !',
+            ]);
+        }
+
+        $company->users()->detach($userId);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User revoked !',
+        ]);
+    }
+
+    public function accept(Company $company, int $userId) {
+        $company->users()->updateExistingPivot($userId, ['is_active' => true]);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => 'User accepted !',
         ]);
     }
 }

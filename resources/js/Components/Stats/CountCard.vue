@@ -1,0 +1,57 @@
+<script setup>
+import { Link } from '@inertiajs/vue3';
+
+const props = defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: Number,
+        required: true
+    },
+    percentage: String,
+    routeName: {
+        type: String,
+        required: true
+    },
+    icon: {
+        type: Function,
+        required: true
+    },
+    iconBg: {
+        type: String,
+        default: 'bg-dogger-orange-500'
+    }
+})
+</script>
+
+<template>
+    <Link
+        :href="route(routeName)"
+        class="overflow-hidden rounded-lg bg-white shadow hover:bg-gray-50"
+    >
+        <div class="flex items-center p-5">
+            <dl class="mr-5 w-0 flex-1">
+                <dt class="truncate text-sm font-medium text-gray-500">{{ title }}</dt>
+                <dd>
+                    <div class="text-lg font-medium text-gray-900">
+                        {{ value }}
+                        <span v-if="percentage" class="text-red-500 ml-2 text-sm">
+                            {{ percentage }}
+                        </span>
+                    </div>
+                </dd>
+            </dl>
+            <div class="bgIcon" :class="props.iconBg">
+                <component :is="icon" />
+            </div>
+        </div>
+    </Link>
+</template>
+
+<style lang="scss" scoped>
+.bgIcon {
+    @apply flex justify-center items-center p-2 rounded-full w-10 h-10 text-white text-xl;
+}
+</style>

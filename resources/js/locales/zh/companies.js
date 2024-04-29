@@ -10,7 +10,8 @@ export default {
         "not_registred_to_company": "您没有注册任何公司",
         "details": "细节",
         "projects": "项目",
-        "users": "用户",
+        "active_users": "活跃用户",
+        "pending_users": "待审用户（非活跃）",
         "issues": "问题"
     }
 }

@@ -17,7 +17,9 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'reply_to',
-        'contect'
+        'content',
+        'commentable_type',
+        'commentable_id'
     ];
 
     // One to Many
