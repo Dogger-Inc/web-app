@@ -38,7 +38,6 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('env')->nullable();
-            $table->string('comment')->nullable();
         });
     }
 };
