@@ -32,13 +32,13 @@ return new class extends Migration
             $table->dropForeign('performances_group_id_foreign');
             $table->dropColumn('group_id');
 
+            $table->unsignedInteger('duration')->change();
             $table->foreignId('project_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('env')->nullable();
             $table->string('comment')->nullable();
-            $table->timestamps();
         });
     }
 };

@@ -7,7 +7,7 @@ import CommentsThread from '@/Components/CommentsThread.vue';
 import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 import UsersSearch from '@/Components/Form/UsersSearch.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 const props = defineProps({
     group: {
@@ -27,23 +27,21 @@ const props = defineProps({
 const { t } = useI18n();
 
 function handleAssignUser(user) {
-    const form = useForm({
-        user_id: user.id
-    });
-    form.post(route('dashboard.performances.assignUser.post', props.group.id), {
-        onStart: () => form.clearErrors(),
-        onSuccess: () => {},
-    }, { preserveState: false, preserveScroll: true });
+    router.post(
+        route('dashboard.performances.assignUser.post', props.group.id),
+        { user_id: user.id },
+        {},
+        { preserveState: false, preserveScroll: true }
+    );
 }
 
 function handleUnassignUser(user) {
-    const form = useForm({
-        user_id: user.id
-    });
-    form.post(route('dashboard.performances.unassignUser.post', props.group.id), {
-        onStart: () => form.clearErrors(),
-        onSuccess: () => {},
-    }, { preserveState: false, preserveScroll: true });
+    router.post(
+        route('dashboard.performances.unassignUser.post', props.group.id),
+        { user_id: user.id },
+        {},
+        { preserveState: false, preserveScroll: true }
+    );
 }
 </script>
 
