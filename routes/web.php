@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\IssuesController;
