@@ -21,7 +21,7 @@ const navigation = [
     { name: t('navbar.dashboard.companies'), href: 'dashboard.companies.list' },
     { name: t('navbar.dashboard.projects'), href: 'dashboard.projects.list' },
     { name: t('navbar.dashboard.issues'), href: 'dashboard.issues.list' },
-    // { name: t('navbar.dashboard.performances'), href: '#' },
+    { name: t('navbar.dashboard.performances'), href: 'dashboard.performances.list' },
     { name: t('navbar.dashboard.documentation'), href: 'doc' },
 ];
 

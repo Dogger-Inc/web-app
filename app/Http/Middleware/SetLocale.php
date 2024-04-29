@@ -17,7 +17,7 @@ class SetLocale
     {
         if (session()->has('locale'))
             app()->setLocale(session('locale'));
-        else 
+        else
             app()->setLocale(config('app.locale'));
 
         return $next($request);

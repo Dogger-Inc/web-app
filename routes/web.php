@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\PerformancesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\StaticViewController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\IssuesController;
-use App\Http\Controllers\StatsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,15 @@ Route::group([
 ], function () {
     Route::get('/dashboard', [StatsController::class, 'index'])->name('index');
     Route::get('/dashboard/cache/clear', [StatsController::class, 'clearCache'])->name('cache.clear');
+
+    //Users
+    Route::group([
+        'prefix' => 'users',
+        'as' => 'users.',
+        'controller' => UsersController::class
+    ], function () {
+        Route::get('/search', 'search')->name('search');
+    });
 
     //Companies
     Route::group([
@@ -82,7 +93,8 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{issue}/show', 'details')->name('details');
         Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
-        Route::patch('/{issue}/comment', 'editComment')->name('editComment.patch');
+        Route::post('/{issue}/assign', 'assignUser')->name('assignUser.post');
+        Route::post('/{issue}/unassign', 'unassignUser')->name('unassignUser.post');
     });
 
     //Comments
@@ -92,6 +104,19 @@ Route::group([
         'controller' => CommentsController::class
     ], function () {
         Route::patch('/{comment}', 'editComment')->name('editComment.patch');
+    });
+
+    //Performances
+    Route::group([
+        'prefix' => 'performances',
+        'as' => 'performances.',
+        'controller' => PerformancesController::class
+    ], function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/{performance}/show', 'details')->name('details');
+        Route::post('/{performanceGroup}/comment', 'addComment')->name('addComment.post');
+        Route::post('/{performanceGroup}/assign', 'assignUser')->name('assignUser.post');
+        Route::post('/{performanceGroup}/unassign', 'unassignUser')->name('unassignUser.post');
     });
 });
 

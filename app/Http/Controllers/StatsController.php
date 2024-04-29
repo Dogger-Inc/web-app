@@ -40,7 +40,7 @@ class StatsController extends Controller
      * Returns the data for the stats cards
      *
      * @param  \Illuminate\Database\Eloquent\Collection $companies
-     * 
+     *
      * @return array
      */
     private function getCardsData($companies): array
@@ -86,7 +86,7 @@ class StatsController extends Controller
 
         // Fetch projects with issues and companies eagerly loaded
         $projects = Project::with([
-            'company', 
+            'company',
             'issues' => function ($query) {
                 $query->whereBetween('triggered_at', [now()->subDays(6), now()])
                     ->orderBy('triggered_at', 'asc');

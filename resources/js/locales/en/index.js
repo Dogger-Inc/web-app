@@ -6,6 +6,7 @@ import companies from './companies'
 import navbar from './navbar'
 import profile from './profile'
 import issues from './issues'
+import performances from './performances'
 import lang from './lang'
 import login from './login'
 import register from './register'
@@ -24,4 +25,5 @@ export default {
     ...forgotPassword,
     ...projects,
     ...issues,
+    ...performances,
 }
