@@ -13,11 +13,14 @@ class IssuesController extends Controller
     {
         $user = auth()->user();
         $projects = $user->projects()->get();
+        $issues = Issue::autoPaginate();
 
-        $issues = Issue::whereBelongsTo($projects)
-            ->autoSearch('message')
-            ->autoOrder()
-            ->autoPaginate();
+        if (!$projects->isEmpty()) {
+            $issues = Issue::whereBelongsTo($projects)
+                ->autoSearch('message')
+                ->autoOrder()
+                ->autoPaginate();
+        }
 
         return inertia('Dashboard/Issues/List', [
             'issues' => $issues,
