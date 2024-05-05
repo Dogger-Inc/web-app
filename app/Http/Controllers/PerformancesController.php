@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Performance;
 use App\Models\PerformanceGroup;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\Rule;
 
 class PerformancesController extends Controller
