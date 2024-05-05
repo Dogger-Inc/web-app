@@ -27,6 +27,9 @@ echo "Deploying application ..."
 
     # Reload PHP to update opcache
     echo $1 | sudo -S service php8.2-fpm reload
+
+    # Restart pm2 (for SSR)
+    pm2 startOrRestart ecosystem.config.cjs
 # Exit maintenance mode
 php artisan up
 
