@@ -3,7 +3,6 @@ import { ref, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import PublicLayout from '@/Layouts/Public.vue';
 
-const jsEnabled = ref(false);
 const content = ref('');
 const lang = usePage().props.locale;
 
@@ -13,9 +12,7 @@ const link = `/docs/doc-${lang}.md`;
 let VueMarkdown;
 onMounted(async () => {
     if (typeof window !== "undefined") {
-        jsEnabled.value = true;
         VueMarkdown = (await import('vue-markdown-render')).default;
-        // additional setup or state updates can be performed here
     }
 });
 
@@ -28,7 +25,7 @@ onMounted(() => {
 
 <template>
     <PublicLayout>
-        <div v-if="jsEnabled" class="md">
+        <div v-if="VueMarkdown" class="md">
             <vue-markdown :source="content"></vue-markdown>
         </div>
     </PublicLayout>
