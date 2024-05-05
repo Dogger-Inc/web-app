@@ -1,5 +1,4 @@
 import '../scss/app.scss';
-import 'vue-toastification/dist/index.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';

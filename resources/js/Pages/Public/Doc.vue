@@ -1,14 +1,20 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import VueMarkdown from 'vue-markdown-render'
 import PublicLayout from '@/Layouts/Public.vue';
-
 
 const content = ref('');
 const lang = usePage().props.locale;
 
 const link = `/docs/doc-${lang}.md`;
+
+// dynamically import the VueMarkdown only in client-side
+let VueMarkdown;
+onMounted(async () => {
+    if (typeof window !== "undefined") {
+        VueMarkdown = (await import('vue-markdown-render')).default;
+    }
+});
 
 onMounted(() => {
     fetch(link).then(response => response.text()).then(text => {
@@ -19,7 +25,7 @@ onMounted(() => {
 
 <template>
     <PublicLayout>
-        <div class="md">
+        <div v-if="VueMarkdown" class="md">
             <vue-markdown :source="content"></vue-markdown>
         </div>
     </PublicLayout>

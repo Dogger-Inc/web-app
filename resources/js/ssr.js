@@ -5,6 +5,9 @@ import createServer from '@inertiajs/vue3/server';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { renderToString } from '@vue/server-renderer';
 
+import { createI18n } from 'vue-i18n'
+import { loadLocaleMessages, dateTimeFormats } from './i18n';
+
 import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './ziggy';
 
@@ -17,10 +20,18 @@ createServer(page =>
             return pages[`./Pages/${name}.vue`]
         },
         setup({ App, props, plugin }) {
+            const i18n = createI18n({
+                legacy: false,
+                locale: props.initialPage.props.locale,
+                fallbackLocale: import.meta.env.FALLBACK_LOCALE,
+                messages: loadLocaleMessages(),
+                dateTimeFormats
+            })
             return createSSRApp({
                 render: () => h(App, props),
             })
                 .use(plugin)
+                .use(i18n)
                 .use(ZiggyVue, Ziggy)
         },
     }),

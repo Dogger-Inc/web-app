@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, watch } from 'vue';
 import { Head, usePage } from '@inertiajs/vue3';
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification/dist/index.mjs';
 import DashboardNavBar from '@/Components/Navbar/Dashboard.vue';
 import Footer from '@/Components/Footer.vue';
 
