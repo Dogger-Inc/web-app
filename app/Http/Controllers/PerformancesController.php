@@ -13,9 +13,10 @@ class PerformancesController extends Controller
     {
         $user = auth()->user();
         $projects = $user->projects()->get();
-        $groups = PerformanceGroup::autoPaginate();
 
-        if (!$projects->isEmpty()) {
+        if ($projects->isEmpty()) {
+            $groups = PerformanceGroup::autoPaginate();
+        } else {
             $groups = PerformanceGroup::whereBelongsTo($projects)
                 ->autoSearch('message')
                 ->autoOrder()

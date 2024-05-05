@@ -13,9 +13,10 @@ class IssuesController extends Controller
     {
         $user = auth()->user();
         $projects = $user->projects()->get();
-        $issues = Issue::autoPaginate();
 
-        if (!$projects->isEmpty()) {
+        if ($projects->isEmpty()) {
+            $issues = Issue::autoPaginate();
+        } else {
             $issues = Issue::whereBelongsTo($projects)
                 ->autoSearch('message')
                 ->autoOrder()
