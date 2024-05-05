@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification/dist/index.mjs';
 import DataCell from '@/Components/Items/DataCell.vue';
 import { router } from '@inertiajs/vue3';
 
