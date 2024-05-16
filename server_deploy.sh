@@ -8,9 +8,9 @@ echo "Deploying application ..."
     # Update codebase
     git reset --hard
     git pull origin prod
-    npm install
 
-    # Install dependencies based on lock file
+    # Install dependencies
+    npm ci
     composer config --no-plugins allow-plugins.php-http/discovery false
     composer install --no-interaction --prefer-dist --optimize-autoloader
 
