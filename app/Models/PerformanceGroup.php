@@ -28,7 +28,7 @@ class PerformanceGroup extends Model
 
     public function performances(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Performance::class, 'group_id', 'id');
+        return $this->hasMany(Performance::class, 'group_id', 'id')->orderBy('created_at', 'asc');
     }
 
     // Polymorphic

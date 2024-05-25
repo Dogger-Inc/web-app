@@ -27,6 +27,10 @@ const props = defineProps({
         type: Object,
         required: true
     },
+    label: {
+        type: String,
+        default: 'Error Count',
+    },
     isMulti: {
         type: Boolean,
         default: false
@@ -43,9 +47,9 @@ const data = computed(() => {
             data: props.chartData[key]
         }));
     }
-    
+
     return [{
-        label: 'Error Count',
+        label: props.label,
         borderColor: '#ff8437',
         cubicInterpolationMode: 'monotone',
         data: props.chartData

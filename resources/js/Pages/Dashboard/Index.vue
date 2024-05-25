@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
-import { useI18n } from "vue-i18n"; 
+import { useI18n } from "vue-i18n";
 import {
     ArrowPathIcon,
     RectangleStackIcon,
@@ -35,7 +35,7 @@ const selectOpts = computed(() => {
         name: company.name,
         id: id
     }));
-    
+
     return [{ name: t('dashboard.company_filter_all'), id: null }, ...companyArray];
 });
 
@@ -43,7 +43,7 @@ const chartDataFormated = computed(() => {
     if (selectedCompany.value === null) {
         return props.chart.total;
     }
-    
+
     return props.chart.companies[selectedCompany.value].projects;
 });
 </script>
