@@ -2,7 +2,7 @@
 
   
 
-You can access to the production here [https://dogger.cloud](https://dogger.cloud).
+You can access to the production [here](https://dogger.cloud).
 
   
 
@@ -101,9 +101,9 @@ To initialise Dogger, you need to call the init function:
 ```js
 
 initDogger({
-	url: "https://my-hosted-application", // if you host the application, indicate your endpoint here 
-	key: "DOGGER-PROJECT-KEY", // generated secret project key
-	env: "developpement", // or: prod | dev | custom-env
+	url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here 
+	key: 'DOGGER-PROJECT-KEY', // generated secret project key
+	env: 'developpement', // or: prod | dev | custom-env
 	isClient: true  // true or false, indicates if the application is client or server side
 });
 
@@ -116,11 +116,57 @@ After you create the project on the app, a uniuqe project key is generated. You 
 **Note**: it is recommended to place your secret key in a .env file to avoid security issues.
 
   
-
 You can also specify the project's environment (eg. 'dev', 'prod' or custom) as a string inside the init function.
-
-  
 
 When an error occurs, it will appear automatically in your dashboard.
 
+### Manual Trigger
+
+You can also trigger a manual error using the ``logErrorToDogger()`` method:
+```js
+    const doggerInstance = initDogger({
+      url: 'https://my-hosted-application',
+      key: 'DOGGER-PROJECT-KEY',
+      env: 'development',
+      isClient: true,
+    });
+
+    // Always trigger a Dogger error 
+    doggerInstance.logErrorToDogger({
+      message: 'This is an error',
+      status: 500,
+      stack: 'Error: This is an error\n    at Object.<anonymous> (/Projects/dogger-sdk/src/index.ts:11:1)\n    at Module._compile (internal/modules/cjs/loader.js:1072:14)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1101:10)\n    at Module.load (internal/modules/cjs/loader.js:937:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:778:12)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:76:12)\n    at internal/main/run_main_module.js:17:47',
+      name: 'Error'
+    });
+  ```
+
+This will always trigger a Dogger error when called
+
 ###  Performance metrics
+You can monitor the performance of your functions with Dogger.
+
+You can employ the ``startRecord()`` and ``stopRecord()`` methods to start and and a recording.
+
+You need to provide an identifier you your performance an you can also set a minimum treshold (the performance will not trigger it the time elapsed is below the treshold)
+
+   ```js
+ const doggerInstance = initDogger({
+   url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here 
+   key: 'DOGGER-PROJECT-KEY', // generated secret project key
+   env: 'developpement', // or: prod | dev | custom-env
+   isClient: true  // true or false, indicates if the application is client or server side
+ });
+
+    const testPerformance = () => {
+      doggerInstance.startRecord('test1');
+      doggerInstance.startRecord('test2');
+      doggerInstance.startRecord('test3');
+      setTimeout(() => {
+        doggerInstance.stopRecord('test1', 10000); // this will be ignored due to the treshold
+        doggerInstance.stopRecord('test2', 3000);
+      }, 5000);
+      doggerInstance.stopRecord('test3');
+    };
+
+    testPerformance();
+```
