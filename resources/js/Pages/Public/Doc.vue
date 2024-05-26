@@ -66,6 +66,6 @@ onMounted(() => {
         a {
             color: #f04706;
         }
-    }        
+    }
 }
 </style>
