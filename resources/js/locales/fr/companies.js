@@ -9,9 +9,10 @@ export default {
         "invitation_code": "Code d'invitation",
         "not_registred_to_company": "Vous n'êtes inscrit dans aucune entreprise",
         "details": "Informations",
-        "project": "Projet(s)",
+        "projects": "Projet(s)",
         "active_users": "Utilisateur(s) actif(s)",
         "pending_users": "Utilisateur(s) en attente (inactif)",
-        "issues": "Erreur(s)"
+        "issues": "Erreur(s)",
+        "users": "Utilisateur",
     }
 }

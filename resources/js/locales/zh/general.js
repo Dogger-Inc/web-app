@@ -29,5 +29,10 @@ export default {
     "research": "研究人员...",
     "no_option": "无选项",
     "select_option": "选择一个选项",
-    "select_many_options": "选择一个（或多个）选项"
+    "select_many_options": "选择一个（或多个）选项",
+    "accept": "接受",
+    "reject": "拒绝",
+    "all_rights_reserved": "2024 Dogger, Inc. 版权所有。",
+    "no_result": "没有结果"
+
 }

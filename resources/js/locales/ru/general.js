@@ -28,5 +28,9 @@ export default {
     "research": "Исследования...",
     "no_option": "Аукунский вариант",
     "select_option": "Выбор одного варианта",
-    "select_many_options": "Выберите одну (или дополнительные) опцию(и)"
+    "select_many_options": "Выберите одну (или дополнительные) опцию(и)",
+    "accept": "Принять",
+    "reject": "Отклонить",
+    "all_rights_reserved": "2024 Dogger, Inc. Bce права защищены.",
+    "no_result": "Нет результатов"
 }

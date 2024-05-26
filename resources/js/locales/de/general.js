@@ -29,5 +29,9 @@ export default {
     "research_by": "Forschung von...",
     "no_option": "Keine Optionen",
     "select_option": "Wähle eine Option",
-    "select_many_options": "Wählen Sie eine (oder mehrere) Option(en)"
+    "select_many_options": "Wählen Sie eine (oder mehrere) Option(en)",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "all_rights_reserved": "2024 Dogger, Inc. Alle Rechte vorbehalten.",
+    "no_result": "Keine Ergebnisse"
 }

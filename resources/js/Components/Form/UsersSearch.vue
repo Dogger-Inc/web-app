@@ -3,7 +3,7 @@
         <input
             v-model="search"
             type="search"
-            placeholder="Search user here..."
+            :placeholder="t('profile.search_user')"
             class="border rounded p-2 text-sm"
         />
         <ul
@@ -18,7 +18,7 @@
                 <span>{{ user.fullname }}</span>
                 <span class="text-xs italic text-gray-400">{{ user.email }}</span>
             </li>
-            <span v-if="results.length === 0" class="text-xs text-gray-400 p-2 text-center bg-white">No results</span>
+            <span v-if="results.length === 0" class="text-xs text-gray-400 p-2 text-center bg-white">{{ $t('no_result') }}</span>
         </ul>
     </div>
 </template>
@@ -26,7 +26,9 @@
 <script setup>
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 import axios from 'axios';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const emit = defineEmits(['select']);
 const props = defineProps({
     property: {

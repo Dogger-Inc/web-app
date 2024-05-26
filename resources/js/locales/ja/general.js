@@ -29,5 +29,10 @@ export default {
     "research_by": "研究者によると...",
     "no_option": "オプションなし",
     "select_option": "選択肢一つを選択してください",
-    "select_many_options": "1 つ (または複数) のオプションを選択してください"
+    "select_many_options": "1 つ (または複数) のオプションを選択してください",
+    "accept": "承認する",
+    "reject": "拒否する",
+    "all_rights_reserved": "2024 Dogger, Inc. 無断転載を禁じます。",
+    "no_result": "結果がありません"
+
 }

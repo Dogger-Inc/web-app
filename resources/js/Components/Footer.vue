@@ -1,5 +1,8 @@
 <script setup>
 import GithubIcon from '@assets/images/github.svg';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -12,7 +15,7 @@ import GithubIcon from '@assets/images/github.svg';
                 </a>
             </div>
             <div class="mt-8 md:order-1 md:mt-0">
-                <p class="text-center text-xs leading-5 text-gray-500">&copy; 2024 Dogger, Inc. All rights reserved.</p>
+                <p class="text-center text-xs leading-5 text-gray-500">&copy; {{ $t("all_rights_reserved") }}</p>
             </div>
         </div>
     </footer>
