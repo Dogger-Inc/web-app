@@ -108,7 +108,7 @@ class IssuesController extends Controller
         if($issue->users()->where('user_id', $data['user_id'])->exists()) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
-                'message' => 'User already assigned to performance !',
+                'message' => trans('toast.user_already_assigned_performance'),
             ]);
         }
 
@@ -116,7 +116,7 @@ class IssuesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'User assigned to performance !',
+            'message' => trans('toast.user_assigned_performance'),
         ]);
     }
 
@@ -128,7 +128,7 @@ class IssuesController extends Controller
         if($issue->users()->where('user_id', $data['user_id'])->doesntExist()) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
-                'message' => 'User not assigned to performance !',
+                'message' => trans('toast.user_not_assigned_performance'),
             ]);
         }
 
@@ -136,7 +136,7 @@ class IssuesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'User unassigned from performance !',
+            'message' => trans('toast.user_unassigned_performance'),
         ]);
     }
 }
