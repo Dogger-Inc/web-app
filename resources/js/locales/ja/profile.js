@@ -5,6 +5,7 @@ export default {
         "edit_profile_success": "プロファイルが正常に更新されました",
         "reset_password": "あなたのパスワードをリセット",
         "old_password": "以前のパスワード",
-        "edit_password": "パスワードを編集する"
+        "edit_password": "パスワードを編集する",
+        "search_user": "ここでユーザーを検索..."
     }
 }

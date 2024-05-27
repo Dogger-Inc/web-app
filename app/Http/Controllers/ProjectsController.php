@@ -71,7 +71,7 @@ class ProjectsController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Project created !',
+            'message' => trans('toast.project_created'),
         ]);
     }
 
@@ -83,7 +83,7 @@ class ProjectsController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Invitation code updated !',
+            'message' => trans('toast.invitation_code_updated'),
         ]);
     }
 
@@ -102,7 +102,7 @@ class ProjectsController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Project updated !',
+            'message' => trans('toast.project_updated'),
         ]);
     }
 }
