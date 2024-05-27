@@ -29,7 +29,7 @@ const props = defineProps({
     },
     label: {
         type: String,
-        default: 'Error Count',
+        required: true
     },
     isMulti: {
         type: Boolean,

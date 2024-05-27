@@ -8,6 +8,6 @@ export default {
         "comments": "Commentaires",
         "tags": "Mots clés",
         "assigned_user": "Utilisateurs assignés",
-        "values": "Journaux"
+        "values": "Valeurs"
     }
 }

@@ -99,6 +99,7 @@ const chartDataFormated = computed(() => {
             <LineChart
                 :chart-data="chartDataFormated"
                 :is-multi="selectedCompany !== null"
+                label="Error Count"
                 class="mt-2"
             />
         </section>
