@@ -30,7 +30,7 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Profile updated !',
+            'message' => trans('toast.profile_updated'),
         ]);
     }
 
@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Password updated !',
+            'message' => trans('toast.password_updated'),
         ]);
     }
 }

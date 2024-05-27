@@ -67,7 +67,7 @@ class CompaniesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Company created !',
+            'message' => trans('toast.company_created'),
         ]);
     }
 
@@ -79,7 +79,7 @@ class CompaniesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Invitation code updated !',
+            'message' => trans('toast.invitation_code_updated'),
         ]);
     }
 
@@ -90,7 +90,7 @@ class CompaniesController extends Controller
         if($user && $company->users()->where('user_id', $user->id)->exists()) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
-                'message' => 'You are already in this company !',
+                'message' => trans('toast.already_in_company'),
             ]);
         }
 
@@ -98,7 +98,7 @@ class CompaniesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'Company joined !',
+            'message' => trans('toast.company_joined'),
         ]);
     }
 
@@ -108,7 +108,7 @@ class CompaniesController extends Controller
         if($user->id == $userId) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
-                'message' => 'You can\'t revoke yourself !',
+                'message' => trans('toast.cant_revoke_yourself'),
             ]);
         }
 
@@ -116,7 +116,7 @@ class CompaniesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'User revoked !',
+            'message' => trans('toast.user_revoked'),
         ]);
     }
 
@@ -125,7 +125,7 @@ class CompaniesController extends Controller
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
-            'message' => 'User accepted !',
+            'message' => trans('toast.user_accepted'),
         ]);
     }
 }

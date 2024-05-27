@@ -29,5 +29,9 @@ export default {
     "research_by": "Research by...",
     "no_option": "No options",
     "select_option": "Select an option",
-    "select_many_options": "Select one (or more) option(s)"
+    "select_many_options": "Select one (or more) option(s)",
+    "accept": "Accept",
+    "reject": "Reject",
+    "all_rights_reserved": "All rights reserved.",
+    "no_result": "No results"
 }

@@ -68,12 +68,28 @@ export default {
 		},
 		"faqs": {
 			"implementation": {
-				"question": "我们如何在代码中实现 Dogger ？",
-				"answer": "您可以查看我们的文档以了解如何在代码中实现 Dogger。"
+				"question": "我们如何在代码中实现Dogger？",
+				"answer": "您可以查看我们的文档，了解如何在您的代码中实现Dogger。"
 			},
 			"open_source": {
-				"question": "Dogger 是开源的吗？",
-				"answer": "是的，Dogger 是开源的，您可以查看我们的 GitHub 存储库以了解更多信息。"
+				"question": "Dogger是开源的吗？",
+				"answer": "是的，Dogger是开源的，您可以查看我们的GitHub仓库以了解更多信息。"
+			},
+			"why_dogger": {
+				"question": "为什么我应该使用Dogger？",
+				"answer": "Dogger是记录错误的最佳工具，它易于实现，轻量且免费。"
+			},
+			"free_tier": {
+				"question": "免费层包括什么？",
+				"answer": "免费层包括无限项目、无限错误和10个用户。它是自托管和开源的。"
+			},
+			"support": {
+				"question": "您提供什么样的支持？",
+				"answer": "我们为Startup层提供电子邮件支持，为Enterprise层提供优先支持。"
+			},
+			"lifetime": {
+				"question": "“终身访问”到底是什么意思？",
+				"answer": "终身访问意味着您将在产品的生命周期内访问Dogger。您还将收到产品的所有未来更新和改进。"
 			}
 		}
 	},

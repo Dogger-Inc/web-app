@@ -23,7 +23,7 @@ const props = defineProps({
         <ItemsList
             :data="performanceGroups"
             v-slot="item"
-            :searchByOpts="[{ name: t('performances.comment'), key: 'comment' }]"
+            :searchByOpts="[{ name: t('performances.comments'), key: 'comment' }]"
             detailsPath="dashboard.performances.details"
             detailsValue="key"
             class="w-full mt-8"

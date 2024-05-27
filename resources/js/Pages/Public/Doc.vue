@@ -4,15 +4,15 @@ import { usePage } from '@inertiajs/vue3';
 import PublicLayout from '@/Layouts/Public.vue';
 
 const content = ref('');
+const VueMarkdown = ref(null);
 const lang = usePage().props.locale;
 
 const link = `/docs/doc-${lang}.md`;
 
 // dynamically import the VueMarkdown only in client-side
-let VueMarkdown;
 onMounted(async () => {
     if (typeof window !== "undefined") {
-        VueMarkdown = (await import('vue-markdown-render')).default;
+        VueMarkdown.value = (await import('vue-markdown-render')).default;
     }
 });
 
@@ -66,6 +66,6 @@ onMounted(() => {
         a {
             color: #f04706;
         }
-    }        
+    }
 }
 </style>
