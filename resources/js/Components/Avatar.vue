@@ -6,14 +6,11 @@ const props = defineProps({
     user: Object,
 });
 
-const user = usePage().props.auth.user;
+const pageUser = usePage().props.auth.user;
 
 const initialsLetter = computed(() => {
-    if (props.user) {
-        return props.user.firstname.charAt(0).toUpperCase() + props.user.lastname.charAt(0).toUpperCase();
-    } else {
-        return user.firstname.charAt(0).toUpperCase() + user.lastname.charAt(0).toUpperCase();ß
-    }
+    const user = props.user || pageUser;
+    return user.firstname.charAt(0).toUpperCase() + user.lastname.charAt(0).toUpperCase();
 });
 </script>
 <template>
