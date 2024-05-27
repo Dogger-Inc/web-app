@@ -135,7 +135,7 @@ header {
     
         .logo-side {
             @screen lg {
-                width: 170px;
+                width: 175px;
             }
         }
     
@@ -147,7 +147,7 @@ header {
             @apply flex items-center gap-3 justify-end;
 
             @screen lg {
-                width: 170px;
+                width: 175px;
             }
         }
         #sidebar {

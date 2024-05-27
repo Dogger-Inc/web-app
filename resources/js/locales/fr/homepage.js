@@ -69,11 +69,27 @@ export default {
 		"faqs": {
 			"implementation": {
 				"question": "Comment implémenter Dogger dans notre code ?",
-				"answer": "Vous pouvez consulter notre documentation pour savoir comment implémenter Dogger dans votre projet."
+				"answer": "Vous pouvez consulter notre documentation pour apprendre à implémenter Dogger dans votre code."
 			},
 			"open_source": {
 				"question": "Dogger est-il open source ?",
-				"answer": "Oui, Dogger est open source et vous pouvez consulter notre référentiel GitHub pour en savoir plus."
+				"answer": "Oui, Dogger est open source et vous pouvez consulter notre dépôt GitHub pour en savoir plus."
+			},
+			"why_dogger": {
+				"question": "Pourquoi devrais-je utiliser Dogger ?",
+				"answer": "Dogger est le meilleur outil pour consigner vos erreurs, il est facile à implémenter, léger et gratuit."
+			},
+			"free_tier": {
+				"question": "Que comprend le plan gratuit ?",
+				"answer": "Le plan gratuit comprend des projets illimités, des erreurs illimitées et 10 utilisateurs. Il est auto-hébergé et open-source."
+			},
+			"support": {
+				"question": "Quel type de support offrez-vous ?",
+				"answer": "Nous offrons un support par email pour le niveau Startup et un support prioritaire pour le niveau Enterprise."
+			},
+			"lifetime": {
+				"question": "Que signifie exactement 'accès à vie' ?",
+				"answer": "L'accès à vie signifie que vous aurez accès à Dogger pour la durée de vie du produit. Vous recevrez également toutes les mises à jour et améliorations futures du produit."
 			}
 		}
 	}

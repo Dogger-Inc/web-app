@@ -65,7 +65,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Listbox as="div" v-model="form.locale" class="relative inline-flex">
+    <Listbox as="div" v-model="form.locale" class="relative inline-flex min-w-fit">
         <ListboxLabel class="sr-only">Language selector</ListboxLabel>
 
         <ListboxButton>

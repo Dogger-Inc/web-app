@@ -1,6 +1,9 @@
 <script setup>
 import ItemsList from '@/Components/Items/List.vue';
 import { router } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
     users: {
@@ -43,8 +46,8 @@ const rejectUser = (id) => {
             </p>
         </div>
         <div class="h-full ml-auto flex gap-4">
-            <button @click="acceptUser(item.id)"class="btn success sm">Accept</button>
-            <button @click="rejectUser(item.id)" class="btn warning sm">Reject</button>
+            <button @click="acceptUser(item.id)" class="btn success sm">{{ $t('accept') }}</button>
+            <button @click="rejectUser(item.id)" class="btn warning sm">{{ $t('reject') }}</button>
         </div>
     </ItemsList>
 </template>
