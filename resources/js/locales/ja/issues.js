@@ -9,6 +9,12 @@ export default {
         "stacktrace": "スタックトレース",
         "comments": "コメント",
         "tags": "タグ",
-        "assigned_user": "割り当てられたユーザー"
+        "assigned_user": "割り当てられたユーザー",
+        "triggered_at": "トリガーされた日時",
+        "status": "ステータス",
+        "new": "新規",
+        "pending": "保留中",
+        "in_progress": "進行中",
+        "resolved": "解決済み"
     }
 }

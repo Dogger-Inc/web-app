@@ -9,6 +9,12 @@ export default {
         "stacktrace": "Трассировки стека",
         "comments": "Комментарии",
         "tags": "Теги",
-        "assigned_user": "Назначенные пользователи"
+        "assigned_user": "Назначенные пользователи",
+        "triggered_at": "Сработало в",
+        "status": "Статус",
+        "new": "Новый",
+        "pending": "В ожидании",
+        "in_progress": "В процессе",
+        "resolved": "Решено"
     }
 }
