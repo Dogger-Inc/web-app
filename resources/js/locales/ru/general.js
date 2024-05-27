@@ -31,6 +31,6 @@ export default {
     "select_many_options": "Выберите одну (или дополнительные) опцию(и)",
     "accept": "Принять",
     "reject": "Отклонить",
-    "all_rights_reserved": "2024 Dogger, Inc. Bce права защищены.",
+    "all_rights_reserved": "Bce права защищены.",
     "no_result": "Нет результатов"
 }

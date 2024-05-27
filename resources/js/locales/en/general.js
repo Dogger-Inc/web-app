@@ -32,6 +32,6 @@ export default {
     "select_many_options": "Select one (or more) option(s)",
     "accept": "Accept",
     "reject": "Reject",
-    "all_rights_reserved": "2024 Dogger, Inc. All rights reserved.",
+    "all_rights_reserved": "All rights reserved.",
     "no_result": "No results"
 }

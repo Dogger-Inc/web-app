@@ -32,7 +32,7 @@ export default {
     "select_many_options": "1 つ (または複数) のオプションを選択してください",
     "accept": "承認する",
     "reject": "拒否する",
-    "all_rights_reserved": "2024 Dogger, Inc. 無断転載を禁じます。",
+    "all_rights_reserved": "無断転載を禁じます。",
     "no_result": "結果がありません"
 
 }

@@ -15,7 +15,9 @@ const { t } = useI18n();
                 </a>
             </div>
             <div class="mt-8 md:order-1 md:mt-0">
-                <p class="text-center text-xs leading-5 text-gray-500">&copy; {{ $t("all_rights_reserved") }}</p>
+                <p class="text-center text-xs leading-5 text-gray-500">
+                    &copy; 2024 Dogger, Inc. {{ $t("all_rights_reserved") }}
+                </p>
             </div>
         </div>
     </footer>

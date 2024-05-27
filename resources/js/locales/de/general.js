@@ -32,6 +32,6 @@ export default {
     "select_many_options": "Wählen Sie eine (oder mehrere) Option(en)",
     "accept": "Akzeptieren",
     "reject": "Ablehnen",
-    "all_rights_reserved": "2024 Dogger, Inc. Alle Rechte vorbehalten.",
+    "all_rights_reserved": "Alle Rechte vorbehalten.",
     "no_result": "Keine Ergebnisse"
 }
