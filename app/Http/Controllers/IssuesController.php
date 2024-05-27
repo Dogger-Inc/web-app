@@ -139,4 +139,14 @@ class IssuesController extends Controller
             'message' => trans('toast.user_unassigned_performance'),
         ]);
     }
+
+    public function changeStatus(Issue $issue)
+    {
+        $data = request()->validate([
+            'status' => ['required', 'string', Rule::in(['new', 'pending', 'in_progress', 'resolved'])],
+        ]);
+
+        $issue->status = $data['status'];
+        $issue->save();
+    }
 }

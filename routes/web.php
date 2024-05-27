@@ -95,6 +95,7 @@ Route::group([
         Route::post('/{issue}/comment', 'addComment')->name('addComment.post');
         Route::post('/{issue}/assign', 'assignUser')->name('assignUser.post');
         Route::post('/{issue}/unassign', 'unassignUser')->name('unassignUser.post');
+        Route::post('/{issue}/change-status', 'changeStatus')->name('changeStatus.post');
     });
 
     //Comments
@@ -119,4 +120,3 @@ Route::group([
         Route::post('/{performanceGroup}/unassign', 'unassignUser')->name('unassignUser.post');
     });
 });
-

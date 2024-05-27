@@ -9,6 +9,12 @@ export default {
         "stacktrace": "Trace d'appels",
         "comments": "Commentaires",
         "tags": "Mots clés",
-        "assigned_user": "Utilisateurs assignés"
+        "assigned_user": "Utilisateurs assignés",
+        "triggered_at": "Déclenché à",
+        "status": "Statut",
+        "new": "Nouveau",
+        "pending": "En attente",
+        "in_progress": "En cours",
+        "resolved": "Résolu"
     }
 }

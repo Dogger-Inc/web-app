@@ -9,6 +9,12 @@ export default {
         "stacktrace": "Stacktrace",
         "comments": "Kommentare",
         "tags": "Stichworte",
-        "assigned_user": "Zugewiesene Benutzer"
+        "assigned_user": "Zugewiesene Benutzer",
+        "triggered_at": "Ausgelöst am",
+        "status": "Status",
+        "new": "Neu",
+        "pending": "Ausstehend",
+        "in_progress": "In Bearbeitung",
+        "resolved": "Gelöst"
     }
 }
