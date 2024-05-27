@@ -9,7 +9,7 @@ import {
 } from '@heroicons/vue/24/outline';
 import { CheckIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid';
 import PublicLayout from '@/Layouts/Public.vue';
-import MainIllustration from '@assets/images/main_illustration.png';
+import MainIllustration from '@assets/images/main_illustration.webp';
 
 const { t } = useI18n({});
 
@@ -155,7 +155,7 @@ const faqs = [
                         <div
                             class="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                             <img :src="MainIllustration"
-                                alt="App screenshot" width="2432" height="1442"
+                                alt="App screenshot" width="1024" height="665"
                                 class="rounded-md shadow-2xl ring-1 ring-gray-900/10" />
                         </div>
                     </div>
