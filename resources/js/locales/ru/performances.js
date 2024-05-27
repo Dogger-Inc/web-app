@@ -8,6 +8,6 @@ export default {
         "comments": "Комментарии",
         "tags": "Теги",
         "assigned_user": "Назначенные пользователи",
-        "values": "Логи"
+        "values": "Значения"
     }
 }

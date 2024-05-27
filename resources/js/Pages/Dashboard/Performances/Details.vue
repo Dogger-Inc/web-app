@@ -8,6 +8,8 @@ import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 import UsersSearch from '@/Components/Form/UsersSearch.vue';
 import { Link, router } from '@inertiajs/vue3';
+import LineChart from '@/Components/Stats/LineChart.vue';
+import { computed } from 'vue';
 
 const props = defineProps({
     group: {
@@ -25,6 +27,11 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
+
+const performanceData = computed(() => props.performances.reduce((acc, performance) => ({
+    ...acc,
+    [dayjs(performance.created_at).format('DD/MM/YY HH:mm:ss')]: performance.duration / 1000
+}), {}));
 
 function handleAssignUser(user) {
     router.post(
@@ -65,16 +72,11 @@ function handleUnassignUser(user) {
                 <div class="space-y-2">
                     <span class="font-semibold">{{t('performances.values')}}</span>
 
-                    <div class="flex flex-col gap-2">
-                        <div
-                            v-for="performance in performances"
-                            :key="performance.id"
-                            class="flex flex-row items-center justify-between text-sm"
-                        >
-                            <span>{{ dayjs(performance.created_at).format('DD/MM/YYYY HH:mm:ss') }}</span>
-                            <span class="text-dogger-orange-400 font-semibold">{{ performance.duration / 1000 }}s</span>
-                        </div>
-                    </div>
+                    <LineChart
+                        :chart-data="performanceData"
+                        label="Temps (sec)"
+                        class="mt-2"
+                    />
                 </div>
 
                 <div class="space-y-2">

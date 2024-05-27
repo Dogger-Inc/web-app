@@ -8,6 +8,6 @@ export default {
         "comments": "Comments",
         "tags": "Tags",
         "assigned_user": "Assigned users",
-        "values": "Logs"
+        "values": "Values"
     }
 }

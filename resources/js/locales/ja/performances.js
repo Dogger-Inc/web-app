@@ -8,6 +8,6 @@ export default {
         "comments": "コメント",
         "tags": "タグ",
         "assigned_user": "割り当てられたユーザー",
-        "values": "ログ"
+        "values": "価値観"
     }
 }
