@@ -1,86 +1,86 @@
 #  Dogger
 
-  
+
 
 You can access to the production [here](https://dogger.cloud).
 
-  
+
 
 ##  How to run the project
 
-  
+
 
 First you need to install all depedancies.
 
-  
+
 
 ###  `npm install`
 
 ###  `composer install`
 
-  
+
 
 Next copy the '.env.example' file and rename it to '.env', edit them with your informations.
 
 After setup the database (you need to create an empty database before run this command).
 
-  
+
 
 ###  `php artisan migrate:fresh --seed`
 
-  
+
 
 Finally build the app.
 
-  
+
 
 ###  `npm run dev`
 
-  
 
-The page will reload when you make changes.\
+
+The page will reload when you make changes.
 
 You may also see any lint errors in the console.
 
-  
+
 
 or build the app for production.
 
-  
+
 
 ###  `npm run build`
 
-  
+
 
 Run the server (if you don't have Valet or Herd)
 
-  
+
 
 ###  `php artisan serve`
 
-  
+
 
 Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 
 If you're on macOS you can use Laravel Valet (or Herd) to serve your app locally with a pretty domain name (like http://dogger.test).
 
-  
+
 
 If you wan't to run the project with SSR (Server Side Rendering) you need to run the following command (available only after a build).
 
-  
+
 
 ###  `php artisan inertia:start-ssr`
 
-  
+
 
 ##  How to use
 
-  
+
 
 You can either use the official Dogger SDK or call the API endpoint directly from your codebase.
 
-  
+
 
 ##  Dogger SDK
 
@@ -88,7 +88,7 @@ The JavaScript SDK is available on NPN [here](https://www.npmjs.com/package/dogg
 
 The php  SDK is available on Packagist [here](https://packagist.org/packages/dogger/dogger-sdk) or you can add it to your project via the command line: `composer require dogger/dogger-sdk`
 
-  
+
 
 ###  Import
 
@@ -101,7 +101,7 @@ To initialise Dogger, you need to call the init function:
 ```js
 
 initDogger({
-	url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here 
+	url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here
 	key: 'DOGGER-PROJECT-KEY', // generated secret project key
 	env: 'developpement', // or: prod | dev | custom-env
 	isClient: true  // true or false, indicates if the application is client or server side
@@ -115,7 +115,7 @@ After you create the project on the app, a uniuqe project key is generated. You 
 
 **Note**: it is recommended to place your secret key in a .env file to avoid security issues.
 
-  
+
 You can also specify the project's environment (eg. 'dev', 'prod' or custom) as a string inside the init function.
 
 When an error occurs, it will appear automatically in your dashboard.
@@ -131,7 +131,7 @@ You can also trigger a manual error using the ``logErrorToDogger()`` method:
       isClient: true,
     });
 
-    // Always trigger a Dogger error 
+    // Always trigger a Dogger error
     doggerInstance.logErrorToDogger({
       message: 'This is an error',
       status: 500,
@@ -151,7 +151,7 @@ You need to provide an identifier you your performance an you can also set a min
 
    ```js
  const doggerInstance = initDogger({
-   url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here 
+   url: 'https://my-hosted-application', // if you host the application, indicate your endpoint here
    key: 'DOGGER-PROJECT-KEY', // generated secret project key
    env: 'developpement', // or: prod | dev | custom-env
    isClient: true  // true or false, indicates if the application is client or server side
