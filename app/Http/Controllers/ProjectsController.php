@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Company;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -153,7 +154,19 @@ class ProjectsController extends Controller
     {
         auth()->user()->can('update', $project->company) || abort(403);
 
-        $project->users()->detach($userId);
+        DB::transaction(function () use ($project, $userId) {
+            // detach user from all issues and performanceGroups in project
+            $project->issues()->each(function ($issue) use ($userId) {
+                $issue->users()->detach($userId);
+            });
+            $project->performanceGroups()->each(function ($performanceGroup) use ($userId) {
+                $performanceGroup->users()->detach($userId);
+            });
+
+            // detach user from project
+            $project->users()->detach($userId);
+        });
+
 
         return redirect()->back()->with('toast', [
             'type' => 'success',

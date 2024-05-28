@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
@@ -126,7 +127,26 @@ class CompaniesController extends Controller
             ]);
         }
 
-        $company->users()->detach($userId);
+        DB::transaction(function () use ($company, $userId) {
+            // Eager load projects with issues and performanceGroups
+            $company->load('projects.issues', 'projects.performanceGroups');
+
+            foreach ($company->projects as $project) {
+                // detach user from all issues and performanceGroups in company projects
+                $project->issues->each(function ($issue) use ($userId) {
+                    $issue->users()->detach($userId);
+                });
+                $project->performanceGroups->each(function ($performanceGroup) use ($userId) {
+                    $performanceGroup->users()->detach($userId);
+                });
+
+                // detach user from all projects in company
+                $project->users()->detach($userId);
+            }
+
+            // detach user from company
+            $company->users()->detach($userId);
+        });
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
