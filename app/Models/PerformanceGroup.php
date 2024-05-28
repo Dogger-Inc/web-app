@@ -37,9 +37,9 @@ class PerformanceGroup extends Model
         return $this->MorphMany(Comment::class, 'commentable');
     }
 
-     // Many to Many
-     public function users():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     {
-         return $this->belongsToMany(User::class, 'performance_groups_user');
-     }
+    // Many to Many
+    public function users():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'performance_groups_user');
+    }
 }

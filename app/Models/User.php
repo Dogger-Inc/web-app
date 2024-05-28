@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Issue::class, 'issue_user');
     }
 
+    public function assignedPerformanceGroups():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(PerformanceGroup::class, 'performance_group_user');
+    }
+
     // Attributes
     public function getFullNameAttribute(): string
     {
