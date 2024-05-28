@@ -101,6 +101,17 @@ function handleStatusChange() {
                         <span>{{ dayjs(issue.triggered_at).format('DD/MM/YYYY HH:mm:ss') }}</span>
                     </div>
                 </div>
+                <div class="space-y-2">
+                    <span class="font-semibold">{{ t('projects.name') }}</span>
+                    <div class="flex flex-col gap-2">
+                        <Link
+                            :href="route('dashboard.projects.details', issue.project.id)"
+                            class="hover:text-dogger-orange-400"
+                        >
+                            {{ issue.project.name }}
+                        </Link>
+                    </div>
+                </div>
                 <div v-if="currentUser.canUpdate" class="space-y-2">
                     <span class="font-semibold">{{ t('issues.status') }}</span>
                     <select
