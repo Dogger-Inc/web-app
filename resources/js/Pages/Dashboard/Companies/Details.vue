@@ -30,7 +30,7 @@ defineProps({
                 <TabProjects :projects="company.projects" />
             </div>
             <div v-if="!company.is_hidden" :title="t('companies.active_users')">
-                <TabUsers :users="company.activeUsers" :company-id="company.id" />
+                <TabUsers :users="company.activeUsers" :company="company" />
             </div>
             <div v-if="!company.is_hidden" :title="t('companies.pending_users')">
                 <TabUsersPending :users="company.inactiveUsers" :company-id="company.id" />

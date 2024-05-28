@@ -3,6 +3,7 @@ export default {
         "company": "公司",
         "projects": "项目",
         "assigned_user": "指定用户",
+        "unassign": "取消指定",
         "add": "创建项目",
         "name": "项目名称",
         "submit": "提交",

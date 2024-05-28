@@ -12,6 +12,7 @@ export default {
         "projects": "项目",
         "active_users": "活跃用户",
         "pending_users": "待审用户（非活跃）",
+        "revoke": "撤销",
         "users": "用户"
     }
 }

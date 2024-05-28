@@ -12,6 +12,7 @@ export default {
         "projects": "Projekt(e)",
         "active_users": "Aktive Benutzer",
         "pending_users": "Ausstehende Benutzer (inaktiv)",
+        "revoke": "Widerrufen",
         "users": "Benutzer"
     }
 }

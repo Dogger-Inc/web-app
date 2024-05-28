@@ -10,7 +10,7 @@ class CompanyPolicy
 {
     private function userIsInCompany(User $user, Company $company): bool
     {
-        return $user->companies()->where('company_id', $company)->exists();
+        return $user->companies()->where('company_id', $company->id)->exists();
     }
 
     private function userIsActive(User $user, Company $company): bool

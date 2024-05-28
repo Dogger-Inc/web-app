@@ -3,6 +3,7 @@ export default {
         "company": "Entreprise",
         "projects": "Projets",
         "assigned_user": "Utilisateurs assignés",
+        "unassign": "Désassigner",
         "add": "Créer un projet",
         "name": "Nom du projet",
         "submit": "Soumettre",

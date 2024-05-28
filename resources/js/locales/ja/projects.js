@@ -3,6 +3,7 @@ export default {
         "company": "会社",
         "projects": "プロジェクト",
         "assigned_user": "割り当てられたユーザー",
+        "unassign": "割り当て解除",
         "add": "プロジェクトの作成",
         "name": "プロジェクト名",
         "submit": "提出する",

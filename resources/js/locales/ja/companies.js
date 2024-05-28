@@ -12,6 +12,7 @@ export default {
         "projects": "プロジェクト",
         "active_users": "アクティブユーザー",
         "pending_users": "保留中のユーザー（非アクティブ）",
+        "revoke": "取り消す",
         "users": "ユーザー"
     }
 }

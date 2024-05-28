@@ -15,8 +15,8 @@ const props = defineProps({
         type: Array,
         required: true,
     },
-    projectId: {
-        type: Number,
+    project: {
+        type: Object,
         required: true,
     }
 });
@@ -26,7 +26,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('dashboard.projects.assignUsers.post', props.projectId), {
+    form.post(route('dashboard.projects.assignUsers.post', props.project.id), {
         preserveState: false,
         onStart: () => form.clearErrors(),
         onSuccess: () => form.reset(),
@@ -35,7 +35,7 @@ const submit = () => {
 
 const unassignUser = (id) => {
     router.patch(
-        route('dashboard.projects.unassignUser.patch', { project: props.projectId, userId: id }),
+        route('dashboard.projects.unassignUser.patch', { project: props.project.id, userId: id }),
         {},
         { preserveState: false }
     );
@@ -43,7 +43,11 @@ const unassignUser = (id) => {
 </script>
 
 <template>
-    <form @submit.prevent="submit" class="flex flex-col xs:flex-row gap-5 lg:gap-6 mb-6 sm:mb-8">
+    <form
+        v-if="project.editable"
+        @submit.prevent="submit"
+        class="flex flex-col xs:flex-row gap-5 lg:gap-6 mb-6 sm:mb-8"
+    >
         <MultiSelectWrapper
             v-model="form.users"
             :error="form.errors.users"
@@ -67,8 +71,8 @@ const unassignUser = (id) => {
                 {{ item.email }}
             </p>
         </div>
-        <div class="h-full ml-auto flex gap-4">
-            <button @click="unassignUser(item.id)" class="btn warning sm">Unassign</button>
+        <div v-if="project.editable" class="h-full ml-auto flex gap-4">
+            <button @click="unassignUser(item.id)" class="btn warning sm">{{t('projects.unassign')}}</button>
         </div>
     </ItemsList>
 </template>

@@ -36,7 +36,7 @@ defineProps({
                 <TabUsers
                     :users="project.users"
                     :assignable-users="assignableUsers"
-                    :project-id="project.id"
+                    :project="project"
                 />
             </div>
         </TabbedCard>
