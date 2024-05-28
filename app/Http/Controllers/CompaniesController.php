@@ -45,6 +45,11 @@ class CompaniesController extends Controller
                 ->wherePivot('is_active', true)
                 ->paginate(10, ['*'], 'users_active_page');
             $projects = $company->projects()
+                ->when(!$company->editable, function ($query) use ($user) {
+                    $query->whereHas('users', function ($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    });
+                })
                 ->orderBy('created_at', 'desc')
                 ->paginate(10, ['*'], 'projects_page');
 

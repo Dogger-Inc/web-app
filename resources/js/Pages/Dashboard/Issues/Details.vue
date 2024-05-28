@@ -101,7 +101,7 @@ function handleStatusChange() {
                         <span>{{ dayjs(issue.triggered_at).format('DD/MM/YYYY HH:mm:ss') }}</span>
                     </div>
                 </div>
-                <div class="space-y-2">
+                <div v-if="currentUser.canUpdate" class="space-y-2">
                     <span class="font-semibold">{{ t('issues.status') }}</span>
                     <select
                         v-model="issue.status"
@@ -117,7 +117,7 @@ function handleStatusChange() {
                         </option>
                     </select>
                 </div>
-                <div class="space-y-2">
+                <div v-if="currentUser.canUpdate" class="space-y-2">
                     <span class="font-semibold">{{ t('issues.assigned_user') }}</span>
                     <UsersSearch @select="handleAssignUser" />
                     <div class="flex flex-col gap-2">

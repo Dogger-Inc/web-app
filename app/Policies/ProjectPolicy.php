@@ -8,17 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class ProjectPolicy
 {
-    private function userIsInProject(User $user, Project $project): bool
-    {
-        return $project->users()->where('user_id', $user->id)->exists();
-    }
-
     /**
      * Determine whether the user can view the project.
      */
     public function view(User $user, Project $project): Response
     {
-        return $this->userIsInProject($user, $project)
+        $userIsInProject = $project->users()->where('user_id', $user->id)->exists();
+        $userIsAdminOrOwner = $user->companies()->where('company_id', $project->company_id)->wherePivotIn('role', ['admin', 'owner'])->exists();
+
+        return $userIsInProject || $userIsAdminOrOwner
             ? Response::allow()
             : Response::deny();
     }
