@@ -116,7 +116,7 @@ Route::group([
         'controller' => PerformancesController::class
     ], function () {
         Route::get('/', 'list')->name('list');
-        Route::get('/{performance}/show', 'details')->name('details');
+        Route::get('/{performanceGroup:key}/show', 'details')->name('details');
         Route::post('/{performanceGroup}/comment', 'addComment')->name('addComment.post');
         Route::post('/{performanceGroup}/assign', 'assignUser')->name('assignUser.post');
         Route::post('/{performanceGroup}/unassign', 'unassignUser')->name('unassignUser.post');
