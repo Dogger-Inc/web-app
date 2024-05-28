@@ -27,7 +27,7 @@ class CompaniesController extends Controller
     public function details(Company $company): \Inertia\Response
     {
         $user = auth()->user();
-        $user->can('view', $company);
+        $this->authorize('view', $company);
 
         // check if user is active in company
         $company->is_hidden = !$user->can('viewDetails', $company);
