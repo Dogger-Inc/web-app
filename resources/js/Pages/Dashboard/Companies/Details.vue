@@ -33,7 +33,7 @@ defineProps({
                 <TabUsers :users="company.activeUsers" :company="company" />
             </div>
             <div v-if="!company.is_hidden" :title="t('companies.pending_users')">
-                <TabUsersPending :users="company.inactiveUsers" :company-id="company.id" />
+                <TabUsersPending :users="company.inactiveUsers" :company="company" />
             </div>
         </TabbedCard>
     </DashboardLayout>
