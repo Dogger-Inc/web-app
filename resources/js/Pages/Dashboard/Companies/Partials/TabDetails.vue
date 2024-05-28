@@ -1,11 +1,6 @@
 <script setup>
-import { useI18n } from 'vue-i18n';
-import { useToast } from 'vue-toastification/dist/index.mjs';
 import DataCell from '@/Components/Items/DataCell.vue';
 import { router } from '@inertiajs/vue3';
-
-const { t } = useI18n({});
-const toast = useToast();
 
 const props = defineProps({
     company: {
@@ -13,11 +8,6 @@ const props = defineProps({
         required: true,
     },
 });
-
-const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success(t("copied"));
-};
 
 const handleUpdateCompanyCode = () => {
     router.patch(
@@ -35,7 +25,7 @@ const handleUpdateCompanyCode = () => {
             <DataCell
                 :title="$t('companies.join')"
                 :value="company.key"
-                @click.prevent="copyToClipboard(company.key)"
+                copyable
                 class="sm:border-t-0"
             />
             <button
