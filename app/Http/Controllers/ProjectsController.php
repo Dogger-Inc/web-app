@@ -45,7 +45,7 @@ class ProjectsController extends Controller
     public function details(Project $project): \Inertia\Response
     {
         $user = auth()->user();
-        $user->can('viewDetails', $project->company);
+        $this->authorize('view', $project);
         $project->editable = $user->can('update', $project->company);
 
         $assignableUsers = $project->company->users()
@@ -82,6 +82,8 @@ class ProjectsController extends Controller
             'users.*' => ['integer', 'distinct', Rule::in($assignableUsers)]
         ]);
 
+        auth()->user()->can('update', Company::find($data['company_id'])) || abort(403);
+
         $project = Project::create([
             'name' => $data['name'],
             'company_id' => $data['company_id'],
@@ -98,6 +100,8 @@ class ProjectsController extends Controller
 
     public function refresh_code(Project $project): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $project->company) || abort(403);
+
         $project->key = strtoupper(Str::random(16));
         $project->save();
 
@@ -109,6 +113,8 @@ class ProjectsController extends Controller
 
     public function update(Project $project): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $project->company) || abort(403);
+
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100', Rule::unique('projects')->ignore($project->id)],
         ]);
@@ -124,6 +130,8 @@ class ProjectsController extends Controller
 
     public function assignUsers(Project $project): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $project->company) || abort(403);
+
         $assignableUsers = $project->company->users()
             ->wherePivot('is_active', true)
             ->whereNotIn('id', $project->users()->pluck('id'))
@@ -144,6 +152,8 @@ class ProjectsController extends Controller
 
     public function unassignUser(Project $project, int $userId): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $project->company) || abort(403);
+
         $project->users()->detach($userId);
 
         return redirect()->back()->with('toast', [
