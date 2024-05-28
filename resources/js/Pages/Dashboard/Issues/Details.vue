@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 import { Link, router } from '@inertiajs/vue3';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
@@ -6,9 +7,8 @@ import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import Stacktrace from '@/Components/Stacktrace.vue';
 import CommentsThread from '@/Components/CommentsThread.vue';
-import UsersSearch from '@/Components/Form/UsersSearch.vue';
+import ProjectUsersSearch from '@/Components/Form/ProjectUsersSearch.vue';
 import Badge from '@/Components/Badge.vue';
-import dayjs from 'dayjs';
 
 const { t } = useI18n();
 
@@ -130,7 +130,7 @@ function handleStatusChange() {
                 </div>
                 <div v-if="currentUser.canUpdate" class="space-y-2">
                     <span class="font-semibold">{{ t('issues.assigned_user') }}</span>
-                    <UsersSearch @select="handleAssignUser" />
+                    <ProjectUsersSearch @select="handleAssignUser" :project-id="issue.project_id" />
                     <div class="flex flex-col gap-2">
                         <div
                             v-for="user in issue.users"

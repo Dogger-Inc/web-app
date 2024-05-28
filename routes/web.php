@@ -42,7 +42,7 @@ Route::group([
         'as' => 'users.',
         'controller' => UsersController::class
     ], function () {
-        Route::get('/search', 'search')->name('search');
+        Route::get('{project}/search', 'search')->name('search');
     });
 
     //Companies
