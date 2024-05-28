@@ -1,13 +1,14 @@
 <script setup>
+import { ref, computed } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import DashboardLayout from '@/Layouts/Dashboard.vue';
 import LinedTitle from '@/Components/LinedTitle.vue';
 import ItemsList from '@/Components/Items/List.vue';
 import ModalLayout from '@/Layouts/Modal.vue';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import SelectWrapper from '@/Components/Form/SelectWrapper.vue';
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
-import { useI18n } from 'vue-i18n';
+import MultiSelectWrapper from '@/Components/Form/MultiSelectWrapper.vue';
 
 const { t } = useI18n();
 
@@ -25,6 +26,12 @@ const props = defineProps({
 const form = useForm({
     name: '',
     company_id: undefined,
+    users: [],
+});
+
+const companyUsers = computed(() => {
+    if (!form.company_id) return [];
+    return props.companies.find(company => company.id === form.company_id).users;
 });
 
 const modalState = ref(false);
@@ -38,7 +45,6 @@ const submit = () => {
         },
     });
 };
-
 </script>
 
 <template>
@@ -66,18 +72,27 @@ const submit = () => {
                 <InputWrapper
                     v-model="form.name"
                     :error="form.errors.name"
-                    :required="true"
                     :title="t('name')"
+                    required
                 />
                 <SelectWrapper
                     v-model="form.company_id"
                     :error="form.errors.name"
-                    :required="true"
                     :options="companies"
                     reduce="id"
                     :title="t('companies.title')"
+                    required
                 />
-                <button class="btn primary sm float-right" type="submit">{{t('projects.submit')}}</button>
+                <MultiSelectWrapper
+                    v-model="form.users"
+                    :error="form.errors.users"
+                    :options="companyUsers"
+                    :disabled="!form.company_id"
+                    reduce="id"
+                    label="fullname"
+                    :title="t('projects.assigned_user')"
+                />
+                <button class="btn primary sm" type="submit">{{t('projects.submit')}}</button>
             </form>
         </ModalLayout>
     </DashboardLayout>

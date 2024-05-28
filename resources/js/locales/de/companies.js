@@ -12,7 +12,6 @@ export default {
         "projects": "Projekt(e)",
         "active_users": "Aktive Benutzer",
         "pending_users": "Ausstehende Benutzer (inaktiv)",
-        "issues": "Probleme",
         "users": "Benutzer"
     }
 }
