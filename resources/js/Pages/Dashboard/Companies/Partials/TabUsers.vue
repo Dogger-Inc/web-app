@@ -19,6 +19,7 @@ const props = defineProps({
 const revokeUser = (id) => {
     router.patch(
         route('dashboard.companies.reject.patch', { company: props.company.id, userId: id }),
+        {},
         { preserveState: false }
     );
 }

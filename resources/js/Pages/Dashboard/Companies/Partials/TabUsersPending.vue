@@ -27,6 +27,7 @@ const acceptUser = (id) => {
 const rejectUser = (id) => {
     router.patch(
         route('dashboard.companies.reject.patch', {company: props.company.id, userId: id}),
+        {},
         { preserveState: false }
     );
 }
