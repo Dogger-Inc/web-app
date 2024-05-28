@@ -54,8 +54,13 @@ class ProjectsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'issues_page');
 
+        $performanceGroups = $project->performanceGroups()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'performance_groups_page');
+
         $project->users = $users;
         $project->issues = $issues;
+        $project->performanceGroups = $performanceGroups;
 
         return inertia('Dashboard/Projects/Details', [
             'project' => $project,

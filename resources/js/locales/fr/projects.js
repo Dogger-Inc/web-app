@@ -11,6 +11,7 @@ export default {
         "update": "Confirmer",
         "cancel": "Annuler",
         "issues": "Erreur(s)",
+        "performances": "Performance(s)",
         "key": "Clé du projet"
     }
 }

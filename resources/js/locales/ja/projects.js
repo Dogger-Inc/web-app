@@ -11,6 +11,7 @@ export default {
         "update": "確認する",
         "cancel": "キャンセル",
         "issues": "問題",
+        "performances": "パフォーマンス",
         "key": "プロジェクトキー"
     }
 }
