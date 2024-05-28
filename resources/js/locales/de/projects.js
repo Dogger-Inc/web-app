@@ -11,6 +11,7 @@ export default {
         "update": "Bestätigen",
         "cancel": "Stornieren",
         "issues": "Probleme",
+        "performances": "Voorstellingen",
         "key": "Projektschlüssel"
     }
 }

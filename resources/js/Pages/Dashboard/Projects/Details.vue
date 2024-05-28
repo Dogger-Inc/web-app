@@ -5,6 +5,7 @@ import LinedTitle from '@/Components/LinedTitle.vue';
 import TabbedCard from '@/Components/Items/TabbedCard.vue';
 import TabDetails from '@/Pages/Dashboard/Projects/Partials/TabDetails.vue';
 import TabIssues from '@/Pages/Dashboard/Projects/Partials/TabIssues.vue';
+import TabPerformanceGroups from '@/Pages/Dashboard/Projects/Partials/TabPerformanceGroups.vue';
 import TabUsers from '@/Pages/Dashboard/Projects/Partials/TabUsers.vue';
 
 const { t } = useI18n();
@@ -31,6 +32,9 @@ defineProps({
             </div>
             <div :title="t('projects.issues')">
                 <TabIssues :issues="project.issues" />
+            </div>
+            <div :title="t('projects.performances')">
+                <TabPerformanceGroups :performance-groups="project.performanceGroups" />
             </div>
             <div :title="t('projects.assigned_user')">
                 <TabUsers

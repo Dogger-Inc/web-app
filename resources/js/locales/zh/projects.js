@@ -11,6 +11,7 @@ export default {
         "update": "确认",
         "cancel": "取消",
         "issues": "问题",
+        "performances": "演出",
         "key": "项目重点"
     }
 }

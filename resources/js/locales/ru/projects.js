@@ -11,6 +11,7 @@ export default {
         "update": "Подтверждать",
         "cancel": "Отмена",
         "issues": "Проблемы",
+        "performances": "Выступления",
         "key": "Ключ проекта"
     }
 }

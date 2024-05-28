@@ -36,6 +36,11 @@ class Project extends Model
         return $this->hasMany(Performance::class);
     }
 
+    public function performanceGroups(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PerformanceGroup::class);
+    }
+
     // Many to Many
     public function users():  \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

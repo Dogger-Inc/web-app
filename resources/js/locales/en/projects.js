@@ -11,6 +11,7 @@ export default {
         "update": "Confirm",
         "cancel": "Cancel",
         "issues": "Issue(s)",
+        "performances": "Performance(s)",
         "key":"Project key",
     }
 }
