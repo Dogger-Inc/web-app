@@ -1,9 +1,10 @@
 <script setup>
 import { computed } from 'vue';
-import Multiselect from '@vueform/multiselect';
 import { useI18n } from 'vue-i18n';
+import Multiselect from '@vueform/multiselect';
 
 const { t } = useI18n();
+
 const modelValue = defineModel();
 const props = defineProps({
     title: {
@@ -36,8 +37,8 @@ const props = defineProps({
     }
 });
 
-const noOptTextToShow = computed( () => props.noOptText || t("no_option") )
-const placeholderToShow = computed( () => props.placeholder || t("select_many_options") )
+const noOptTextToShow = computed(() => props.noOptText || t("no_option"))
+const placeholderToShow = computed(() => props.placeholder || t("select_many_options"))
 const formatedOptions = computed(() => {
     return props.options.map((option) => {
         return {
@@ -99,6 +100,8 @@ label {
     }
 
     :deep(.multiselect-wrapper) {
+        --ms-tag-bg: #ff8437;
+
         @apply w-full rounded-xl border-2 border-gray-400 shadow-sm sm:text-sm font-medium pt-8 pb-2 px-2 -mt-8;
 
         background-image:
