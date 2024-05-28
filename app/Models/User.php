@@ -52,7 +52,7 @@ class User extends Authenticatable
         'fullname'
     ];
 
-    public function getRoleInCompany($companyId)
+    public function getRoleInCompany(int $companyId): ?string
     {
         $company = $this->companies()->where('company_id', $companyId)->first();
 

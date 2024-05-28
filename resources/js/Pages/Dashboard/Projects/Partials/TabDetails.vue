@@ -1,13 +1,11 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { useToast } from 'vue-toastification/dist/index.mjs';
 import DataCell from '@/Components/Items/DataCell.vue';
 import InputWrapper from '@/Components/Form/InputWrapper.vue';
 import { ref } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 
 const { t } = useI18n({});
-const toast = useToast();
 
 const props = defineProps({
     project: {
@@ -24,11 +22,6 @@ const updateForm = useForm({
         name: false
     }
 });
-
-const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    toast.success(t("copied"));
-};
 
 const handleUpdateProject = () => {
     updateForm.patch(route('dashboard.projects.update.patch'), {
@@ -89,7 +82,7 @@ const handleUpdateProjectCode = () => {
             <DataCell
                 :title="t('projects.key')"
                 :value="project.key"
-                @click.prevent="copyToClipboard(project.key)"
+                copyable
                 class="sm:border-t-0"
             />
             <button
@@ -100,5 +93,10 @@ const handleUpdateProjectCode = () => {
                 {{ $t('companies.change_code')}}
             </button>
         </div>
+        <DataCell
+            :title="t('projects.company')"
+            :value="project.company.name"
+            :link-opts="{path: 'dashboard.companies.details', param: project.company.id}"
+        />
     </div>
 </template>

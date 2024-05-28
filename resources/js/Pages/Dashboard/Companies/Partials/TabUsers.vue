@@ -1,20 +1,24 @@
 <script setup>
-import ItemsList from '@/Components/Items/List.vue';
+import { useI18n } from 'vue-i18n';
 import { router } from '@inertiajs/vue3';
+import ItemsList from '@/Components/Items/List.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
     users: {
         type: Object,
         required: true,
     },
-    companyId: Number
+    company: {
+        type: Object,
+        required: true
+    },
 });
 
 const revokeUser = (id) => {
-    if (!props.companyId) return;
-
-    router.delete(
-        route('dashboard.companies.reject.delete', { company: props.companyId, userId: id }),
+    router.patch(
+        route('dashboard.companies.reject.patch', { company: props.company.id, userId: id }),
         { preserveState: false }
     );
 }
@@ -32,8 +36,10 @@ const revokeUser = (id) => {
                 {{ item.email }}
             </p>
         </div>
-        <div v-if="companyId" class="h-full ml-auto flex gap-4">
-            <button @click="revokeUser(item.id)" class="btn warning sm">Revoke</button>
+        <div v-if="company.editable" class="h-full ml-auto flex gap-4">
+            <button @click="revokeUser(item.id)" class="btn warning sm">{{t('companies.revoke')}}</button>
         </div>
     </ItemsList>
 </template>
+
+<style lang="scss" scoped></style>

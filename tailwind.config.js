@@ -26,6 +26,9 @@ export default {
                     DEFAULT: '#666666',
                     'light': '#F5F5F5',
                 }
+            },
+            screens: {
+                xs: '480px',
             }
         },
     },

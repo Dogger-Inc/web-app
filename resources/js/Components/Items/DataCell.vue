@@ -2,8 +2,11 @@
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { useToast } from 'vue-toastification/dist/index.mjs';
+import { ClipboardDocumentListIcon } from '@heroicons/vue/24/outline';
 
 const { t } = useI18n({});
+const toast = useToast();
 
 const props = defineProps({
     title: {
@@ -13,6 +16,10 @@ const props = defineProps({
     value: {
         type: [String, Number, Boolean],
         default: null
+    },
+    copyable: {
+        type: Boolean,
+        default: false
     },
     spacer: {
         type: Boolean,
@@ -27,6 +34,10 @@ const isLinkable = computed(() => {
     return props.linkOpts && props.linkOpts.path && props.linkOpts.param;
 });
 
+const isCopyable = computed(() => {
+    return props.copyable && (props.value !== undefined && props.value !== null);
+});
+
 const formatedValue = computed(() => {
     if(props.format && (props.value !== undefined && props.value !== null)) {
         return props.format(props.value);
@@ -39,6 +50,11 @@ const getLinkHref = () => {
     if(props.linkOpts.type === 'external') return props.linkOpts.path + props.linkOpts.param;
     return route(props.linkOpts.path, props.linkOpts.param);
 }
+
+const copyToClipboard = () => {
+    navigator.clipboard.writeText(formatedValue.value);
+    toast.success(t("copied"));
+};
 </script>
 
 <template>
@@ -46,7 +62,7 @@ const getLinkHref = () => {
         <dt class="text-sm font-medium text-gray-900">
             {{ title }}
         </dt>
-        <dd class="sm:mt-1 text-sm text-gray-700 whitespace-pre-wrap">
+        <dd class="flex items-center gap-2 sm:mt-1 text-sm text-gray-700 whitespace-pre-wrap">
             <template v-if="isLinkable">
                 <a
                     v-if="linkOpts.type === 'external'"
@@ -63,6 +79,14 @@ const getLinkHref = () => {
             <template v-else>
                 {{ formatedValue }}
             </template>
+
+            <button
+                v-if="isCopyable"
+                class="text-gray-500 hover:text-dogger-orange-400"
+                @click.prevent="copyToClipboard()"
+            >
+                <ClipboardDocumentListIcon class="h-4 w-4" />
+            </button>
         </dd>
     </div>
 </template>

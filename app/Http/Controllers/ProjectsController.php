@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Project;
 use App\Models\Company;
 use Illuminate\Validation\Rule;
@@ -13,18 +14,27 @@ class ProjectsController extends Controller
     {
         $currentUserId = auth()->user()->id;
 
-        $projects = Project::whereHas('users', function ($query) use ($currentUserId) {
+        $projects = Project::whereHas('company.users', function ($query) use ($currentUserId) {
+            $query->where('user_id', $currentUserId)
+                ->whereIn('role', ['admin', 'owner'])
+                ->where('is_active', true);
+        })->orWhereHas('users', function ($query) use ($currentUserId) {
             $query->where('user_id', $currentUserId);
         })
             ->autoSearch('name')
             ->autoOrder()
             ->autoPaginate();
 
+        // get companies for new project form
         $companies = Company::whereHas('users', function ($query) use ($currentUserId) {
-            $query->where('user_id', $currentUserId);
+            $query->where('user_id', $currentUserId)->where('is_active', true);
         })
+            ->with(['users' => function ($query) {
+                $query->select('id', 'firstname', 'lastname')
+                    ->wherePivot('is_active', true);
+            }])
             ->orderBy('name', 'asc')
-            ->get();
+            ->get(['id', 'name']);
 
         return inertia('Dashboard/Projects/List', [
             'projects' => $projects,
@@ -34,8 +44,15 @@ class ProjectsController extends Controller
 
     public function details(Project $project): \Inertia\Response
     {
-        // for advanced query purpose we need to load users and projects separately
         $user = auth()->user();
+        $this->authorize('view', $project);
+        $project->editable = $user->can('update', $project->company);
+
+        $assignableUsers = $project->company->users()
+            ->wherePivot('is_active', true)
+            ->whereNotIn('id', $project->users()->pluck('id'))
+            ->get(['id', 'firstname', 'lastname']);
+
         $users = $project->users()
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'users_page');
@@ -43,23 +60,29 @@ class ProjectsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'issues_page');
 
-        $userRole = $user->getRoleInCompany($project->company_id);
-        $project->editable = $userRole != 'user';
-
         $project->users = $users;
         $project->issues = $issues;
 
         return inertia('Dashboard/Projects/Details', [
             'project' => $project,
+            'assignableUsers' => $assignableUsers
         ]);
     }
 
     public function store(): \Illuminate\Http\RedirectResponse
     {
+        $assignableUsers = User::whereHas('companies', function ($query) {
+            $query->where('company_id', request()->company_id)->where('is_active', true);
+        })->get(['id'])->pluck('id')->toArray();
+
         $data = request()->validate([
             'name' => ['required', 'string', 'max:100', Rule::unique('projects')],
             'company_id' => ['required', 'integer', Rule::exists('companies', 'id')],
+            'users' => ['nullable', 'array'],
+            'users.*' => ['integer', 'distinct', Rule::in($assignableUsers)]
         ]);
+
+        auth()->user()->can('update', Company::find($data['company_id'])) || abort(403);
 
         $project = Project::create([
             'name' => $data['name'],
@@ -67,7 +90,7 @@ class ProjectsController extends Controller
             'key' => strtoupper(Str::random(16)),
         ]);
 
-        $project->users()->attach(auth()->user()->id);
+        $project->users()->attach($data['users'] ?? []);
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
@@ -77,8 +100,9 @@ class ProjectsController extends Controller
 
     public function refresh_code(Project $project): \Illuminate\Http\RedirectResponse
     {
-        $project->key = strtoupper(Str::random(16));
+        auth()->user()->can('update', $project->company) || abort(403);
 
+        $project->key = strtoupper(Str::random(16));
         $project->save();
 
         return redirect()->back()->with('toast', [
@@ -87,22 +111,54 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function update(): \Illuminate\Http\RedirectResponse
+    public function update(Project $project): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $project->company) || abort(403);
+
         $data = request()->validate([
-            'project_id' => ['required', 'integer', Rule::exists('projects', 'id')],
-            'name' => ['required', 'string', 'max:100', Rule::unique('projects')],
+            'name' => ['required', 'string', 'max:100', Rule::unique('projects')->ignore($project->id)],
         ]);
 
-        $project = Project::find($data['project_id']);
-
         $project->name = $data['name'];
-
         $project->save();
 
         return redirect()->back()->with('toast', [
             'type' => 'success',
             'message' => trans('toast.project_updated'),
+        ]);
+    }
+
+    public function assignUsers(Project $project): \Illuminate\Http\RedirectResponse
+    {
+        auth()->user()->can('update', $project->company) || abort(403);
+
+        $assignableUsers = $project->company->users()
+            ->wherePivot('is_active', true)
+            ->whereNotIn('id', $project->users()->pluck('id'))
+            ->get(['id'])->pluck('id')->toArray();
+
+        $data = request()->validate([
+            'users' => ['required', 'array'],
+            'users.*' => ['integer', 'distinct', Rule::in($assignableUsers)]
+        ]);
+
+        $project->users()->attach($data['users']);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => trans('toast.user_assigned'),
+        ]);
+    }
+
+    public function unassignUser(Project $project, int $userId): \Illuminate\Http\RedirectResponse
+    {
+        auth()->user()->can('update', $project->company) || abort(403);
+
+        $project->users()->detach($userId);
+
+        return redirect()->back()->with('toast', [
+            'type' => 'success',
+            'message' => trans('toast.user_unassigned'),
         ]);
     }
 }

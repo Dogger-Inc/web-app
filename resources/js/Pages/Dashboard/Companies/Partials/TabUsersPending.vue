@@ -45,7 +45,7 @@ const rejectUser = (id) => {
                 {{ item.email }}
             </p>
         </div>
-        <div class="h-full ml-auto flex gap-4">
+        <div v-if="company.editable" class="h-full ml-auto flex gap-4">
             <button @click="acceptUser(item.id)" class="btn success sm">{{ $t('accept') }}</button>
             <button @click="rejectUser(item.id)" class="btn warning sm">{{ $t('reject') }}</button>
         </div>

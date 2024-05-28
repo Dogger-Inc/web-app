@@ -1,15 +1,18 @@
-<script setup >
+<script setup>
+import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import {computed } from 'vue';
 
-const user = usePage().props.auth.user;
-const initialsLetter = computed (() => {
+const props = defineProps({
+    user: Object,
+});
+
+const pageUser = usePage().props.auth.user;
+
+const initialsLetter = computed(() => {
+    const user = props.user || pageUser;
     return user.firstname.charAt(0).toUpperCase() + user.lastname.charAt(0).toUpperCase();
-})
+});
 </script>
-
 <template>
-    <div class="h-10 w-10 rounded-full bg-dogger-orange-600 p-2 text-white font-bold flex items-center justify-center">
-        {{ initialsLetter }}
-    </div>
+    <div class="flex items-center justify-center w-10 h-10 p-2 font-bold text-white rounded-full bg-dogger-orange-600 whitespace-nowrap"> {{ initialsLetter }} </div>
 </template>
