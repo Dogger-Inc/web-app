@@ -26,15 +26,17 @@ defineProps({
             <div :title="t('companies.details')">
                 <TabDetails :company="company" />
             </div>
-            <div :title="t('companies.projects')">
-                <TabProjects :projects="company.projects" />
-            </div>
-            <div :title="t('companies.active_users')">
-                <TabUsers :users="company.activeUsers" :company-id="company.id" />
-            </div>
-            <div :title="t('companies.pending_users')">
-                <TabUsersPending :users="company.inactiveUsers" :company-id="company.id" />
-            </div>
+            <template v-if="!company.is_hidden">
+                <div :title="t('companies.projects')">
+                    <TabProjects :projects="company.projects" />
+                </div>
+                <div :title="t('companies.active_users')">
+                    <TabUsers :users="company.activeUsers" :company-id="company.id" />
+                </div>
+                <div :title="t('companies.pending_users')">
+                    <TabUsersPending :users="company.inactiveUsers" :company-id="company.id" />
+                </div>
+            </template>
         </TabbedCard>
     </DashboardLayout>
 </template>

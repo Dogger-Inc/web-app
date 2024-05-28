@@ -52,7 +52,7 @@ class User extends Authenticatable
         'fullname'
     ];
 
-    public function getRoleInCompany($companyId)
+    public function getRoleInCompany(int $companyId): ?string
     {
         $company = $this->companies()->where('company_id', $companyId)->first();
 
@@ -61,6 +61,11 @@ class User extends Authenticatable
         }
 
         return $company->pivot->role;
+    }
+
+    public function checkCompanyAccess(int $companyId): void
+    {
+        $this->companies()->where('company_id', $companyId)->exists() || abort(403);
     }
 
 

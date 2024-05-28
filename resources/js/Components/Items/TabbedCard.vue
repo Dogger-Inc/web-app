@@ -17,6 +17,8 @@ onMounted(() => {
     slots.default().forEach((tab, index) => {
         const id = index + 1;
 
+        if (!tab.props?.title) return;
+
         tmp.push({
             id: id,
             title: tab.props.title,

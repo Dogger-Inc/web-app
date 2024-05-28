@@ -27,25 +27,32 @@ class CompaniesController extends Controller
     public function details(Company $company): \Inertia\Response
     {
         $user = auth()->user();
-        // for advanced query purpose we need to load users and projects separately
-        $inactiveUsers = $company->users()
-            ->orderBy('created_at', 'desc')
-            ->wherePivot('is_active', false)
-            ->paginate(10, ['*'], 'users_disabled_page');
-        $activeUsers = $company->users()
-            ->orderBy('created_at', 'desc')
-            ->wherePivot('is_active', true)
-            ->paginate(10, ['*'], 'users_active_page');
-        $projects = $company->projects()
-            ->orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'projects_page');
+        $user->checkCompanyAccess($company->id);
 
-        $userRole = $user->getRoleInCompany($company->id);
-        $company->editable = $userRole != 'user';
+        // check if user is active in company
+        $company->is_hidden = $user->companies()->where('company_id', $company->id)->wherePivot('is_active', true)->doesntExist();
 
-        $company->inactiveUsers = $inactiveUsers;
-        $company->activeUsers = $activeUsers;
-        $company->projects = $projects;
+        if (!$company->is_hidden) {
+            // for advanced query purpose we need to load users and projects separately
+            $inactiveUsers = $company->users()
+                ->orderBy('created_at', 'desc')
+                ->wherePivot('is_active', false)
+                ->paginate(10, ['*'], 'users_disabled_page');
+            $activeUsers = $company->users()
+                ->orderBy('created_at', 'desc')
+                ->wherePivot('is_active', true)
+                ->paginate(10, ['*'], 'users_active_page');
+            $projects = $company->projects()
+                ->orderBy('created_at', 'desc')
+                ->paginate(10, ['*'], 'projects_page');
+
+            $userRole = $user->getRoleInCompany($company->id);
+            $company->editable = $userRole != 'user';
+
+            $company->inactiveUsers = $inactiveUsers;
+            $company->activeUsers = $activeUsers;
+            $company->projects = $projects;
+        }
 
         return inertia('Dashboard/Companies/Details', [
             'company' => $company,
@@ -74,7 +81,6 @@ class CompaniesController extends Controller
     public function refresh_code(Company $company): \Illuminate\Http\RedirectResponse
     {
         $company->key = strtoupper(Str::random(8));
-
         $company->save();
 
         return redirect()->back()->with('toast', [
@@ -83,11 +89,11 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function join(Company $company) {
-
+    public function join(Company $company): \Illuminate\Http\RedirectResponse
+    {
         $user = auth()->user();
 
-        if($user && $company->users()->where('user_id', $user->id)->exists()) {
+        if($user && $user->companies()->where('company_id', $company->id)->exists()) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
                 'message' => trans('toast.already_in_company'),
@@ -102,10 +108,14 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function reject(Company $company, int $userId) {
+    public function reject(Company $company, int $userId): \Illuminate\Http\RedirectResponse
+    {
         $user = auth()->user();
+        $user->checkCompanyAccess($company->id);
+        $userRole = $user->getRoleInCompany($company->id);
+        if ($userRole === 'user') abort(403);
 
-        if($user->id == $userId) {
+        if ($user->id == $userId) {
             return redirect()->back()->with('toast', [
                 'type' => 'error',
                 'message' => trans('toast.cant_revoke_yourself'),
@@ -120,7 +130,13 @@ class CompaniesController extends Controller
         ]);
     }
 
-    public function accept(Company $company, int $userId) {
+    public function accept(Company $company, int $userId): \Illuminate\Http\RedirectResponse
+    {
+        $user = auth()->user();
+        $user->checkCompanyAccess($company->id);
+        $userRole = $user->getRoleInCompany($company->id);
+        if ($userRole === 'user') abort(403);
+
         $company->users()->updateExistingPivot($userId, ['is_active' => true]);
 
         return redirect()->back()->with('toast', [
