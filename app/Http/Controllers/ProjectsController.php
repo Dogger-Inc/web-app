@@ -14,13 +14,7 @@ class ProjectsController extends Controller
     {
         $currentUserId = auth()->user()->id;
 
-        $projects = Project::whereHas('company.users', function ($query) use ($currentUserId) {
-            $query->where('user_id', $currentUserId)
-                ->whereIn('role', ['admin', 'owner'])
-                ->where('is_active', true);
-        })->orWhereHas('users', function ($query) use ($currentUserId) {
-            $query->where('user_id', $currentUserId);
-        })
+        $projects = Project::retrieveRelevantProjects($currentUserId)
             ->autoSearch('name')
             ->autoOrder()
             ->autoPaginate();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Project;
 use App\Models\Performance;
 use App\Models\PerformanceGroup;
 use Illuminate\Validation\Rule;
@@ -11,17 +12,14 @@ class PerformancesController extends Controller
 {
     public function list (): \Inertia\Response
     {
-        $user = auth()->user();
-        $projects = $user->projects()->get();
+        $currentUserId = auth()->user()->id;
 
-        if ($projects->isEmpty()) {
-            $groups = PerformanceGroup::autoPaginate();
-        } else {
-            $groups = PerformanceGroup::whereBelongsTo($projects)
-                ->autoSearch('message')
-                ->autoOrder()
-                ->autoPaginate();
-        }
+        $projectsId = Project::retrieveRelevantProjects($currentUserId)->pluck('id')->toArray();
+
+        $groups = PerformanceGroup::whereIn('project_id', $projectsId)
+            ->autoSearch('message')
+            ->autoOrder()
+            ->autoPaginate();
 
         return inertia('Dashboard/Performances/List', [
             'performanceGroups' => $groups,

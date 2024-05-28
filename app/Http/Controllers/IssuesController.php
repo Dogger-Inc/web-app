@@ -4,23 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Issue;
+use App\Models\Project;
 use Illuminate\Validation\Rule;
 
 class IssuesController extends Controller
 {
     public function list (): \Inertia\Response
     {
-        $user = auth()->user();
-        $projects = $user->projects()->get();
+        $currentUserId = auth()->user()->id;
 
-        if ($projects->isEmpty()) {
-            $issues = Issue::autoPaginate();
-        } else {
-            $issues = Issue::whereBelongsTo($projects)
-                ->autoSearch('message')
-                ->autoOrder()
-                ->autoPaginate();
-        }
+        $projectsId = Project::retrieveRelevantProjects($currentUserId)->pluck('id')->toArray();
+
+        $issues = Issue::whereIn('project_id', $projectsId)
+            ->autoSearch('message')
+            ->autoOrder()
+            ->autoPaginate();
 
         return inertia('Dashboard/Issues/List', [
             'issues' => $issues,
