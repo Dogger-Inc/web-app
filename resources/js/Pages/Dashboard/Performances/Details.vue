@@ -98,7 +98,7 @@ function handleUnassignUser(user) {
                     </div>
                 </div>
 
-                <div class="space-y-2">
+                <div v-if="currentUser.canUpdate" class="space-y-2">
                     <span class="font-semibold">{{t('performances.assigned_user')}}</span>
                     <UsersSearch @select="handleAssignUser" />
                     <div class="flex flex-col gap-2">
