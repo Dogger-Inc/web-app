@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IssuesController;
-use App\Http\Controllers\PerformancesController;
+use App\Http\Controllers\API\IssuesController;
+use App\Http\Controllers\API\PerformancesController;
 
 /*
 |--------------------------------------------------------------------------
