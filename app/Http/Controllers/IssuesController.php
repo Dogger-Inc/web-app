@@ -27,7 +27,8 @@ class IssuesController extends Controller
 
     public function details(Issue $issue): \Inertia\Response
     {
-        $currentUser = auth()->user();
+        $this->authorize('view', $issue->project);
+
         $users = $issue->users()
             ->orderBy('created_at', 'desc')
             ->get();
@@ -44,8 +45,8 @@ class IssuesController extends Controller
         $issue->users = $users;
         $issue->comments = $comments;
 
-        $userRole = $currentUser->getRoleInCompany($issue->project()->first()->company_id);
-        $currentUser->canAssignUsers = $userRole != 'user';
+        $currentUser = auth()->user();
+        $currentUser->canUpdate = $currentUser->can('update', $issue->project->company);
 
         return inertia('Dashboard/Issues/Details', [
             'issue' => $issue,
@@ -54,6 +55,8 @@ class IssuesController extends Controller
     }
 
     public function addComment(Issue $issue) {
+        $this->authorize('view', $issue->project);
+
         $data = request()->validate([
             'reply_to' => ['nullable', 'integer', Rule::exists('users', 'id')],
             'content' => ['string'],
@@ -71,6 +74,8 @@ class IssuesController extends Controller
     }
 
     public function assignUser(Issue $issue) {
+        auth()->user()->can('update', $issue->project->company) || abort(403);
+
         $data = request()->validate([
             'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
         ]);
@@ -91,6 +96,8 @@ class IssuesController extends Controller
     }
 
     public function unassignUser(Issue $issue) {
+        auth()->user()->can('update', $issue->project->company) || abort(403);
+
         $data = request()->validate([
             'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
         ]);
@@ -112,6 +119,8 @@ class IssuesController extends Controller
 
     public function changeStatus(Issue $issue)
     {
+        auth()->user()->can('update', $issue->project->company) || abort(403);
+
         $data = request()->validate([
             'status' => ['required', 'string', Rule::in(['new', 'pending', 'in_progress', 'resolved'])],
         ]);
