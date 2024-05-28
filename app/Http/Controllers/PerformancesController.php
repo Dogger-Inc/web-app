@@ -29,6 +29,7 @@ class PerformancesController extends Controller
     {
         $this->authorize('view', $performanceGroup->project);
 
+        $performanceGroup->load('project:id,name,company_id');
         $performances = $performanceGroup->performances()->get();
 
         $users = $performanceGroup->users()

@@ -29,6 +29,7 @@ class IssuesController extends Controller
     {
         $this->authorize('view', $issue->project);
 
+        $issue->load('project:id,name,company_id');
         $users = $issue->users()
             ->orderBy('created_at', 'desc')
             ->get();
