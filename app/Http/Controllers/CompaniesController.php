@@ -27,12 +27,14 @@ class CompaniesController extends Controller
     public function details(Company $company): \Inertia\Response
     {
         $user = auth()->user();
-        $user->checkCompanyAccess($company->id);
+        $user->can('view', $company);
 
         // check if user is active in company
-        $company->is_hidden = $user->companies()->where('company_id', $company->id)->wherePivot('is_active', true)->doesntExist();
+        $company->is_hidden = !$user->can('viewDetails', $company);
 
         if (!$company->is_hidden) {
+            $company->editable = $user->can('update', $company);
+
             // for advanced query purpose we need to load users and projects separately
             $inactiveUsers = $company->users()
                 ->orderBy('created_at', 'desc')
@@ -45,9 +47,6 @@ class CompaniesController extends Controller
             $projects = $company->projects()
                 ->orderBy('created_at', 'desc')
                 ->paginate(10, ['*'], 'projects_page');
-
-            $userRole = $user->getRoleInCompany($company->id);
-            $company->editable = $userRole != 'user';
 
             $company->inactiveUsers = $inactiveUsers;
             $company->activeUsers = $activeUsers;
@@ -80,6 +79,8 @@ class CompaniesController extends Controller
 
     public function refresh_code(Company $company): \Illuminate\Http\RedirectResponse
     {
+        auth()->user()->can('update', $company) || abort(403);
+
         $company->key = strtoupper(Str::random(8));
         $company->save();
 
@@ -111,9 +112,7 @@ class CompaniesController extends Controller
     public function reject(Company $company, int $userId): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
-        $user->checkCompanyAccess($company->id);
-        $userRole = $user->getRoleInCompany($company->id);
-        if ($userRole === 'user') abort(403);
+        $user->can('update', $company) || abort(403);
 
         if ($user->id == $userId) {
             return redirect()->back()->with('toast', [
@@ -132,10 +131,7 @@ class CompaniesController extends Controller
 
     public function accept(Company $company, int $userId): \Illuminate\Http\RedirectResponse
     {
-        $user = auth()->user();
-        $user->checkCompanyAccess($company->id);
-        $userRole = $user->getRoleInCompany($company->id);
-        if ($userRole === 'user') abort(403);
+        auth()->user()->can('update', $company) || abort(403);
 
         $company->users()->updateExistingPivot($userId, ['is_active' => true]);
 

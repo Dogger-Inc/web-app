@@ -63,11 +63,6 @@ class User extends Authenticatable
         return $company->pivot->role;
     }
 
-    public function checkCompanyAccess(int $companyId): void
-    {
-        $this->companies()->where('company_id', $companyId)->exists() || abort(403);
-    }
-
 
     // One to Many
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
