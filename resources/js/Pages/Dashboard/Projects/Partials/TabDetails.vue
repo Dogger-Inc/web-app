@@ -93,5 +93,10 @@ const handleUpdateProjectCode = () => {
                 {{ $t('companies.change_code')}}
             </button>
         </div>
+        <DataCell
+            :title="t('projects.company')"
+            :value="project.company.name"
+            :link-opts="{path: 'dashboard.companies.details', param: project.company.id}"
+        />
     </div>
 </template>

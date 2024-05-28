@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+
 const modelValue = defineModel();
 const props = defineProps({
     title: {
@@ -82,7 +83,7 @@ label {
 }
 
 select {
-    @apply w-full bg-transparent rounded-xl border-2 border-gray-400 shadow-sm sm:text-sm font-medium pt-8 pb-2 px-2 -mt-8 indent-0.5;
+    @apply w-full bg-transparent rounded-xl border-2 border-gray-400 shadow-sm text-xs xs:text-sm font-medium pt-8 pb-2 px-2 -mt-8 indent-0.5;
 
     // Use the following code to replace the default arrow
     -webkit-appearance: none;

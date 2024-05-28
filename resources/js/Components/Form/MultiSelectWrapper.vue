@@ -102,7 +102,7 @@ label {
     :deep(.multiselect-wrapper) {
         --ms-tag-bg: #ff8437;
 
-        @apply w-full rounded-xl border-2 border-gray-400 shadow-sm sm:text-sm font-medium pt-8 pb-2 px-2 -mt-8;
+        @apply w-full rounded-xl border-2 border-gray-400 shadow-sm text-xs xs:text-sm font-medium pt-8 pb-2 px-2 -mt-8;
 
         background-image:
             linear-gradient(45deg, transparent 50%, gray 50%),
@@ -116,7 +116,7 @@ label {
         background-repeat: no-repeat;
 
         .multiselect-placeholder {
-            @apply w-full h-fit sm:text-sm font-medium text-black p-0 m-0 top-auto bottom-2 left-2.5;
+            @apply w-full h-fit text-xs xs:text-sm font-medium text-black p-0 m-0 top-auto bottom-2 left-2.5;
         }
 
         .multiselect-tags {

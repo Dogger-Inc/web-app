@@ -56,7 +56,7 @@ Route::group([
         Route::post('/create', 'store')->name('create.post');
         Route::get('/join/{company:key}', 'join')->name('join');
         Route::patch('/{company}/invitation', 'refresh_code')->name('refresh_code.patch');
-        Route::delete('/{company}/reject/{userId}', 'reject')->name('reject.delete');
+        Route::patch('/{company}/reject/{userId}', 'reject')->name('reject.patch');
         Route::patch('/{company}/accept/{userId}', 'accept')->name('accept.patch');
     });
 
@@ -80,7 +80,9 @@ Route::group([
         Route::get('/', 'list')->name('list');
         Route::get('/{project}/show', 'details')->name('details');
         Route::post('/create', 'store')->name('create.post');
-        Route::patch('/update', 'update')->name('update.patch');
+        Route::patch('/{project}/update', 'update')->name('update.patch');
+        Route::post('/{project}/assign', 'assignUsers')->name('assignUsers.post');
+        Route::patch('/{project}/unassign/{userId}', 'unassignUser')->name('unassignUser.patch');
         Route::patch('/{project}/invitation', 'refresh_code')->name('refresh_code.patch');
     });
 
