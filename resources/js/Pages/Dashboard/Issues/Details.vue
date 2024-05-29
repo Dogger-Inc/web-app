@@ -68,8 +68,8 @@ function handleStatusChange() {
                 <div class="flex flex-row items-center gap-2"> {{ issue.message }} </div>
             </div>
         </div>
-        <div class="grid grid-cols-12 gap-6 mt-6">
-            <div class="flex flex-col col-span-8 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+            <div class="flex flex-col sm:col-span-2 gap-6">
                 <div class="space-y-2">
                     <span class="font-semibold">{{ t('issues.stacktrace') }}</span>
                     <div class="flex flex-row items-center gap-2">
@@ -85,7 +85,7 @@ function handleStatusChange() {
                     />
                 </div>
             </div>
-            <div class="flex flex-col col-span-4 gap-10">
+            <div class="flex flex-col col-span-1 gap-10">
                 <div class="space-y-2">
                     <span class="font-semibold">{{ t('issues.tags') }}</span>
                     <div class="flex flex-row items-center gap-2">

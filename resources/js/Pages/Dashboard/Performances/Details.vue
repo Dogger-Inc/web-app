@@ -67,8 +67,8 @@ function handleUnassignUser(user) {
             </div>
         </div>
 
-        <div class="mt-6 grid grid-cols-12 gap-6">
-            <div class="flex flex-col gap-6 col-span-8">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+            <div class="flex flex-col sm:col-span-2 gap-6">
                 <div class="space-y-2">
                     <span class="font-semibold">{{t('performances.values')}}</span>
 
@@ -90,7 +90,7 @@ function handleUnassignUser(user) {
                 </div>
             </div>
 
-            <div class="col-span-4 flex flex-col gap-10">
+            <div class="flex flex-col col-span-1 gap-10">
                 <div class="space-y-2">
                     <span class="font-semibold">{{t('performances.tags')}}</span>
                     <div class="flex flex-row gap-2 items-center">
