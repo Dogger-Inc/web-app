@@ -52,6 +52,7 @@ class ProjectsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'users_page');
         $issues = $project->issues()
+            ->orderByRaw("FIELD(status, 'new', 'pending', 'in_progress', 'resolved')")
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'issues_page');
 

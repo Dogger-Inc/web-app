@@ -16,6 +16,7 @@ class IssuesController extends Controller
         $projectsId = Project::retrieveRelevantProjects($currentUserId)->pluck('id')->toArray();
 
         $issues = Issue::whereIn('project_id', $projectsId)
+            ->orderByRaw("FIELD(status, 'new', 'pending', 'in_progress', 'resolved')")
             ->autoSearch('message')
             ->autoOrder()
             ->autoPaginate();
