@@ -54,7 +54,7 @@ function handleUnassignUser(user) {
 
 <template>
     <DashboardLayout>
-        <LinedTitle :title="`Performance issue : ${group.key}`" truncate>
+        <LinedTitle :title="`${t('performances.title')} : ${group.key}`" truncate>
             <Link href="/performances" class="btn primary sm">{{ t('performances.back') }}</Link>
         </LinedTitle>
 

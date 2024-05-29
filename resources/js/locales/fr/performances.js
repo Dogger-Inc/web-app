@@ -8,6 +8,7 @@ export default {
         "comments": "Commentaires",
         "tags": "Mots clés",
         "assigned_user": "Utilisateurs assignés",
-        "values": "Valeurs"
+        "values": "Valeurs",
+        "title": "Erreur de performance"
     }
 }

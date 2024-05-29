@@ -8,6 +8,7 @@ export default {
         "comments": "Comments",
         "tags": "Tags",
         "assigned_user": "Assigned users",
-        "values": "Values"
+        "values": "Values",
+        "title": "Performance issue"
     }
 }
