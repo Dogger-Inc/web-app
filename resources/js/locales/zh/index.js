@@ -8,6 +8,7 @@ import profile from './profile'
 import issues from './issues'
 import lang from './lang'
 import login from './login'
+import performances from './performances'
 import register from './register'
 import forgotPassword from './forgotPassword'
 
@@ -24,4 +25,5 @@ export default {
     ...forgotPassword,
     ...projects,
     ...issues,
+    ...performances,
 }
