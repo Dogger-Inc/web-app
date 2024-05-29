@@ -8,6 +8,7 @@ export default {
         "comments": "评论",
         "tags": "标签",
         "assigned_user": "分配的用户",
-        "values": "价值观"
+        "values": "价值观",
+        "title": "性能问题"
     }
 }

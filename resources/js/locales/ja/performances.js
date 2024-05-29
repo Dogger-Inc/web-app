@@ -8,6 +8,7 @@ export default {
         "comments": "コメント",
         "tags": "タグ",
         "assigned_user": "割り当てられたユーザー",
-        "values": "価値観"
+        "values": "価値観",
+        "title": "パフォーマンスの問題"
     }
 }
