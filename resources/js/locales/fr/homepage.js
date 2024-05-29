@@ -1,6 +1,6 @@
 export default {
 	"homepage": {
-		"catchline": "L'outil puissant qui ramène vos erreurs.",
+		"catchline": "Le puissant outil qui ramène vos erreurs.",
 		"use_dogger": "Utilisez Dogger, retracez mieux",
 		"need_dogger": "Le retraceur d'erreurs dont vous avez besoin pour votre application",
 		"utility_dogger": "Vous ne tracerez plus vos erreurs vous-même, Dogger le fera pour vous",
